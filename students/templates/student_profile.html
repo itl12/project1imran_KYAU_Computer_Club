@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ profile.name }}'s Profile{% endblock %}
+
+{% block body %}
+<div class="container mx-auto my-10 md:p-8">
+    <!-- Profile Card -->
+    <div class="bg-white shadow-lg rounded-lg py-8 md:p-8 md:w-3/4 mx-auto">
+        <!-- Profile Photo -->
+        <div class="text-center">
+            <a href="{% if profile.photo %} {{ profile.photo.url }} {% else %} /media/default_profile_pic.jpg {% endif %}"><img class="w-32 h-32 rounded-full mx-auto object-cover shadow-lg" src="{% if profile.photo %} {{ profile.photo.url }} {% else %} /media/default_profile_pic.jpg {% endif %}" alt="{{ profile.name }}'s photo"></a>
+            <h2 class="mt-4 text-3xl font-semibold text-gray-500">{{ profile.name }}</h2>
+            <p class="text-gray-600">Batch: {{ profile.batch }} | ID: {{ profile.std_id }}</p>
+        </div>
+        {% if user == profile.user %}<a href="{% url 'studentsapp:update_profile' %}" class="btn btn-success mt-5">Edit Profile</a>{% endif %}
+        {% if user == profile.user %}<a href="{% url 'studentsapp:change_password' %}" class="btn btn-outline-success mt-5">Change Password</a>{% endif %}
+
+        <!-- Profile Information -->
+        <div class="mt-8">
+            <!-- Description -->
+            <div class="bg-gray-100 p-4 rounded-lg shadow-inner mb-6">
+                <h3 class="text-lg font-semibold text-gray-700">About Me:</h3>
+                <p class="text-gray-600 mt-2">{% if profile.description %}{{ profile.description }}{% else %}No description available.{% endif %}</p>
+            </div>
+
+            <!-- Skills -->
+            <div class="bg-gray-100 p-4 rounded-lg shadow-inner mb-6">
+                <h3 class="text-lg font-semibold text-gray-700">Skills:</h3>
+                <p class="text-gray-600 mt-2">
+                    {% if profile.skills %}
+                        {{ profile.skills | linebreaksbr | json_script:'skills' }}
+                        <div id="skills-output" class="text-gray-500 font-bold text-lg antialiased flex flex-wrap gap-2"></div>
+                        
+                        <script>
+                            const skills = $('#skills').text().replace(/^"|"$/g, '');  // Remove leading and trailing quotes
+                            var skillsArray = skills.split(',').map(function(skill) {
+                                return skill.trim();  // Remove extra spaces around each skill
+                            });
+
+                            // Display the skills
+                            skillsArray.forEach(function(skill) {
+                                $('#skills-output').append(`<span class="bg-gray-200 rounded-lg px-2 py-1 text-gray-800">#${skill}</span>`);
+                            });
+                        </script>
+                    {% else %}
+                        No skills listed.
+                    {% endif %}
+
+                </p>
+            </div>
+
+            <!-- CV Download -->
+            <div class="mt-6 text-center bg-gray-100 p-4 rounded-lg shadow-inner mb-6">
+                {% if profile.cv %}
+                    <a href="{{ profile.cv.url }}" target="_blank" 
+                       class="inline-block bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-500 transition duration-300 ease-in-out">
+                        Download CV
+                    </a>
+                {% else %}
+                    <span class="text-gray-600">No CV uploaded yet.</span>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Images Section -->
+        <div class="mt-6">
+            <h2 class="text-2xl text-center font-semibold text-gray-500 mb-4">{% if page_obj %}
+                <div>All my Certificates</div> 
+                {% if user == page_obj.object_list.0.profile.user %}
+                    <div class="flex space-x-3">
+                        <a href="{% url 'studentsapp:modify_certificates' %}" class="btn btn-outline-secondary">Modify</a>
+                    </div>
+                {% endif %}
+            {% else %}No Certificate uploaded yet. {% endif %}</h2>
+            <div id="gallery-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {% for image in page_obj %}
+                    <div class="relative bg-gray-100 rounded-lg overflow-hidden shadow-lg">
+                        <img class="w-full h-64 object-cover cursor-pointer" src="{{ image.image.url }}" loading="lazy" alt="Image" onclick="openModal('{{ image.image.url }}')">
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Load More Button -->
+            <div id="load-more-container" class="text-center mt-6">
+                {% if page_obj.has_next %}
+                    <button id="load-more" class="bg-blue-500 text-white py-2 px-4 rounded">Load More</button>
+                {% endif %}
+            </div>
+
+            <!-- Fullscreen Modal for Image Popup -->
+            <div id="imageModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 hidden z-50">
+                <span class="absolute top-4 right-4 text-white cursor-pointer text-6xl" onclick="closeModal()">&times;</span>
+                <img id="modalImage" class="max-w-full max-h-full rounded-lg shadow-lg" src="" alt="Full Image">
+            </div>
+
+
+
+        </div>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+// ---------  Load More Images (AJAX)  -------------
+function load_more_image() {
+    let page = 2;  // Start from the second page
+
+    $('#load-more').on('click', function() {
+        const button = $(this);
+        button.prop('disabled', true);  // Disable button while loading
+
+        $.ajax({
+            type: 'POST',
+            url: window.location.href,  // Use current URL
+            data: {
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+                'page': page,
+            },
+            success: function(response) {
+                for (const url of response.image_list) {
+                    const imageHTML = `
+                        <div class="relative bg-gray-100 rounded-lg overflow-hidden shadow-lg">
+                            <img class="w-full h-64 object-cover cursor-pointer" src="${url}" loading="lazy" alt="Image" onclick="openModal('${url}')">
+                        </div>`;
+                    $('#gallery-container').append(imageHTML);
+                }
+                
+                page += 1;  // Increment the page number
+                
+                // Check if there's more to load
+                if (response.has_next) {
+                    button.prop('disabled', false);  // Re-enable button
+                } else {
+                    $('#load-more-container').remove();  // Remove button if no more images
+                }
+            }
+        });
+    });
+}
+load_more_image();
+
+// ---------  For pop-up modal lightbox  -------------
+function openModal(imageSrc) {
+    const $modal = $('#imageModal');
+    const $modalImage = $('#modalImage');
+    $modalImage.attr('src', imageSrc);  // Set image source in the modal
+    $modal.removeClass('hidden');
+    $modal.css({'margin-top': '74px'});
+    $modal.on('click', function(event) {
+        if ($(event.target).is($modal)) {
+            closeModal();
+        }
+    });
+}
+
+function closeModal() {
+    $('#imageModal').addClass('hidden');
+}
+</script>
+{% endblock %}

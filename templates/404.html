@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block body %}
+  
+
+
+
+    <div class="container bg-gray-300 my-10 p-5 md:p-10 font-medium text-2xl text-red-700 text-center rounded-lg shadow-lg">
+        {% if msg %} {{ msg }} {% else %} This url does not exists. {% endif %}
+    </div>
+
+
+{% endblock %}

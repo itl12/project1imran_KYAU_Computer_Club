@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<div class="container mx-auto p-6">
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white p-4 rounded-lg shadow-lg">
+      <h1 class="text-3xl font-bold text-center">{{ activity.title }}</h1>
+      <p class="text-sm text-center mt-2">{{ activity.date }}</p>
+    </header>
+  
+    <!-- Body Section -->
+    <div class="bg-white rounded-lg shadow-md mt-6 p-6">
+      <p class="text-gray-800 text-lg font-medium leading-relaxed tracking-tight ">
+        {{ activity.body }}
+      </p>
+    </div>
+  
+    <!-- Images Section -->
+    <div class="mt-6">
+        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Gallery</h2>
+        <div id="gallery-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {% for image in page_obj %}
+            <div class="relative bg-gray-100 rounded-lg overflow-hidden shadow-lg">
+              <img class="w-full h-64 object-cover cursor-pointer" src="{{image.image.url}}" loading="lazy" alt="Image" onclick="openModal('{{ image.image.url }}')">
+            </div>
+          {% endfor %}
+              <!-- images will be added here using jquery. append to #gallery-container -->
+        </div>
+    </div>
+
+    <!-- Fullscreen Modal for Image Popup -->
+      <div id="imageModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 hidden z-50">
+        <span class="absolute top-4 right-4 text-white cursor-pointer text-6xl" onclick="closeModal()">&times;</span>
+        <img id="modalImage" class="max-w-full max-h-full rounded-lg shadow-lg" src="" alt="Full Image">
+      </div>
+
+    <!-- Load More Button -->
+    <div id="load-more-container" class="text-center mt-6">
+      {% if page_obj.has_next %}
+        <button id="load-more" class="bg-blue-500 text-white py-2 px-4 rounded">Load More</button>
+      {% endif %}
+    </div>
+</div>
+
+
+{% endblock %}
+
+
+
+                    {% block script %}
+
+<script>
+
+// ---------  For Load more image use of Ajax  -------------//
+  function load_more_image(){
+    let page = 2;
+
+    $('#load-more').on('click', function(event){
+      const button = $(this);
+      button.prop('disabled', true);
+
+      $.ajax({
+        type : 'POST',
+        url  : window.location.href,
+        data : {
+          'csrfmiddlewaretoken' : '{{ csrf_token }}',
+          'page' : page,
+        },
+        success : function(response){
+          
+          for(const url of response.image_list){
+
+            let str = ` <div class="relative bg-gray-100 rounded-lg overflow-hidden shadow-lg">
+                        <img class="w-full h-64 object-cover cursor-pointer" src="${url}" loading="lazy" alt="Image" onclick="openModal('${url}')">
+                      </div>`;
+
+            $('#gallery-container').append(str);
+
+          }
+
+          page += 1;
+
+          if(response.has_next == true ){
+            button.prop('disabled', false);
+          }else {
+            $('#load-more-container').remove();
+          }
+
+        }
+      })
+
+    });
+  };
+  load_more_image();  // run the function
+  
+
+// ---------  For pop-up modal lightbox  -------------//
+
+function openModal(imageSrc) {
+    const $modal = $('#imageModal');
+    const $modalImage = $('#modalImage');
+    
+    // Set the image source in the modal
+    $modalImage.attr('src', imageSrc);
+    
+    // Show the modal
+    $modal.removeClass('hidden');
+    $modal.css({'margin-top': '74px'});
+    
+    // Add event listener for clicks outside the image
+    $modal.on('click', function(event) {
+        if ($(event.target).is($modal)) {  // Only close if the click is outside the image
+            closeModal();
+        }
+    });
+}
+
+function closeModal() {
+    // Hide the modal
+    const $modal = $('#imageModal');
+    $modal.addClass('hidden');
+}
+
+
+
+
+
+</script>
+
+
+                                {% endblock %}

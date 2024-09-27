@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %} Members of Computer Club{% endblock %}
+{% block main_tag_style %} {% endblock %}
+{% block body %}
+
+
+<div class="search_students">
+    <form action="" method="GET" class="form flex flex-row space-x-3 md:w-2/3 lg:w-1/2 md:mx-auto mx-2 my-10 p-5 md:p-10 shadow-xl rounded-lg bg-gray-100">
+        <input type="search" name="search" id="search_students" value="{{ search_query }}" class="form-control" placeholder="Search students by name">
+        <button type="submit" class="btn btn-outline-success">Search</button>
+    </form>
+</div>
+
+
+<!-- {{ grouped_students}} -->
+<div class="md:w-2/3 lg:w-1/2 md:mx-auto mx-2 my-10 p-5 md:p-10 shadow-xl rounded-lg bg-gray-500">
+    {% for batch, students in grouped_students.items %}
+    <div class="p-2 py-6 mb-2 font-medium text-center text-gray-600 rounded-lg bg-orange-200 outline outline-2 outline-teal-800">{{ batch }}th Batch | {{ students|length }} students</div>
+    
+        {% for student in students %}
+            <a href="{% url 'studentsapp:student-profile' slug=student.slug %}">
+                <div class="flex align-items-center p-2 mb-2 font-medium text-gray-900 bg-gray-400 rounded-lg shadow-inner duration-300 hover:scale-105">
+                    <span class="inline-block h-[30px] w-[30px] rounded-full overflow-hidden me-3">
+                        <img src="{{ student.thumbnail.image.url }}" alt="">
+                    </span>
+                    {{ student }}
+                </div>
+            </a>
+        {% endfor %}
+        {% empty %}
+            <li>No batches found.</li>
+    {% endfor %}
+
+
+</div>
+
+
+                    <!-- ------ Pagination -----  -->
+
+<nav class="my-10">
+    <ul class="pagination w-fit mx-auto shadow-lg">
+        {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+        {% endif %}
+        
+        <li class="page-item"><a class="page-link text-bg-primary" href="#">Page {{ page_obj.number }} of {{ paginator.num_pages }}.</a></li>
+
+        {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ paginator.num_pages }}">last &raquo;</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %} All Notices of Computer Club {% endblock %}
+
+{% block body %}
+
+
+<div class="text-bg-success py-4 fw-semibold fs-3 text-center antialiased">All notices of Computer Club</div>
+
+<div class="container mt-4">
+    <ul class="list-groups list-group-flush md:w-6/12 mx-auto">
+
+        {% for notice in notices %}
+            <a href="{% url 'noticeapp:notice' slug=notice.slug %}">
+                <li class="list-group-item flex flex-column text-[#9e5f5fde] shadow-xl transition-transform hover:shadow-2xl hover:scale-105">
+                    <span class="w-fit align-self-end mt-[30px] mr-[30px] badge fw-normal text-bg-secondary rounded-pill ">{{ notice.days_left }}</span>
+                    <div class="ms-2 me-auto">
+                        <div class="my-4 p-4 fw-semibold fs-3 text-[#9e5f5fde]">{{ notice.heading| truncatechars:50 }}</div>
+                    </div>
+                </li>
+            </a>
+        {% endfor %}
+    
+    </ul>
+</div>
+
+
+
+
+
+                    <!-- ------ Pagination -----  -->
+
+<nav class="my-10">
+    <ul class="pagination w-fit mx-auto shadow-lg">
+        {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+        {% endif %}
+        
+      <li class="page-item"><a class="page-link text-bg-primary" href="#">Page {{ page_obj.number }} of {{ paginator.num_pages }}.</a></li>
+
+      {% if page_obj.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ paginator.num_pages }}">last &raquo;</a></li>
+      {% endif %}
+    </ul>
+</nav>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ notice.heading| truncatechars:40 }} {% endblock %}
+
+{% block script %} {% endblock %}
+
+{% block body %}
+
+
+<div class="md:p-16 bg-gray-900">
+    <div class=".container p-6 bg-gray-800 border-gray-700 rounded-lg shadow ">
+        <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            {{ notice.heading }}
+        </h5>
+        <span class="d-block mb-3 ms-auto w-fit font-normal text-gray-200">{{ notice.date }} ( {{ notice.days_left }} )</span>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+            {{ notice.body }}
+
+            {% if notice.pdf %}
+                <div class="pdf mt-10 text-gray-300">
+                    <p class="font-normal mb-3 text-xl text-zinc-200">Download pdf</p>
+                    <a href="{{ notice.pdf.url }}" class="underline">{{ notice.pdf.name|slice:"12:" }}</a>
+                </div>
+            {% endif %}
+
+
+            {% if notice.images %}
+                {% for img in notice.images.all %}
+                    <div class="image md:mt-[100px] mt-10 w-fit md:max-w-[50%] mx-auto">
+                        <a href="{{ img.image.url }}">
+                            <img class="w-fit" src="{{ img.image.url }}" alt="{{ notice.heading }}">
+                        </a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+
+                
+            </div>
+
+
+        </p>
+    </div>
+
+        
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

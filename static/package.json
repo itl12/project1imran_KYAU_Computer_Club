@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "tailwindcss": "^3.4.10"
+  },
+  "scripts": {
+    "build:css": "npx tailwindcss -i ./src/css/tailwind/input.css -o ./src/css/tailwind/output.css --watch"
+  },
+  "dependencies": {
+    "bootstrap": "5.3"
+  }
+}

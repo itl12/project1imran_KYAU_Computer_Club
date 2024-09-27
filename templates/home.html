@@ -1,0 +1,98 @@
+{% extends 'base.html' %} {% load static %}
+
+
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'src/css/animate.css' %}">
+<link rel="stylesheet" href="{% static 'src/css/owl-carousel/owl.carousel.min.css' %}">
+<link rel="stylesheet" href="{% static 'src/css/owl-carousel/owl.theme.default.min.css' %}">
+{% endblock %}
+
+
+
+{% block body %}
+
+<!-- Main carousel  -->
+<div class="relative w-full">
+  <div id="home-carousel" class="owl-carousel owl-theme">
+    {% for image in carousel %}
+      <div class="h-full w-full z-10">
+        <img src="{{ image.image.url }}" alt="">
+      </div>
+    {% endfor %}
+  </div>
+
+  <div class="absolute top-0 start-0 w-[15%] h-full flex justify-center align-center">
+    <button id="prev" class="cursor-pointer w-full z-20 text-3xl text-zinc-300"><</button>
+  </div>
+  <div class="absolute top-0 end-0 w-[15%] h-full flex justify-center align-center">
+    <button id="next" class="cursor-pointer w-full z-20 text-3xl text-zinc-300">></button>
+  </div>
+</div>
+
+<!-- ----------------------------------------------------------------------------------- -->
+
+<div class="headline bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 p-6 mb-12 text-center text-4xl font-bold text-white shadow-lg">
+  Computer Club
+</div>
+
+<div class="container mx-auto px-4 mb-24">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    
+    <!-- Notice Board -->
+    <div>
+      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+        <a href="{% url 'noticeapp:all_notice' %}">
+          <div class="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white p-4 text-center font-bold text-2xl">
+            Notice Board
+          </div>
+        </a>
+        <ul class="divide-y divide-gray-200">
+          {% for notice in notices %}
+            <li>
+              <a href="{% url 'noticeapp:notice' slug=notice.slug %}" class="flex flex-column hover:text-purple-600  p-4 bg-gray-100 hover:bg-purple-100 transition duration-300 ease-in-out">
+                <span class="text-center w-fit align-self-end badge fw-normal text-bg-secondary rounded-pill ">
+                  {{ notice.days_left }}
+                </span>
+                <div class="font-semibold">
+                  {{ notice.heading| truncatechars:50 }}
+                </div>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div>
+      <div class="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
+        <a href="{% url 'galleryapp:list_activity' %}">
+          <div class="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 p-4">
+            <h3 class="text-center text-white text-xl font-bold">Recent Activity</h3>
+          </div>
+        </a>
+        <ul class="divide-y divide-gray-300">
+          {% for activity in activities %}
+              <li>
+                <a href="{% url 'galleryapp:activity-gallery' slug=activity.slug %}" class="block group p-4 transition-all duration-300 ease-in-out bg-gray-100 hover:bg-purple-100 cursor-pointer">
+                  <span class="text-gray-800 group-hover:text-purple-600 font-medium">{{ activity.title|truncatechars:50 }}</span>
+                  <p class="text-gray-600 text-sm mt-1 group-hover:text-purple-400">{{ activity.date }}</p>
+                </a>
+              </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% endblock %}
+
+
+{% block script %}
+<script src="{% static 'src/js/owl-carousel/owl.carousel.min.js' %}"></script>
+<script src="{% static 'src/js/owl-carousel/owl-carousel-customize.js' %}"></script>
+{% endblock %}

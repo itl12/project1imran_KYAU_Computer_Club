@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <meta http-equiv="refresh" content="1"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <title>{% block title %}{{ title }}Computer Club {% endblock %}</title>
+
+
+    <link rel="stylesheet" href="{% static 'src/css/tailwind/output.css' %}">
+
+
+
+    <script src="{% static 'src/js/jquery.js' %}"></script>
+
+    
+    {% block style %} {% endblock %}
+    {% block script_head %} {% endblock %}
+
+  <style>
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+    body {
+        display: flex;
+        flex-direction: column;
+    }
+    main {
+        flex: 1;
+    }
+
+  </style>
+
+</head>
+<body id="body">
+
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 shadow-lg">
+    <div class="container-fluid">
+      <!-- logo -->
+      <a class="navbar-brand" href="/">
+        <img src="{% static 'icons/club-logo.svg' %}" class="w-12 h-12 inline" alt="">
+        <span>Computer Club</span>
+      </a>
+      
+      <!-- collasp button  -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- menu items -->
+      <div class="collapse navbar-collapse" style="visibility: visible !important;" id="navbarNavDropdown">
+        <div class="navbar-nav mx-auto">
+          <a class="nav-link font-semibold" aria-current="page" href="/">Home</a>
+
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle  font-semibold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Notices 
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{% url 'noticeapp:all_notice' %}" class="dropdown-item hover:bg-gray-300">All Notices</a></li>
+              <li><a href="{% url 'noticeapp:class-routine' %}" class="dropdown-item hover:bg-gray-300">Routine</a></li>
+            </ul>
+          </div>
+
+          <a class="nav-link font-semibold" aria-current="page" href="{% url 'galleryapp:list_activity' %}">Activities</a>
+
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle  font-semibold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Students  
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{% url 'studentsapp:all_students' %}" class="dropdown-item hover:bg-gray-300">All Students</a></li>
+              <li><a href="{% url 'studentsapp:search_skills' %}" class="dropdown-item hover:bg-gray-300">Search Skills</a></li>
+              {% if user.is_authenticated and user.profile %}
+              <li><a href="{% url 'studentsapp:student-profile' slug=user.profile.slug %}" class="dropdown-item hover:bg-gray-300">My Profile</a></li>
+              {% endif %} {% if not user.is_authenticated %}
+              <li><a href="{% url 'login' %}" class="dropdown-item">My Profile</a></li>{% endif %}
+              
+            </ul>
+          </div>
+
+          {% if user.is_authenticated %}
+          <form action="{% url 'logout' %}" method="POST">{% csrf_token %}
+            <button type="submit" class="nav-link font-semibold">Logout</button>
+          </form>{% else %}
+          <a href="{% url 'login' %}" class="nav-link font-semibold">Login</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+<script>
+    // Toggle active Menu item
+    let currentUrl = window.location.href;
+    
+    $('.navbar-nav .nav-link').each(function(){
+      if(this.href === currentUrl) $(this).addClass('active');
+    })
+</script>
+
+
+
+      <main class="mt-[74px] {% block main_tag_style %}{%endblock%}">
+
+        {% if messages %}
+          <div class="messages">
+              {% for message in messages %}
+                  <p class="alert alert-{{ message.tags }}">{{ message }}</p>
+              {% endfor %}
+          </div>
+        {% endif %}
+
+        {% block body %} {% endblock %}
+
+
+    </main>
+
+
+
+
+    
+        <footer class="bg-zinc-800 text-white py-8">
+            <div class="container mx-auto px-4">
+              <div class="flex flex-wrap justify-between">
+                <!-- About Section -->
+                <div class="w-full md:w-1/3 mb-6 md:px-5">
+                  <h5 class="font-bold text-lg mb-4">Computer Club</h5>
+                  <p class="text-gray-400">We are a community of tech enthusiasts aiming to explore, innovate, and share knowledge in the field of computer science and technology.</p>
+                </div>
+          
+                <!-- Quick Links -->
+                <div class="w-full md:w-1/3 mb-6">
+                  <h5 class="font-bold text-lg mb-4">Quick Links</h5>
+                  <ul class="list-none">
+                    <li><a href="/" class="text-gray-400 hover:text-gray-100">Home</a></li>
+                    <li><a href="{% url 'noticeapp:all_notice' %}" class="text-gray-400 hover:text-gray-100">Notices</a></li>
+                    <li><a href="{% url 'galleryapp:list_activity' %}" class="text-gray-400 hover:text-gray-100">Activity</a></li>
+                    <li><a href="{% url 'studentsapp:all_students' %}" class="text-gray-400 hover:text-gray-100">All Students</a></li>
+                    <li><a href="{% url 'studentsapp:search_skills' %}" class="text-gray-400 hover:text-gray-100">Search skills</a></li>
+                  </ul>
+                </div>
+          
+                <!-- Contact Section -->
+                <div class="w-full md:w-1/3 mb-6">
+                  <h5 class="font-bold text-lg mb-4">Get in Touch</h5>
+                  <ul class="list-none text-gray-400">
+                    <li>Email: info@computerclub.com</li>
+                    <li>Phone: 01791-115371</li>
+                    <li>Location: KYAU, Enayetpur, Sirajganj</li>
+                  </ul>
+                  <div class="flex mt-4 space-x-4">
+                    <!-- Social Icons -->
+                    <a href="https://www.facebook.com/imran.alimran.9026/" target="_blank" class="text-gray-400 hover:text-gray-100">
+                      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.23 0H1.77C.79 0 0 .79 0 1.77v20.46C0 23.21.79 24 1.77 24h11v-9.29h-3v-3.62h3V8.41c0-3.1 1.9-4.79 4.67-4.79 1.33 0 2.48.1 2.82.14v3.27l-1.94.001c-1.52 0-1.81.72-1.81 1.77v2.32h3.62l-.47 3.62h-3.15V24h6.17C23.21 24 24 23.21 24 22.23V1.77C24 .79 23.21 0 22.23 0z"/></svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-100">
+                      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.56v14.88C24 22.15 22.15 24 19.44 24H4.56C1.85 24 0 22.15 0 19.44V4.56C0 1.85 1.85 0 4.56 0h14.88C22.15 0 24 1.85 24 4.56zm-4.23 1.64c-.41-.41-.99-.67-1.64-.67-.64 0-1.23.26-1.64.67-.41.41-.67.99-.67 1.64 0 .64.26 1.23.67 1.64.41.41.99.67 1.64.67.64 0 1.23-.26 1.64-.67.41-.41.67-.99.67-1.64 0-.64-.26-1.23-.67-1.64zM12 6.93c-2.82 0-5.07 2.25-5.07 5.07 0 .42.05.82.13 1.21l-3.55-.15c-.29 0-.53.24-.53.53v.59c0 .29.24.53.53.53h3.55c-.09.39-.14.79-.14 1.21 0 2.82 2.25 5.07 5.07 5.07 2.82 0 5.07-2.25 5.07-5.07 0-2.82-2.25-5.07-5.07-5.07zm0 8.64c-1.97 0-3.57-1.6-3.57-3.57 0-.69.19-1.33.53-1.88l.15-.21h3.82c.37.57.58 1.22.58 1.88 0 1.97-1.6 3.57-3.57 3.57zm5.44-2.57l-.53-.59c-.09-.09-.21-.14-.32-.14-.29 0-.53.24-.53.53v.59c0 .29.24.53.53.53.11 0 .23-.05.32-.14l.53-.59c.09-.09.14-.21.14-.32s-.05-.23-.14-.32z"/></svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-100">
+                      <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.37 3.43 9.91 8.2 11.43.6.11.82-.26.82-.58 0-.29-.01-1.26-.01-2.3-3.34.63-4.04-1.42-4.04-1.42-.55-1.41-1.35-1.79-1.35-1.79-1.1-.76.08-.74.08-.74 1.21.09 1.85 1.24 1.85 1.24 1.08 1.85 2.82 1.32 3.51 1.01.11-.78.42-1.32.76-1.62-2.67-.31-5.47-1.34-5.47-5.98 0-1.32.47-2.39 1.24-3.23-.12-.31-.54-1.56.12-3.25 0 0 1.01-.32 3.31 1.24a11.5 11.5 0 0 1 3.01-.4c1.02 0 2.05.13 3.01.4 2.29-1.56 3.31-1.24 3.31-1.24.66 1.69.24 2.94.12 3.25.77.84 1.24 1.91 1.24 3.23 0 4.65-2.8 5.67-5.48 5.98.43.37.82 1.1.82 2.22 0 1.6-.01 2.89-.01 3.29 0 .33.22.69.82.58C20.57 21.91 24 17.37 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <!-- Footer Bottom -->
+              <div class="mt-8 border-t border-gray-700 pt-4">
+                <p class="text-center text-gray-500">© 2024 Computer Club. All rights reserved.</p>
+              </div>
+            </div>
+          </footer>
+          
+    
+            <!--   ---------   All Script tags ----------    -->
+
+    <script src="{% static 'src/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'src/js/custom.js' %}"></script>
+
+    {% block script %} {% endblock %}
+
+    <script>
+      $('.main-navbar').on('click', '.menu-item', function(e) {
+        $('.main-navbar .submenu').not($(this).next()).addClass('hidden');
+        $($(this)).next().toggleClass('hidden');
+      })
+    </script>
+
+</body>
+</html>

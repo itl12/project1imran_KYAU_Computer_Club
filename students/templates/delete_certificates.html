@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ obj.name }}'s Profile{% endblock %}
+
+{% block body %}
+
+<div class="container my-10">
+    <form method="post" action="">
+        {% csrf_token %}
+        {% for img in obj.certificates.all %}
+            <div class="image-item">
+                <input type="checkbox" name="certificates" value="{{ img.id }}">
+                <img src="{{ img.image.url }}" alt="" width="100px" height="100px">
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-danger mt-5">Delete Selected</button>
+    </form>
+</div>
+
+
+
+{% endblock %}
+{% block script %}
+<script>
+
+</script>
+{% endblock %}

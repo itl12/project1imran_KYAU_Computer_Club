@@ -1,0 +1,285 @@
+{% extends 'base.html' %}  {% load static %}
+{% block title %} Update Profile {% endblock %}
+{% block style %} 
+<link rel="stylesheet" href="{% static 'src/css/jquery-ui.css' %}">
+{% endblock %}
+
+{% block script_head %} 
+<script src="{% static 'src/js/jquery-ui.js' %}"></script>
+<script src="{% static 'src/js/jquery-touch-helper.js' %}"></script>
+{% endblock %}
+
+{% block body %} {% load crispy_forms_tags %}
+
+
+<div class="container text-gray-400 font-bold font-serif text-2xl my-10 text-center">Update Profile</div>
+
+
+<div class="mb-10 lg:w-1/2 md:mx-auto md:m-10 p-5 md:p-10 bg-gray-200 rounded-xl">
+    <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+        <div class="my-7">
+            <div class="my-3">
+                <div id="slider" class="w-1/2 md:w-1/4 mx-auto" style="display: none;"></div>
+            </div>
+
+            <div class="wrap md:w-[500px] mx-auto rounded-lg shadow-xl relative overflow-hidden" style="display: none;">
+                <img id="selected_image" src="" alt="Image" class="mx-auto">
+                <div id="crop_area" class="border-3 border-orange-700 cursor-move" style="width: 100px; height: 100px; position: absolute; top: 0; left: 0;"></div>
+                <input type="hidden" name="pp">
+            </div>
+
+            <button type="button" id="cropBtn" class="btn btn-warning my-3" style="display:none;">Crop Image</button>
+            <input type="hidden" name="cropped_image" id="cropped_image">
+            <input type="hidden" name="uncropped_but_compressed" id="uncropped_but_compressed">
+        </div>
+
+        {{ form | crispy }} 
+
+        
+
+
+        <p class="filesize_warning text-center font-medium text-red-600 p-5 hidden">Upload filesize limit exceeded 20 MB.</p>
+
+        <button type="submit" id="form_submit_btn" class="btn btn-success w-1/2 mx-auto block">Save</button>
+    </form>
+</div>
+
+{% endblock %}
+{% block script %}
+<script>
+    
+
+function image_to_base64(src, width, height = null) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.src = src;
+
+            img.onload = function () {
+                const originalWidth = img.width;
+                const originalHeight = img.height;
+
+                // If height is not provided, calculate based on the original aspect ratio
+                if (!height) {
+                    height = (width / originalWidth) * originalHeight;
+                }
+
+                // Create a canvas to resize the image
+                const canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+
+                // Draw the resized image
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, width, height);
+
+                // Get the base64 version of the compressed image
+                const compressedImage = canvas.toDataURL('image/jpeg', 1); // Compression quality 
+                resolve(compressedImage);
+            };
+
+            img.onerror = function () {
+                reject("Failed to load image.");
+            };
+        });
+}
+
+const imageInput = $('#id_photo');
+const img = $('#selected_image'); 
+const cropArea = $('#crop_area');
+const container = $('.wrap'); 
+let cropSize = 100;  // Initial crop-box size (1:1)
+// let scaleMax = Math.min(container.height(), container.width()); console.log('scaleMax = ', scaleMax);
+
+
+// Crop-box resizing based on the scale control
+function slide_event() {
+    let scaleMax = Math.min(container.height(), container.width())  * 0.75;
+    let scaleValue = $('#slider').slider("value");
+
+    // Ensure crop size doesn't exceed container dimensions
+    cropSize = Math.min(scaleValue + 100, scaleMax);
+    cropArea.css({ width: cropSize, height: cropSize });
+
+    // Update draggable containment for crop area
+    cropArea.draggable('option', 'containment', container);
+}
+
+$('#selected_image').on('load', function(){
+    $('#slider').slider({
+        min: 0,
+        max: Math.min(container.height(), container.width())  * 0.75 ,
+        orientation: "horizontal",
+        value: 0,
+        slide: slide_event,
+        change: slide_event,
+    });
+    console.log('min is ',Math.min(container.height(), container.width()));
+})
+
+$('#slider .ui-slider-range').addClass('bg-gray-600');
+$('#slider .ui-slider-handle').addClass('bg-teal-600');
+
+// Function to reset the crop box position and size
+function resetImage() {
+    cropSize = 100;  // Reset crop size
+    cropArea.css({ width: cropSize, height: cropSize, top: 0, left: 0 });
+    cropArea.draggable({
+        containment: container  // Constrain the crop-box within the .wrap container
+    });
+}
+
+// Loading box of profile picture
+function loading_profile_pic(){
+    $('.wrap').css({'display': 'block'});
+    $('#selected_image').attr('src', '{% static "icons/loading.gif" %}');
+    $('#crop_area').toggle();
+}
+
+// Image input change handler
+imageInput.on('change', function(e) {
+
+    loading_profile_pic();  // show loading box
+
+    let file = e.target.files[0];
+    let reader = new FileReader();
+    
+    reader.onload = function(event) {
+        container.show();  // Show container when image is selected
+        img.attr('src', event.target.result);
+        $('#id_photo').val('');
+        
+        image_to_base64(event.target.result, 300).then(function(uncropped_but_compressed){
+            $('#uncropped_but_compressed').val(uncropped_but_compressed);
+        }).catch(function(error){
+            console.log(error);
+        });
+        
+
+        resetImage();  // Reset crop area and draggable functionality
+        $('#cropBtn').show();
+        $('#slider').show();
+        cropArea.show();
+    };
+
+    reader.readAsDataURL(file);
+});
+
+
+
+// Crop button handler
+$('#cropBtn').on('click', function(e) {
+    e.preventDefault();
+
+    const cropWidth = cropArea.width();
+    const cropHeight = cropArea.height();
+
+    const canvas = document.createElement('canvas');
+    canvas.width = 300;  // Set fixed output size for cropped image (400x400)
+    canvas.height = 300;
+
+    const ctx = canvas.getContext('2d');
+    const cropAreaPosition = cropArea.position();  // Position of the crop-box inside the container
+    const scaledWidth = img[0].naturalWidth;
+    const scaledHeight = img[0].naturalHeight;
+
+    // Calculate the position of the cropped area in the original image
+    const offsetX = cropAreaPosition.left * (scaledWidth / container.width());
+    const offsetY = cropAreaPosition.top * (scaledHeight / container.height());
+    const widthRatio = cropWidth * (scaledWidth / container.width());
+    const heightRatio = cropHeight * (scaledHeight / container.height());
+
+    ctx.drawImage(
+        img[0],  // Image element
+        offsetX, offsetY, widthRatio, heightRatio,  // Source coordinates and size
+        0, 0, 300, 300  // Destination coordinates and size (400x400 fixed)
+    );
+
+    // Convert canvas content to base64
+    const croppedDataURL = canvas.toDataURL('image/png');
+    $('#cropped_image').val(croppedDataURL);
+    $('#uncropped_but_compressed').val('');
+
+    // Replace the original image with the cropped one
+    img.attr('src', croppedDataURL);
+    $('#crop_area').hide();  // Hide the crop box
+    $('#cropBtn').hide();  // Hide the crop button
+    $('#slider').hide();
+    $('#id_photo').val('');   // Clear the original photo from input field.
+});
+
+
+$('#div_id_photo a').css({'display': 'block', 'word-wrap': 'break-word'});
+$('#id_photo').css({'width': '100%'});
+
+
+    // --------------------------    Certificate Photos   compressing then uploading ---------------- \\
+
+
+$(document).ready(function () {
+    const fileInput = document.getElementById('id_images');
+    const maxSize = 20 * 1024 * 1024; // 20MB
+    const warning = document.getElementsByClassName('filesize_warning');
+    
+    fileInput.addEventListener('change', function () {
+        let total = 0;
+        let files = fileInput.files;
+
+        // Loop through files to calculate total size
+        for (let i = 0; i < files.length; i++) {
+            total += files[i].size;
+        }
+
+        if (total > maxSize) {
+            // Show warning message
+            $(warning).removeClass('hidden');
+
+            // Optionally clear the file input
+            fileInput.value = '';
+            return;
+        } else {
+            // Hide warning if the file size is valid
+            $(warning).addClass('hidden');
+            $('#form_submit_btn').text('processing images...');
+            $('#form_submit_btn').attr('disabled', true);
+            $('#form_submit_btn').addClass('animate-pulse');
+        }
+
+
+        let done = 0;
+        // Now compress them all
+        for (let i = 0; i < files.length; i++) {
+            let file = files[i];
+            let reader = new FileReader();
+
+            // Read the file as a Data URL (Base64)
+            reader.onload = function (event) {
+                let fileBase64 = event.target.result;
+
+                // Compress the image and handle the result
+                image_to_base64(fileBase64, 500).then(function (compressedImage) {
+                    // Add a hidden input for each compressed image
+                    let certificateInput = `<input type='hidden' class='certificate_images' name='certificate_images[]' value='${compressedImage}'>`;
+                    $('#id_photo').after(certificateInput);
+
+                    done ++;
+                    if ( done == files.length){
+                        $('#form_submit_btn').text('Save');
+                        $('#form_submit_btn').attr('disabled', false);
+                        $('#form_submit_btn').removeClass('animate-pulse');
+                        $('#id_images').val('');  // clear the input value
+                    }
+                }).catch(function (error) {
+                    console.log('Error compressing image:', error);
+                });
+            };
+
+            // Read the image file
+            reader.readAsDataURL(file);
+        }
+
+    });
+});
+
+</script>
+{% endblock %}
