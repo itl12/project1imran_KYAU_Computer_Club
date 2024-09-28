@@ -37,7 +37,7 @@ class Update_student_profile(forms.ModelForm):
     images = MultipleFileField(required=False, label='Upload all your Certificate photos')  # Use custom MultipleFileField # extra added
     cv_clear = forms.BooleanField(required=False, label='Clear CV', help_text="Check this to remove the existing CV")  # extra added
 
-
+    batch = forms.IntegerField()
     description = forms.CharField(required=False, label='About yourself', widget=forms.Textarea())
     cv = forms.FileField(required=False, label='Your CV (curiculam vita)', validators=[FileExtensionValidator(allowed_extensions=['pdf'])],
                           widget=forms.FileInput(attrs={'accept': 'application/pdf'}))

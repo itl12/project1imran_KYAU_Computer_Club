@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %} Search Skills {% endblock %}
-{% block main_tag_style %} {% endblock %}
+{% block main_tag_style %} {% endblock %} {% load static %}
 {% block body %}
 
 <div class="md:w-1/2 md:mx-auto mx-2 my-10 md:p-10 p-2 rounded-lg shadow-md">
@@ -15,9 +15,9 @@
   
         {% for std in students %}
             <a href="{% url 'studentsapp:student-profile' slug=std.slug %}">
-                <div class="flex align-items-center p-2 my-4 rounded-t-lg bg-gray-300 shadow-lg font-black text-gray-500">
+                <div class="flex align-items-center p-2 my-4 rounded-t-lg bg-gray-300 shadow-lg font-semibold text-gray-700">
                     <span class="inline-block h-[30px] w-[30px] rounded-full overflow-hidden me-3">
-                        <img src="{{ std.thumbnail.image.url }}" alt="">
+                        <img src="{% if std.thumbnail.image %}{{ std.thumbnail.image.url }} {% else %} {% static 'images/profile_sm.png' %} {% endif %}" alt="">
                     </span>
                     {{ std }}
                 </div>

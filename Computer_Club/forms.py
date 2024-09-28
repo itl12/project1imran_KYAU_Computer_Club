@@ -15,6 +15,6 @@ class Create_user_and_profile_form(UserCreationForm):
             if not obj.slug:
                 obj.slug = slugify(str(uuid.uuid4()))
             obj.save()
-            Thumbnail_photo.objects.create(profile=obj, image='default_profile_pic.jpg')
+            Thumbnail_photo.objects.create(profile=obj)
         return instance
 
