@@ -44,7 +44,7 @@ class Update_student_profile(forms.ModelForm):
     
     skills = forms.CharField(required=False, label='Seperate your skill tags using comma , ', widget=forms.Textarea(attrs={'rows':5, 'placeholder': 'fontend, backend, javascript, html, css, tailwind, bootstrap, graphics design, video editor, node-js, singer, photographer, hacking, volunteer, etc.'}))
 
-    passions = forms.CharField(required=False, label='Seperate your passions tags using comma , ', widget=forms.Textarea(attrs={'rows':5, 'placeholder': 'programming, hacking, singing, danching, acting, travelling, volunteering etc.'}))
+    passion = forms.CharField(required=False, label='Seperate your passion tags using comma , ', widget=forms.Textarea(attrs={'rows':5, 'placeholder': 'programming, hacking, singing, danching, acting, travelling, volunteering etc.'}))
 
 
     def save(self, commit=True):

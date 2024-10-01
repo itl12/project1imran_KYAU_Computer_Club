@@ -12,7 +12,7 @@ class Student_Model(models.Model):
     description = models.TextField(blank=True, null=True)
     cv = models.FileField(upload_to='students_cv/', blank=True, null=True)
     skills = models.CharField(max_length=1000, blank=True, null=True)
-    passions = models.CharField(max_length=1000, blank=True, null=True)
+    passion = models.CharField(max_length=1000, blank=True, null=True)
     slug = models.SlugField(unique=True)
 
     class Meta():

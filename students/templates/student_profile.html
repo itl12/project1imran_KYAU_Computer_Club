@@ -16,7 +16,7 @@
             {% if user.is_authenticated and user == profile.user %}<p class="text-gray-600">User login Id: {{ user.username }}</p> {% endif %}
         </div>
         {% if user == profile.user %}<a href="{% url 'studentsapp:update_profile' %}" class="btn btn-success mt-5">Edit Profile</a>{% endif %}
-        {% if user == profile.user %}<a href="{% url 'studentsapp:change_password' %}" class="btn btn-outline-success mt-5">Change Password</a>{% endif %}
+        {% if user == profile.user %}<a href="{% url 'studentsapp:change_password' %}" class="btn btn-outline-success mt-5">Change Password</a>{% endif %} passion
 
         <!-- Profile Information -->
         <div class="mt-8">
@@ -62,13 +62,13 @@
             <div class="bg-gray-100 p-4 rounded-lg shadow-inner mb-6">
                 <h3 class="text-lg font-semibold text-gray-700">Passions:</h3>
                 <p class="text-gray-600 mt-2">
-                    {% if profile.passions %}
-                        {{ profile.passions | linebreaksbr | json_script:'passions' }}
-                        <div id="passions-output" class="text-gray-500 font-bold text-lg antialiased flex flex-wrap gap-2"></div>
+                    {% if profile.passion %}
+                        {{ profile.passion | linebreaksbr | json_script:'passion' }}
+                        <div id="passion-output" class="text-gray-500 font-bold text-lg antialiased flex flex-wrap gap-2"></div>
                         
                         <script>
-                            const passions = $('#passions').text().replace(/^"|"$/g, '');  // Remove leading and trailing quotes
-                            var passionsArray = passions.split(',')
+                            const passion = $('#passion').text().replace(/^"|"$/g, '');  // Remove leading and trailing quotes
+                            var passionsArray = passion.split(',')
                                 .map(function(passion) {
                                     return passion.trim();  // Remove extra spaces around each item
                                 })
@@ -78,12 +78,12 @@
 
 
                             // Display the skills
-                            passionsArray.forEach(function(passions) {
-                                $('#passions-output').append(`<span class="bg-gray-200 rounded-lg px-2 py-1 text-gray-800">#${passions}</span>`);
+                            passionsArray.forEach(function(passion) {
+                                $('#passion-output').append(`<span class="bg-gray-200 rounded-lg px-2 py-1 text-gray-800">#${passion}</span>`);
                             });
                         </script>
                     {% else %}
-                        No passions listed.
+                        No passion listed.
                     {% endif %}
 
                 </p>
