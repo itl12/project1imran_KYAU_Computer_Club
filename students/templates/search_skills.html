@@ -1,16 +1,38 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %}   {% load static %}
 {% block title %} Search Skills {% endblock %}
-{% block main_tag_style %} {% endblock %} {% load static %}
+{% block main_tag_style %}
+<style>
+#suggestions div {
+    padding: 8px;
+    cursor: pointer;
+}
+
+#suggestions div:hover {
+    background-color: #f3f4f6;
+}
+#suggestions {
+    display: block !important;  /* Force it to be shown when necessary */
+    position: absolute;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
+}
+</style>
+{% endblock %}
 {% block body %}
 
 <div class="md:w-1/2 md:mx-auto mx-2 my-10 md:p-10 p-2 rounded-lg shadow-md">
     
     <form class="flex flex-col max-w-sm mx-auto mb-5" method="GET">
         <div>
-            <label for="small-input" class="block mb-2 text-sm font-medium text-gray-900">Search skills e.g. python, css, backend, hacking, design</label>
-            <input type="text" name="skill" class="form-control" value="{{ search_query }}" placeholder="python">
+            <label for="small-input" class="block mb-2 text-sm font-medium text-gray-900">
+                Search skills e.g. python, css, backend, hacking, design
+            </label>
+            <input type="text" id="skill-input" name="skill" class="form-control" value="{{ search_query }}" placeholder="python" autocomplete="off">
+            <div id="suggestions" class="bg-white border border-gray-200 rounded-md shadow-lg mt-2 absolute z-10"></div>
         </div>
-        <button type="submit" class="btn btn-success  my-4">Search</button>
+        <button type="submit" class="btn btn-success my-4">Search</button>
     </form>
   
         {% for std in students %}
@@ -29,16 +51,45 @@
     
         <script>
             $(document).ready(function () {
-                const searchKeyword = "{{ request.GET.skill }}".trim().toLowerCase();
-                if (searchKeyword !== "") {
-                    $('[id^="skills-output-"]').each(function () {
-                        let skillsText = $(this).text();
-                        let regex = new RegExp("(" + searchKeyword + ")", "gi");
-                        let highlightedSkills = skillsText.replace(regex, "<span class='bg-yellow-300'>$1</span>");
-                        $(this).html(highlightedSkills);
-                    });
-                }
+                $('#skill-input').on('input', function (e) {
+                    e.preventDefault();  // Prevent form submission
+                    const searchKeyword = $(this).val();
+                    if (searchKeyword.length > 0) {
+                        $.ajax({
+                            url: "{% url 'studentsapp:skill-suggestions' %}",
+                            data: {
+                                'skill': searchKeyword
+                            },
+                            success: function (data) {
+                                let suggestionsBox = $('#suggestions');
+                                suggestionsBox.empty().show();
+                                if (data.length > 0) {
+                                    data.forEach(skill => {
+                                        // Highlight the matching part of the skill
+                                        const regex = new RegExp("(" + searchKeyword + ")", "gi");
+                                        const highlightedSkill = skill.replace(regex, "<span class='bg-yellow-300'>$1</span>");
+                                        suggestionsBox.append(`<div class="p-2 cursor-pointer hover:bg-gray-200">${highlightedSkill}</div>`);
+                                    });
+                                } else {
+                                    suggestionsBox.hide();
+                                }
+                            },
+                            error: function () {
+                                console.error("An error occurred while fetching suggestions.");
+                            }
+                        });
+                    } else {
+                        $('#suggestions').hide();
+                    }
+                });
+
+                // Handling dropdown item click
+                $('#suggestions').on('click', 'div', function () {
+                    $('#skill-input').val($(this).text());
+                    $('#suggestions').hide();
+                });
             });
+
         </script>
   
     

@@ -3,11 +3,8 @@ from django.urls import reverse_lazy
 from django.views.generic import UpdateView, DetailView, ListView
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib import messages
-from django.http import Http404
+from django.http import JsonResponse
 from django.contrib.auth.views import PasswordChangeView
-import base64
-from django.core.files.base import ContentFile
 from collections import defaultdict
 from django.db.models import Q
 from django.core.paginator import Paginator
@@ -42,6 +39,30 @@ class Search_skills(ListView):
         # Pass the search query back to the template so it persists across paginated results
         context['search_query'] = self.request.GET.get('skill', '')
         return context
+
+        # new view created for search students 
+class SkillSuggestionView(View):
+    def get(self, request, *args, **kwargs):
+        query = request.GET.get('skill', '').lower()
+        if query:
+            # Fetch distinct skill sets matching the query
+            students = Student_Model.objects.filter(skills__icontains=query).values_list('skills', flat=True).distinct()[:10]
+
+            # Find only the matching substrings
+            matched_skills = []
+            for skills in students:
+                # Split skills into individual words and match with query
+                skill_list = [skill.strip() for skill in skills.split(',')]
+                for skill in skill_list:
+                    if query in skill.lower():
+                    # if skill.lower().startswith(query):
+                        matched_skills.append(skill)
+                    # if len(matched_skills) >= 10:  # Limit to 10 individual skills
+                    #     break
+            return JsonResponse(matched_skills, safe=False)
+        return JsonResponse([], safe=False)
+
+
 
 
 class All_Students(ListView):
