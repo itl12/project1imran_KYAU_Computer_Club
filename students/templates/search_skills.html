@@ -34,20 +34,28 @@
         </div>
         <button type="submit" class="btn btn-success my-4">Search</button>
     </form>
-  
+
         {% for std in students %}
             <a href="{% url 'studentsapp:student-profile' slug=std.slug %}">
                 <div class="flex align-items-center p-2 my-4 rounded-t-lg bg-gray-300 shadow-lg font-semibold text-gray-700">
                     <span class="inline-block h-[30px] w-[30px] rounded-full overflow-hidden me-3">
                         <img src="{% if std.thumbnail.image %}{{ std.thumbnail.image.url }} {% else %} {% static 'images/profile_sm.png' %} {% endif %}" alt="">
                     </span>
-                    {{ std }}
+                    {{ std.batch }}th batch | {{ std.name }} | id: {{ std.std_id }}
                 </div>
-                <div class="bg-gray-200 mt-[-16px] p-5 rounded-b-lg font-medium text-teal-800" id="skills-output-{{ forloop.counter }}">{{ std.skills }}</div>
+                <div class="bg-gray-200 mt-[-16px] p-5 rounded-b-lg font-medium text-teal-800">
+                    <div>
+                        <strong class="text-sky-500">Skills:</strong> <span class="highlight">{{ std.skills|default:"No skills listed." }}</span>
+                    </div>
+                    <div>
+                        <strong class="text-sky-500">Passion:</strong> <span class="highlight">{{ std.passion|default:"No passion listed." }}</span>
+                    </div>
+                </div>
             </a>
         {% empty %}
             <div class="p-2 my-4 rounded-t-lg bg-gray-200 shadow-lg font-medium text-lg text-red-500 text-center">No match found.</div>
         {% endfor %}
+
     
         <script>
             $(document).ready(function () {
@@ -64,11 +72,11 @@
                                 let suggestionsBox = $('#suggestions');
                                 suggestionsBox.empty().show();
                                 if (data.length > 0) {
-                                    data.forEach(skill => {
-                                        // Highlight the matching part of the skill
+                                    data.forEach(suggestion => {
+                                        // Highlight the matching part of the skill or passion
                                         const regex = new RegExp("(" + searchKeyword + ")", "gi");
-                                        const highlightedSkill = skill.replace(regex, "<span class='bg-yellow-300'>$1</span>");
-                                        suggestionsBox.append(`<div class="p-2 cursor-pointer hover:bg-gray-200">${highlightedSkill}</div>`);
+                                        const highlightedSuggestion = suggestion.replace(regex, "<span class='bg-yellow-300'>$1</span>");
+                                        suggestionsBox.append(`<div class="p-2 cursor-pointer hover:bg-gray-200">${highlightedSuggestion}</div>`);
                                     });
                                 } else {
                                     suggestionsBox.hide();
@@ -88,7 +96,20 @@
                     $('#skill-input').val($(this).text());
                     $('#suggestions').hide();
                 });
+
+
+                        // Highlight the search result
+                const searchKeyword = "{{ request.GET.skill }}".trim().toLowerCase();
+                if (searchKeyword !== "") {
+                    $('.highlight').each(function () {
+                        let content = $(this).html();
+                        let regex = new RegExp("(" + searchKeyword + ")", "gi");
+                        let highlightedContent = content.replace(regex, "<span class='bg-yellow-300'>$1</span>");
+                        $(this).html(highlightedContent);
+                    });
+                }
             });
+
 
         </script>
   

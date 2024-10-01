@@ -24,43 +24,60 @@ class Password_ChangeView(PasswordChangeView):
 
 class Search_skills(ListView):
     model = Student_Model
-    template_name = 'search_skills.html' 
+    template_name = 'search_skills.html'
     context_object_name = 'students'
-    paginate_by = 40
+    paginate_by = 20
 
     def get_queryset(self):
         key = self.request.GET.get('skill', '')
-        if key: 
-            return Student_Model.objects.filter(skills__icontains=key)
+        if key:
+            return Student_Model.objects.filter(
+                Q(skills__icontains=key) | Q(passion__icontains=key)
+            )
         return super().get_queryset()
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        # Pass the search query back to the template so it persists across paginated results
         context['search_query'] = self.request.GET.get('skill', '')
         return context
 
-        # new view created for search students 
+
+
 class SkillSuggestionView(View):
     def get(self, request, *args, **kwargs):
         query = request.GET.get('skill', '').lower()
         if query:
-            # Fetch distinct skill sets matching the query
-            students = Student_Model.objects.filter(skills__icontains=query).values_list('skills', flat=True).distinct()[:10]
+            # Fetch distinct skill sets from both 'skills' and 'passion' fields
+            students = Student_Model.objects.filter(
+                Q(skills__icontains=query) | Q(passion__icontains=query)
+            ).values_list('skills', 'passion').distinct()
 
-            # Find only the matching substrings
             matched_skills = []
-            for skills in students:
-                # Split skills into individual words and match with query
-                skill_list = [skill.strip() for skill in skills.split(',')]
+            for skills, passion in students:
+                # Split both 'skills' and 'passion' fields by commas and filter
+                skill_list = [skill.strip() for skill in (skills or '').split(',')]
+                passion_list = [passion.strip() for passion in (passion or '').split(',')]
+                
+                # Append skills that start with the query
                 for skill in skill_list:
-                    if query in skill.lower():
                     # if skill.lower().startswith(query):
+                    if query in skill.lower(): 
                         matched_skills.append(skill)
-                    # if len(matched_skills) >= 10:  # Limit to 10 individual skills
-                    #     break
-            return JsonResponse(matched_skills, safe=False)
+                
+                # Append passion that start with the query
+                for passion in passion_list:
+                    # if passion.lower().startswith(query):
+                    if query in passion.lower(): 
+                        matched_skills.append(passion)
+                
+                # Stop if we already have 10 suggestions
+                # if len(matched_skills) >= 10:
+                #     break
+
+            return JsonResponse(matched_skills[:7], safe=False)
+        
         return JsonResponse([], safe=False)
+
 
 
 
