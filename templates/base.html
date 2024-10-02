@@ -81,6 +81,8 @@
             </ul>
           </div>
 
+          <a class="nav-link font-semibold" aria-current="page" href="{% url 'contact_us' %}">Contact-us</a>
+
           {% if user.is_authenticated %}
           <form action="{% url 'logout' %}" method="POST">{% csrf_token %}
             <button type="submit" class="nav-link font-semibold">Logout</button>

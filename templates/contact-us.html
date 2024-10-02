@@ -1,0 +1,99 @@
+{% extends 'base.html' %} {% load static %}
+{% block title %} Contact Us {% endblock %}
+
+{% block body %}
+
+
+<div class="container my-5 flex">
+
+
+    <!-- Instructor info -->
+
+        <div class="flex items-center justify-center min-h-screen bg-gray-100">
+            <div class="max-w-sm w-full bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="relative h-40 bg-gradient-to-r from-sky-500 to-blue-400">
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2">
+                        <img class="w-32 h-32 rounded-full border-4 border-white" src="{% static 'images/rahat-sir.jpg' %}" alt="Md. Rahat Khan">
+                    </div>
+                </div>
+                <div class="px-6 py-4 mt-12">
+                    <h3 class="text-center text-2xl font-semibold text-gray-800 text-sky-500">Md. Rahat Khan</h3>
+                    <p class="text-center text-gray-500 text-sm font-medium"> As Project Instructor</p>
+                    <p class="text-center text-gray-500 text-sm mt-1">Lecturer, Computer Science & Engineering<br>Khwaja Yunus Ali University</p>
+                    <div class="mt-4 flex flex-col space-y-3">
+                        <div class="flex space-x-3">
+                            <img src="{% static 'icons/whatsapp.png' %}" class="w-5 h-5" alt="">
+                            <span class="text-gray-500 text-green-600">0171xxxxxxx</span>
+                        </div> 
+                        <div class="">
+                            <a href="https://www.facebook.com/itsrahatkhan" target="_blank" class="flex space-x-3">
+                                <img src="{% static 'icons/facebook-logo.png' %}" class="w-5 h-5" alt="">
+                                <span class="text-gray-500 text-green-600 hover:text-green-800">/itsrahatkhan</span>
+                            </a>
+                        </div> 
+                        <div class="flex space-x-3">
+                            <img src="{% static 'icons/email-opened.png' %}" class="w-5 h-5" alt="">
+                            <span class="text-gray-500 text-green-600">........@gmail.com</span>
+                        </div> 
+                           
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-6 py-4">
+                    <a href="#" class="block text-center text-indigo-500 font-medium text-sm hover:underline hover:text-indigo-600 transition-colors duration-300">
+                    </a>
+                </div>
+            </div>
+
+
+                <!-- Developer info  -->
+
+            <div class="max-w-sm w-full bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="relative h-40 bg-gradient-to-r from-sky-500 to-blue-400">
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2">
+                        <img class="w-32 h-32 rounded-full border-4 border-white" src="{% static 'images/rahat-sir.jpg' %}" alt="Md. Rahat Khan">
+                    </div>
+                </div>
+                <div class="px-6 py-4 mt-12">
+                    <h3 class="text-center text-2xl font-semibold text-gray-800 text-sky-500">Md. AL-Imran</h3>
+                    <p class="text-center text-gray-500 text-sm font-medium"> As Project Developer</p>
+                    <p class="text-center text-gray-500 text-sm mt-1">Graduating, Computer Science & Engineering<br>Khwaja Yunus Ali University</p>
+                    <div class="mt-4">
+                        <table class="w-full text-sm">
+                            <tr>
+                                <td class="text-gray-600 font-semibold py-2">Address:</td>
+                                <td class="text-gray-500 py-2">Chatakpur-3, Dhangadhi Kailali</td>
+                            </tr>
+                            <tr>
+                                <td class="text-gray-600 font-semibold py-2">Phone:</td>
+                                <td class="text-gray-500 py-2">+977 9955221114</td>
+                            </tr>
+                            <tr>
+                                <td class="text-gray-600 font-semibold py-2">Email:</td>
+                                <td class="text-gray-500 py-2">john@example.com</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-6 py-4">
+                    <a href="#" class="block text-center text-indigo-500 font-medium text-sm hover:underline hover:text-indigo-600 transition-colors duration-300">
+                    </a>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+        
+        <style>
+            .transform:hover .scale-105 {
+                transform: scale(1.05);
+            }
+        </style>
+
+</div>
+
+
+
+{% endblock %}
