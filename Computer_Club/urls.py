@@ -15,6 +15,7 @@ urlpatterns = [
     re_path(r'^static/(?P<path>.*)$', serve, {'document_root' : settings.STATIC_ROOT }),
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root' : settings.MEDIA_ROOT }),
     path('', views.Home.as_view(), name='home'),
+    path('contact-us/', views.Contact_view.as_view(), name='contact_us'),
     path('notices/', include('noticeapp.urls')),
     path('gallery/', include('galleryapp.urls')),
     path('students/', include('students.urls')),
