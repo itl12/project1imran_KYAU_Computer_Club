@@ -1,0 +1,137 @@
+{% extends 'base.html' %} {% load static %}
+{% block title %} {{ profile.name }} {% endblock %}
+{% block style %} <link rel="stylesheet" href="{% static 'src/css/jquery-ui.css' %}"> {% endblock %}
+{% block script_head %} <script src="{% static 'src/js/jquery-ui.js' %}"></script> {% endblock %}
+{% block body %}
+
+<div class="container my-10">
+        <div class="border text-gray-700 row bg-gradient-to-r from-blue-200 via-blue-300 to-blue-400 rounded-lg shadow-xl p-6">
+            <div class="border p-4 col-xl-3 bg-white rounded-lg shadow-md">
+                <div class="d-flex justify-content-center align-items-center mb-4">
+                    <img src="{% if profile.photo %} {{ profile.photo.url }} {% else %} {% static 'images/profile.png' %}{% endif %}"
+                        class="mx-auto border-4 border-indigo-500 rounded-full w-48 h-48 object-cover transition-transform transform hover:scale-110 duration-300 ease-in-out"
+                        style="max-width: 200px;">
+                </div>
+                <div class="text-center mt-3">
+                    <p class="text-2xl font-semibold text-teal-800">{{ profile.name }}</p>
+                    <small class="text-lg text-gray-500">{{ profile.designation }}</small>
+                </div>
+            </div>
+            <div class="border p-4 col-xl-9 bg-white rounded-lg shadow-md mt-4 xl:mt-0">
+                <h4 class="text-3xl font-bold text-indigo-600">Profile</h4>
+                <hr class="my-4 border-indigo-500">
+                <div class="space-y-4">
+                    <p class="text-lg font-semibold text-teal-700">Short Biography:</p>
+                    <p class="text-gray-600 text-sky-600">{{ profile.short_biography }}</p>
+                    <p class="text-lg font-semibold text-teal-700 mt-4">Research Interest:</p>
+                    <p class="text-gray-600 text-sky-600">{{ profile.research_interest }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- tables tabs -->
+        
+        <div id="tabs" class="w-full max-w-4xl mx-auto mt-8 bg-white rounded-lg shadow-lg">
+            <ul class="flex flex-col sm:flex-row border-b">
+                <li class="sm:mr-1 mb-1 sm:mb-0">
+                    <a href="#tabs-1" class="inline-block w-full sm:w-auto p-4 bg-indigo-500 text-white font-semibold rounded-t-lg hover:bg-indigo-600 transition-colors duration-300 text-center">RESEARCH & PUBLICATION</a>
+                </li>
+                <li class="sm:mr-1 mb-1 sm:mb-0">
+                    <a href="#tabs-2" class="inline-block w-full sm:w-auto p-4 bg-indigo-500 text-white font-semibold rounded-t-lg hover:bg-indigo-600 transition-colors duration-300 text-center">ACADEMIC INFO</a>
+                </li>
+                <li class="sm:mr-1 mb-1 sm:mb-0">
+                    <a href="#tabs-3" class="inline-block w-full sm:w-auto p-4 bg-indigo-500 text-white font-semibold rounded-t-lg hover:bg-indigo-600 transition-colors duration-300 text-center">EXPERIENCE</a>
+                </li>
+                <li class="mb-1 sm:mb-0">
+                    <a href="#tabs-4" class="inline-block w-full sm:w-auto p-4 bg-indigo-500 text-white font-semibold rounded-t-lg hover:bg-indigo-600 transition-colors duration-300 text-center">CONTACT INFO</a>
+                </li>
+            </ul>
+            
+            <!-- Tab content section -->
+            <div id="tabs-1" class="p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Research & Publications</h3>
+                {% for item in profile.research_and_publications.all %}
+                    <p class="text-gray-600">{{ item.research_and_publication }}</p>
+                    <hr class="my-4">
+                {% endfor %}
+            </div>
+        
+            <div id="tabs-2" class="p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Academic Info</h3>
+                <table class="table-auto w-full text-left text-gray-600">
+                    <thead>
+                        <tr class="bg-indigo-100 text-indigo-600 font-semibold">
+                            <th class="px-4 py-2">Degree</th>
+                            <th class="px-4 py-2">Institution</th>
+                            <th class="px-4 py-2">Period</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in profile.academic_info.all %}
+                            <tr class="border-b">
+                                <td class="px-4 py-2">{{ item.degree }}</td>
+                                <td class="px-4 py-2">{{ item.institution }}</td>
+                                <td class="px-4 py-2">{{ item.period }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        
+            <div id="tabs-3" class="p-6  overflow-scroll">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Experience</h3>
+                <table class="table-auto w-full text-left text-gray-600">
+                    <thead>
+                        <tr class="bg-indigo-100 text-indigo-600 font-semibold">
+                            <th class="px-4 py-2">Institution/Organization</th>
+                            <th class="px-4 py-2">Position</th>
+                            <th class="px-4 py-2">Job Role</th>
+                            <th class="px-4 py-2">Period</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in profile.experiences.all %}
+                            <tr class="border-b">
+                                <td class="px-4 py-2">{{ item.institution_organization }}</td>
+                                <td class="px-4 py-2">{{ item.position }}</td>
+                                <td class="px-4 py-2">{{ item.job_role }}</td>
+                                <td class="px-4 py-2">{{ item.period }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        
+            <div id="tabs-4" class="p-6">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Contact Info</h3>
+                <div class="flex items-center space-x-4">
+                    <img src="{% static 'icons/telephone.png' %}" class="h-6 w-6" alt="Phone Icon">
+                    <span class="text-gray-600">{{ profile.phone_number }}</span>
+                </div>
+                <div class="flex items-center space-x-4 mt-4">
+                    <img src="{% static 'icons/email.png' %}" class="h-6 w-6" alt="Email Icon">
+                    <span class="text-gray-600">{{ profile.email }}</span>
+                </div>
+                <div class="flex items-center space-x-4 mt-4">
+                    <img src="{% static 'icons/flat.png' %}" class="h-6 w-6" alt="Room Icon">
+                    <span class="text-gray-600">{{ profile.room_number }}</span>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+</div>
+
+
+
+
+
+{% endblock %}
+{% block script %}
+<script>
+
+    $( "#tabs" ).tabs();
+
+</script>
+{% endblock %}

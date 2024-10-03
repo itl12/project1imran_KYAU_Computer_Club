@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'noticeapp',
     'galleryapp',
     'students',
+    'Faculty_app',
     "crispy_forms",
     "crispy_tailwind",
 
