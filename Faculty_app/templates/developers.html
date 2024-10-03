@@ -1,0 +1,116 @@
+{% extends 'base.html' %} {% load static %}
+{% block title %} Developers {% endblock %}
+
+{% block body %}
+
+<div class="my-10 p-8 text-3xl font-semibold text-indigo-600 text-center bg-sky-200 rounded-xl container">Developer and Instructor</div>
+
+<div class="container my-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+
+        <!--  Developer Card -->
+    <div class="flex items-center justify-center">
+        <div class="max-w-sm w-full bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+            <div class="relative h-40 bg-gradient-to-r from-sky-500 to-blue-400">
+                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2">
+                    <img class="w-32 h-32 rounded-full border-4 border-white object-cover" src="{% static 'images/developer.jpg' %}" alt="Md. AL-Imran Sarker">
+                </div>
+            </div>
+            <div class="px-6 py-4 mt-12">
+                <h3 class="text-center text-2xl font-semibold text-gray-800 text-sky-500">Md. AL-Imran Sarker</h3>
+                <p class="text-center text-gray-500 text-sm font-medium"> As Software Developer</p>
+                <p class="text-center text-gray-500 text-sm mt-1">12th batch, Computer Science & Engineering<br>Khwaja Yunus Ali University</p>
+                <div class="mt-4 flex flex-col space-y-3">
+                    <div class="flex space-x-3">
+                        <img src="{% static 'icons/telephone.png' %}" class="w-5 h-5" alt="">
+                        <span class="text-green-600">01791-115371</span>
+                    </div> 
+                    <div class="flex space-x-3">
+                        <img src="{% static 'icons/email-opened.png' %}" class="w-5 h-5" alt="">
+                        <span class="text-green-600">imranthelegend12@gmail.com</span>
+                    </div>
+                    <div class="flex space-x-3">
+                        <img src="{% static 'icons/whatsapp.png' %}" class="w-5 h-5" alt="">
+                        <span class="text-green-600">01791-115371</span>
+                    </div>
+                    <!-- <div class="flex space-x-3">
+                        <img src="{% static 'icons/linkedin.png' %}" class="w-5 h-5" alt="">
+                        <a href="{{ member.linkedin }}"><span class="text-green-600">{{ member.linkedin }}</span></a>
+                    </div>
+                    <div class="flex space-x-3">
+                        <img src="{% static 'icons/github.png' %}" class="w-5 h-5" alt="">
+                        <a href="{{ member.github }}"><span class="text-green-600">{{ member.github }}</span></a>
+                    </div> -->
+                    <div class="flex space-x-3">
+                        <img src="{% static 'icons/facebook.png' %}" class="w-5 h-5" alt="">
+                        <a href="https://www.facebook.com/imran.alimran.9026" target="_blank">
+                            <span class="text-green-600">visit facebook profile</span>
+                        </a>
+                    </div>
+
+                        
+                </div>
+            </div>
+            <div class="px-6 py-4 bg-indigo-100">
+                <a href="{% url 'studentsapp:student-profile' slug='137d1e1f-ca10-494c-81ac-5fbc32ac712b' %}" class="block text-center text-indigo-500 font-medium text-sm hover:underline hover:text-indigo-600 transition-colors duration-300">View Profile
+                </a>
+            </div>
+        </div>
+    </div>
+    
+
+
+        <!--  Project Instructor Card -->
+        <div class="flex items-center justify-center">
+            <div class="max-w-sm w-full bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="relative h-40 bg-gradient-to-r from-sky-500 to-blue-400">
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2">
+                        <img class="w-32 h-32 rounded-full border-4 border-white object-cover" src="{% static 'images/rahat-sir.jpg' %}" alt="rahat-sir">
+                    </div>
+                </div>
+                <div class="px-6 py-4 mt-12">
+                    <h3 class="text-center text-2xl font-semibold text-gray-800 text-sky-500">Md. Rahat Khan</h3>
+                    <p class="text-center text-gray-500 text-sm font-medium"> As Project Instructor</p>
+                    <p class="text-center text-gray-500 text-sm mt-1">Lecturer, Computer Science & Engineering<br>Khwaja Yunus Ali University</p>
+                    <div class="mt-4 flex flex-col space-y-3">
+                        <div class="flex space-x-3">
+                            <img src="{% static 'icons/telephone.png' %}" class="w-5 h-5" alt="">
+                            <span class="text-green-600">01521303383</span>
+                        </div> 
+                        <div class="flex space-x-3">
+                            <img src="{% static 'icons/email-opened.png' %}" class="w-5 h-5" alt="">
+                            <span class="text-green-600">rahat.cse@kyau.edu.bd</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <img src="{% static 'icons/whatsapp.png' %}" class="w-5 h-5" alt="">
+                            <span class="text-green-600">01521303383</span>
+                        </div>
+                        <!-- <div class="flex space-x-3">
+                            <img src="{% static 'icons/linkedin.png' %}" class="w-5 h-5" alt="">
+                            <a href="{{ member.linkedin }}"><span class="text-green-600">{{ member.linkedin }}</span></a>
+                        </div>
+                        <div class="flex space-x-3">
+                            <img src="{% static 'icons/github.png' %}" class="w-5 h-5" alt="">
+                            <a href="{{ member.github }}"><span class="text-green-600">{{ member.github }}</span></a>
+                        </div> -->
+                        <!-- <div class="flex space-x-3">
+                            <img src="{% static 'icons/facebook.png' %}" class="w-5 h-5" alt="">
+                            <a href="https://www.facebook.com/imran.alimran.9026" target="_blank">
+                                <span class="text-green-600">visit facebook profile</span>
+                            </a>
+                        </div> -->
+    
+                            
+                    </div>
+                </div>
+                <div class="px-6 py-4 bg-indigo-100">
+                    <a href="{% url 'Faculty_app:faculty_profile' pk=8 %}" class="block text-center text-indigo-500 font-medium text-sm hover:underline hover:text-indigo-600 transition-colors duration-300">View Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+
+</div>
+
+
+
+{% endblock %}

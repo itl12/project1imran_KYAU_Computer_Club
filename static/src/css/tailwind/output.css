@@ -14268,6 +14268,10 @@ video {
   height:100% !important
 }
 
+.h-16{
+  height:4rem !important
+}
+
 .max-h-full{
   max-height:100% !important
 }
@@ -14311,6 +14315,10 @@ video {
 
 .w-full{
   width:100% !important
+}
+
+.w-16{
+  width:4rem !important
 }
 
 .max-w-4xl{
@@ -14636,6 +14644,16 @@ video {
   background-color:rgb(39 39 42 / var(--tw-bg-opacity)) !important
 }
 
+.bg-sky-300{
+  --tw-bg-opacity:1 !important;
+  background-color:rgb(125 211 252 / var(--tw-bg-opacity)) !important
+}
+
+.bg-sky-200{
+  --tw-bg-opacity:1 !important;
+  background-color:rgb(186 230 253 / var(--tw-bg-opacity)) !important
+}
+
 .bg-opacity-75{
   --tw-bg-opacity:0.75 !important
 }
@@ -14729,6 +14747,10 @@ video {
 
 .p-6{
   padding:1.5rem !important
+}
+
+.p-8{
+  padding:2rem !important
 }
 
 .px-2{
@@ -14972,6 +14994,16 @@ video {
 .text-zinc-300{
   --tw-text-opacity:1 !important;
   color:rgb(212 212 216 / var(--tw-text-opacity)) !important
+}
+
+.text-green-400{
+  --tw-text-opacity:1 !important;
+  color:rgb(74 222 128 / var(--tw-text-opacity)) !important
+}
+
+.text-sky-400{
+  --tw-text-opacity:1 !important;
+  color:rgb(56 189 248 / var(--tw-text-opacity)) !important
 }
 
 .underline{
@@ -15253,6 +15285,10 @@ video {
 @media (min-width: 1024px){
   .lg\:w-1\/2{
     width:50% !important
+  }
+
+  .lg\:w-1\/4{
+    width:25% !important
   }
 
   .lg\:grid-cols-3{
