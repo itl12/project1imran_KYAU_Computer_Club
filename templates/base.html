@@ -81,6 +81,17 @@
             </ul>
           </div>
 
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle  font-semibold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              About-us  
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="{% url 'Faculty_app:faculty_members' %}" class="dropdown-item hover:bg-gray-300">Faculty members</a></li>
+              <li><a href="{% url 'Faculty_app:faculty_staffs' %}" class="dropdown-item hover:bg-gray-300">Faculty staff</a></li>
+              <li><a href="{% url 'Faculty_app:moderators' %}" class="dropdown-item hover:bg-gray-300">Admin & Moderators</a></li>
+            </ul>
+          </div>
+
           {% if user.is_authenticated %}
           <form action="{% url 'logout' %}" method="POST">{% csrf_token %}
             <button type="submit" class="nav-link font-semibold">Logout</button>

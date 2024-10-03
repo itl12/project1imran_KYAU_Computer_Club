@@ -6,6 +6,7 @@ module.exports = {
             '../noticeapp/**/*.html',
             '../galleryapp/**/*.html',
             '../students/**/*.html',
+            '../Faculty_app/**/*.html',
             'src/js/**/*.js',
           
           ],
