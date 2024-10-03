@@ -39,7 +39,3 @@ class Home(TemplateView):
         context['activities'] = activities
         return context
     
-
-
-class Contact_view(TemplateView):
-    template_name = 'contact-us.html'

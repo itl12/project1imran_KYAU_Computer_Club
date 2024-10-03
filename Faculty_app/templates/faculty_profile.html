@@ -56,7 +56,7 @@
                 {% endfor %}
             </div>
         
-            <div id="tabs-2" class="p-6">
+            <div id="tabs-2" class="p-6 overflow-auto">
                 <h3 class="text-xl font-bold text-gray-800 mb-4">Academic Info</h3>
                 <table class="table-auto w-full text-left text-gray-600">
                     <thead>
@@ -78,7 +78,7 @@
                 </table>
             </div>
         
-            <div id="tabs-3" class="p-6  overflow-scroll">
+            <div id="tabs-3" class="p-6 overflow-auto">
                 <h3 class="text-xl font-bold text-gray-800 mb-4">Experience</h3>
                 <table class="table-auto w-full text-left text-gray-600">
                     <thead>
@@ -108,14 +108,43 @@
                     <img src="{% static 'icons/telephone.png' %}" class="h-6 w-6" alt="Phone Icon">
                     <span class="text-gray-600">{{ profile.phone_number }}</span>
                 </div>
+
+                {% if profile.whatsapp %}
+                <div class="flex items-center space-x-4 mt-4">
+                    <img src="{% static 'icons/whatsapp.png' %}" class="h-6 w-6" alt="whatsapp">
+                    <span class="text-gray-600">{{ profile.whatsapp }}</span>
+                </div>
+                {% endif %}
+
                 <div class="flex items-center space-x-4 mt-4">
                     <img src="{% static 'icons/email.png' %}" class="h-6 w-6" alt="Email Icon">
                     <span class="text-gray-600">{{ profile.email }}</span>
                 </div>
+
+                {% if profile.linkedin %}
+                <div class="flex items-center space-x-4 mt-4">
+                    <img src="{% static 'icons/linkedin.png' %}" class="h-6 w-6" alt="linkedin">
+                    <a href="{{ member.linkedin }}">
+                        <span class="text-gray-600">{{ profile.linkedin }}</span>
+                    </a>
+                </div>
+                {% endif %}
+
+                {% if profile.github %}
+                <div class="flex items-center space-x-4 mt-4">
+                    <img src="{% static 'icons/github.png' %}" class="h-6 w-6" alt="github">
+                    <a href="{{ member.github }}">
+                        <span class="text-gray-600">{{ profile.github }}</span>
+                    </a>
+                </div>
+                {% endif %}
+
                 <div class="flex items-center space-x-4 mt-4">
                     <img src="{% static 'icons/flat.png' %}" class="h-6 w-6" alt="Room Icon">
                     <span class="text-gray-600">{{ profile.room_number }}</span>
                 </div>
+
+
             </div>
         </div>
         

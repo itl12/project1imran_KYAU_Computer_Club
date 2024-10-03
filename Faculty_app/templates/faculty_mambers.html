@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% load static %}
+{% block title %} Faculty members {% endblock %}
+
+{% block body %}
+
+
+<div class="container my-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+
+
+    {% for member in members %}
+        <div class="flex items-center justify-center bg-gray-100">
+            <div class="max-w-sm w-full bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <div class="relative h-40 bg-gradient-to-r from-sky-500 to-blue-400">
+                    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2">
+                        <img class="w-32 h-32 rounded-full border-4 border-white" src="{% if member.photo %}{{ member.photo.url}} {% else %} {% static 'images/profile.png' %}{% endif %}" alt="{{ member.name }}">
+                    </div>
+                </div>
+                <div class="px-6 py-4 mt-12">
+                    <h3 class="text-center text-2xl font-semibold text-gray-800 text-sky-500">{{ member.name }}</h3>
+                    <!-- <p class="text-center text-gray-500 text-sm font-medium"> As Project Instructor</p> -->
+                    <p class="text-center text-gray-500 text-sm mt-1">{{ member.designation }}, Computer Science & Engineering<br>Khwaja Yunus Ali University</p>
+                    <div class="mt-4 flex flex-col space-y-3">
+                        <div class="flex space-x-3">
+                            <img src="{% static 'icons/telephone.png' %}" class="w-5 h-5" alt="">
+                            <span class="text-green-600">{{ member.phone_number }}</span>
+                        </div> 
+                        <div class="flex space-x-3">
+                            <img src="{% static 'icons/email-opened.png' %}" class="w-5 h-5" alt="">
+                            <span class="text-green-600">{{ member.email }}</span>
+                        </div> 
+                        <div class="flex items-center space-x-4 mt-4">
+                            <img src="{% static 'icons/flat.png' %}" class="h-5 w-5" alt="Room Icon">
+                            <span class="text-green-600">{{ member.room_number }}</span>
+                        </div>
+                           
+                    </div>
+                </div>
+                <div class="px-6 py-4 bg-indigo-100">
+                    <a href="{% url 'Faculty_app:faculty_profile' pk=member.pk %}" class="block text-center text-indigo-500 font-medium text-sm hover:underline hover:text-indigo-600 transition-colors duration-300">View Profile
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %} 
+
+
+</div>
+
+
+
+{% endblock %}

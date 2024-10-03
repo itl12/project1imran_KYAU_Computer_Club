@@ -86,8 +86,9 @@
               About-us  
             </a>
             <ul class="dropdown-menu">
-              <li><a href="" class="dropdown-item hover:bg-gray-300">Faculty members</a></li>
-              <li><a href="" class="dropdown-item hover:bg-gray-300">Admin & Moderators</a></li>
+              <li><a href="{% url 'Faculty_app:faculty_members' %}" class="dropdown-item hover:bg-gray-300">Faculty members</a></li>
+              <li><a href="{% url 'Faculty_app:faculty_staffs' %}" class="dropdown-item hover:bg-gray-300">Faculty staff</a></li>
+              <li><a href="{% url 'Faculty_app:moderators' %}" class="dropdown-item hover:bg-gray-300">Admin & Moderators</a></li>
             </ul>
           </div>
 
