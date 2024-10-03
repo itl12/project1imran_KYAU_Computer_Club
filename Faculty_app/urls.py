@@ -8,5 +8,6 @@ urlpatterns = [
     path('faculty_profile/<int:pk>/', views.Faculty_profileView.as_view(), name='faculty_profile'),
     path('faculty_staffs/', views.Faculty_staffView.as_view(), name='faculty_staffs'),
     path('moderators/', views.Instructor_developer_moderatorView.as_view(), name='moderators'),
+    path('developers/', views.DeveloperView.as_view(), name='developers'),
 ]
 
