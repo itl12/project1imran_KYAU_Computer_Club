@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView, TemplateView
 
 
 from .models import Faculty_profile, Faculty_staff, Instructor_developer_moderator
@@ -28,4 +28,8 @@ class Faculty_staffView(ListView):
 class Instructor_developer_moderatorView(ListView):
     model = Instructor_developer_moderator
     context_object_name = 'members'
-    template_name = 'instructor_developer_moderator.html'
+    template_name = 'admin_moderators.html'
+
+
+class DeveloperView(TemplateView):
+    template_name = 'developers.html'
