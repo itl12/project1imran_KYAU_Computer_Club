@@ -23,7 +23,7 @@
   </div>
 
   <div class="absolute top-0 start-0 w-[15%] h-full flex justify-center align-center">
-    <button id="prev" class="cursor-pointer w-full z-20 text-3xl text-zinc-300"><</button>
+    <button id="prev" class="cursor-pointer w-full z-20 text-3xl text-zinc-300">></button>
   </div>
   <div class="absolute top-0 end-0 w-[15%] h-full flex justify-center align-center">
     <button id="next" class="cursor-pointer w-full z-20 text-3xl text-zinc-300">></button>
@@ -32,9 +32,58 @@
 
 <!-- ----------------------------------------------------------------------------------- -->
 
-<div class="headline bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 p-6 mb-12 text-center text-4xl font-bold text-white shadow-lg">
-  Computer Club
+
+
+
+
+<!-- Redesigned Headline Section -->
+<div class="relative bg-gradient-to-r from-purple-600 to-pink-500 p-8 mb-12 text-center text-4xl font-extrabold text-white shadow-xl overflow-hidden animate-gradient-bg">
+
+  <!-- Background Animation -->
+  <div class="absolute inset-0 bg-gradient-to-r from-indigo-500 to-red-500 opacity-50 blur-lg animate-pulse"></div>
+
+  <!-- Animated Text -->
+  <h1 class="relative z-10 inline-block text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-white animate-gradient">
+    Welcome to CSE Academia
+  </h1>
+  
+  <!-- Subheading -->
+  <p class="relative z-10 mt-4 text-2xl font-light text-gray-200">
+    Explore. Innovate. Create.
+  </p>
 </div>
+
+<!-- Tailwind Animations -->
+<style>
+/* Keyframes for background movement */
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Applying animation to the text gradient */
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 2s ease-in-out infinite;
+}
+
+/* Applying animation to the main background */
+.animate-gradient-bg {
+  background-size: 200% 200%;
+  animation: gradient 3s ease-in-out infinite;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
 
 <div class="container mx-auto px-4 mb-24">
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -43,47 +92,69 @@
     <div>
       <div class="bg-white shadow-lg rounded-lg overflow-hidden">
         <a href="{% url 'noticeapp:all_notice' %}">
-          <div class="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white p-4 text-center font-bold text-2xl">
+          <div class="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white p-4 text-center font-bold text-2xl animate-gradient-bg">
             Notice Board
           </div>
         </a>
-        <ul class="divide-y divide-gray-200">
-          {% for notice in notices %}
+        <div class="relative max-h-80 overflow-y-auto"> <!-- Set max height for scrolling -->
+          <ul class="divide-y divide-gray-200">
+            {% for notice in notices %}
+              <li>
+                <a href="{% url 'noticeapp:notice' slug=notice.slug %}" class="flex flex-col hover:text-purple-600 p-4 bg-gray-100 hover:bg-purple-100 transition duration-300 ease-in-out">
+                  <span class="text-center w-fit align-self-end badge fw-normal text-bg-secondary rounded-pill">
+                    {{ notice.days_left }}
+                  </span>
+                  <div class="font-semibold">
+                    {{ notice.heading|truncatechars:50 }}
+                  </div>
+                </a>
+              </li>
+            {% endfor %}
             <li>
-              <a href="{% url 'noticeapp:notice' slug=notice.slug %}" class="flex flex-column hover:text-purple-600  p-4 bg-gray-100 hover:bg-purple-100 transition duration-300 ease-in-out">
-                <span class="text-center w-fit align-self-end badge fw-normal text-bg-secondary rounded-pill ">
-                  {{ notice.days_left }}
-                </span>
-                <div class="font-semibold">
-                  {{ notice.heading| truncatechars:50 }}
+              <a href="{% url 'noticeapp:all_notice' %}" class="">
+                <div class="font-semibold text-center text-purple-600 p-4 bg-purple-100 ">
+                  Check All Notices
                 </div>
               </a>
             </li>
-          {% endfor %}
-        </ul>
+          </ul>
+        </div>
       </div>
     </div>
+    
+
 
     <!-- Recent Activity -->
     <div>
       <div class="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
         <a href="{% url 'galleryapp:list_activity' %}">
-          <div class="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 p-4">
+          <div class="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 p-4 animate-gradient-bg">
             <h3 class="text-center text-white text-xl font-bold">Recent Activity</h3>
           </div>
         </a>
-        <ul class="divide-y divide-gray-300">
-          {% for activity in activities %}
+        <div class="relative max-h-80 overflow-y-auto"> <!-- Set max height for scrolling -->
+          <ul class="divide-y divide-gray-300">
+            {% for activity in activities %}
               <li>
                 <a href="{% url 'galleryapp:activity-gallery' slug=activity.slug %}" class="block group p-4 transition-all duration-300 ease-in-out bg-gray-100 hover:bg-purple-100 cursor-pointer">
                   <span class="text-gray-800 group-hover:text-purple-600 font-medium">{{ activity.title|truncatechars:50 }}</span>
                   <p class="text-gray-600 text-sm mt-1 group-hover:text-purple-400">{{ activity.date }}</p>
                 </a>
               </li>
-          {% endfor %}
-        </ul>
+            {% endfor %}
+            <li>
+              <a href="{% url 'galleryapp:list_activity' %}" class="">
+                <div class="font-semibold text-center text-purple-600 p-4 bg-purple-100">
+                  View All Activities
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
+    
+
   </div>
 </div>
 
