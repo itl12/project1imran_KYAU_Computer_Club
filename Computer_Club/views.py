@@ -32,10 +32,10 @@ class Home(TemplateView):
         carousel = Carousel.objects.all()
         context['carousel'] = carousel
 
-        notices = Notice.objects.all()[0:6]
+        notices = Notice.objects.all()[0:10]
         context['notices'] = notices 
 
-        activities = Activity_Gallery.objects.all()[0:6]
+        activities = Activity_Gallery.objects.all()[0:10]
         context['activities'] = activities
         return context
     
