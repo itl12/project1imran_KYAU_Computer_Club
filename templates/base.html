@@ -107,6 +107,7 @@
             <ul class="dropdown-menu">
               <li><a href="{% url 'studentsapp:all_students' %}" class="dropdown-item hover:bg-gray-300">All Students</a></li>
               <li><a href="{% url 'studentsapp:search_skills' %}" class="dropdown-item hover:bg-gray-300">Search Skills</a></li>
+              <li><a href="{% url 'studentsapp:search_blood' %}" class="dropdown-item hover:bg-gray-300">Search blood-group</a></li>
               {% if user.is_authenticated and user.profile %}
               <li><a href="{% url 'studentsapp:student-profile' slug=user.profile.slug %}" class="dropdown-item hover:bg-gray-300">My Profile</a></li>
               {% endif %} {% if not user.is_authenticated %}

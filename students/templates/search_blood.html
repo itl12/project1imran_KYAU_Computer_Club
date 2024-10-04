@@ -1,0 +1,101 @@
+{% extends 'base.html' %}   {% load static %} 
+{% block title %} Search Blood group {% endblock %}
+{% block body %}
+
+<div class="md:w-1/2 md:mx-auto mx-2 my-10 md:p-10 p-2 rounded-lg shadow-md">
+    <form class="flex flex-col max-w-sm mx-auto mb-5" method="GET" action="">
+        <div>
+            <label class="block mb-2 text-sm font-medium text-gray-900">
+                Search Blood Group
+            </label>
+            <div class="flex flex-col">
+                <label>
+                    <input type="radio" name="q" value="A+" {% if request.GET.q == 'A+' %}checked{% endif %}>
+                    A+
+                </label>
+                <label>
+                    <input type="radio" name="q" value="A-" {% if request.GET.q == 'A-' %}checked{% endif %}>
+                    A-
+                </label>
+                <label>
+                    <input type="radio" name="q" value="B+" {% if request.GET.q == 'B+' %}checked{% endif %}>
+                    B+
+                </label>
+                <label>
+                    <input type="radio" name="q" value="B-" {% if request.GET.q == 'B-' %}checked{% endif %}>
+                    B-
+                </label>
+                <label>
+                    <input type="radio" name="q" value="AB+" {% if request.GET.q == 'AB+' %}checked{% endif %}>
+                    AB+
+                </label>
+                <label>
+                    <input type="radio" name="q" value="AB-" {% if request.GET.q == 'AB-' %}checked{% endif %}>
+                    AB-
+                </label>
+                <label>
+                    <input type="radio" name="q" value="O+" {% if request.GET.q == 'O+' %}checked{% endif %}>
+                    O+
+                </label>
+                <label>
+                    <input type="radio" name="q" value="O-" {% if request.GET.q == 'O-' %}checked{% endif %}>
+                    O-
+                </label>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success my-4">Search</button>
+    </form>
+    
+    <!-- Displaying students with pagination -->
+    {% for std in students %}
+        <a href="{% url 'studentsapp:student-profile' slug=std.slug %}">
+            <div class="flex space-x-3 align-items-center p-2 my-4 rounded-t-lg bg-gray-300 shadow-lg font-semibold text-gray-700">
+                <span class="block h-[40px] w-[40px] shrink-0">
+                    <img class="w-full h-full rounded-full" src="{% if std.thumbnail.image %}{{ std.thumbnail.image.url }} {% else %} {% static 'images/profile_sm.png' %} {% endif %}" alt="">
+                </span>
+                <span>{{ std.batch }}th batch | {{ std.name }} | id: {{ std.std_id }} | 
+                    <strong class="text-teal-600">Blood Group: {{ std.blood_group }}</strong>
+                </span>
+            </div>
+        </a>
+    {% empty %}
+        <div class="p-2 my-4 rounded-t-lg bg-gray-200 shadow-lg font-medium text-lg text-red-500 text-center">No match found.</div>
+    {% endfor %}
+    
+<!-- Pagination Links -->
+<nav class="my-10">
+    <ul class="pagination w-fit mx-auto shadow-lg">
+        {% if page_obj.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}">&laquo; first</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}">Previous</a>
+            </li>
+        {% endif %}
+        
+        <li class="page-item">
+            <a class="page-link text-bg-primary" href="#">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</a>
+        </li>
+
+        {% if page_obj.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}">Next</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}">last &raquo;</a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>
+
+
+    
+    
+    
+
+</div>
+
+  
+    
+{% endblock %}

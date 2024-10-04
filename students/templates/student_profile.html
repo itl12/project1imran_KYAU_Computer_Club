@@ -23,12 +23,33 @@
 
         <!-- Profile Information -->
         <div class="mt-8">
+
+            <!-- Blood Group and Last Donation -->
+            <div class="bg-gray-100 p-4 rounded-lg shadow-inner mb-6">
+                <h3 class="text-lg font-bold">Blood Group:</h3>
+                <p class="mt-2 text-lg">{{ profile.blood_group }}</p>
+
+                <h3 class="text-lg font-bold mt-4">Last Donated:</h3>
+                <p class="mt-2 text-lg">
+                    {% if profile.last_Blood_donated %}
+                        {{ profile.last_Blood_donated|date:"F j, Y" }} 
+                        <br>
+                        <span class="text-sm text-gray-600">
+                            ({{ profile.last_Blood_donated|timesince }} ago)
+                        </span>
+                    {% else %}
+                        No donation record
+                    {% endif %}
+                </p>
+            </div>
+
             <!-- Description -->
             <div class="bg-gray-100 p-4 rounded-lg shadow-inner mb-6">
                 <h3 class="text-lg font-semibold text-gray-700">About Me:</h3>
                 <p class="text-gray-600 mt-2">{% if profile.description %}{{ profile.description }}{% else %}No description available.{% endif %}</p>
             </div>
 
+            
             <!-- Skills -->
             <div class="bg-gray-100 p-4 rounded-lg shadow-inner mb-6">
                 <h3 class="text-lg font-semibold text-gray-700">Skills:</h3>

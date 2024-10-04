@@ -98,7 +98,7 @@ class Update_student_profile(forms.ModelForm):
                     thumbnail = ti.first()
 
                     img = Image.open(image_data)
-                    img = img.resize((50, 50), Image.LANCZOS)  
+                    img = img.resize((100, 100), Image.LANCZOS)  
                     buffer = BytesIO()
                     img.save(buffer, format=ext.upper())
                     compressed_image_data = ContentFile(buffer.getvalue(), name=f'thumbnail_compressed.{ext}')
@@ -119,7 +119,7 @@ class Update_student_profile(forms.ModelForm):
                         thumbnail = ti.first()
 
                         img = Image.open(image_data)
-                        img = img.resize((50, 50), Image.LANCZOS)  
+                        img = img.resize((100, 100), Image.LANCZOS)  
                         buffer = BytesIO()
                         img.save(buffer, format=ext.upper())
                         compressed_image_data = ContentFile(buffer.getvalue(), name=f'thumbnail_compressed.{ext}')

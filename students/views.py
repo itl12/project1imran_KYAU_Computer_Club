@@ -186,3 +186,21 @@ class  Delete_certificates(View):
             Certificate_Photo.objects.filter(id__in=selected_certificates).delete()
 
         return redirect(reverse_lazy('studentsapp:student-profile', kwargs={'slug': request.user.profile.slug }))
+
+
+class Search_blood(ListView):
+    model = Student_Model
+    template_name = 'search_blood.html'
+    context_object_name = 'students'
+    paginate_by = 15  
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')  # Get the search term from the request
+        if query:
+            return Student_Model.objects.filter(blood_group=query)
+        return Student_Model.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search_query'] = self.request.GET.get('q', '')  # Add search query to context
+        return context
