@@ -4,7 +4,6 @@ from django.utils.text import slugify
 from dateutil.relativedelta import relativedelta  # install it using pip
 import uuid 
 
-from unidecode import unidecode
 # Create your models here.
 
 class Notice(models.Model):
@@ -19,8 +18,7 @@ class Notice(models.Model):
 
     def save(self, **kwargs):
         if not self.slug:
-            transliterated_heading = unidecode(self.heading)
-            self.slug = slugify(transliterated_heading + str(uuid.uuid4()))
+            self.slug = slugify(str(uuid.uuid4()))
         return super().save(**kwargs)
 
 
