@@ -34,6 +34,30 @@ class Update_student_profile(forms.ModelForm):
         model = Student_Model
         exclude = ['user', 'slug'] 
 
+    BLOOD_GROUP_CHOICES = [
+        ('A+', 'A+'),
+        ('A-', 'A-'),
+        ('B+', 'B+'),
+        ('B-', 'B-'),
+        ('AB+', 'AB+'),
+        ('AB-', 'AB-'),
+        ('O+', 'O+'),
+        ('O-', 'O-'),
+    ]
+
+    blood_group = forms.ChoiceField(
+        choices=BLOOD_GROUP_CHOICES,  # Define the choices here
+        widget=forms.RadioSelect()  # Use RadioSelect to render as radio buttons
+    )
+
+    last_Blood_donated = forms.DateField(
+        required=False,
+        widget=forms.DateInput(attrs={
+            'type': 'date',  # This makes it display as a date picker in modern browsers
+            'placeholder': 'Select a date'
+        })
+    )
+
     images = MultipleFileField(required=False, label='Upload all your Certificate photos')  # Use custom MultipleFileField # extra added
     cv_clear = forms.BooleanField(required=False, label='Clear CV', help_text="Check this to remove the existing CV")  # extra added
 
@@ -74,7 +98,7 @@ class Update_student_profile(forms.ModelForm):
                     thumbnail = ti.first()
 
                     img = Image.open(image_data)
-                    img = img.resize((50, 50), Image.LANCZOS)  
+                    img = img.resize((100, 100), Image.LANCZOS)  
                     buffer = BytesIO()
                     img.save(buffer, format=ext.upper())
                     compressed_image_data = ContentFile(buffer.getvalue(), name=f'thumbnail_compressed.{ext}')
@@ -95,7 +119,7 @@ class Update_student_profile(forms.ModelForm):
                         thumbnail = ti.first()
 
                         img = Image.open(image_data)
-                        img = img.resize((50, 50), Image.LANCZOS)  
+                        img = img.resize((100, 100), Image.LANCZOS)  
                         buffer = BytesIO()
                         img.save(buffer, format=ext.upper())
                         compressed_image_data = ContentFile(buffer.getvalue(), name=f'thumbnail_compressed.{ext}')

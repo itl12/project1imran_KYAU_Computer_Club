@@ -10,6 +10,7 @@ urlpatterns = [
     path('profile/<slug:slug>/', views.Student_Profile.as_view(), name='student-profile'),
     path('update-profile/', views.Update_profile.as_view(), name='update_profile'),
     path('change-password/', views.Password_ChangeView.as_view(), name='change_password'),
-    path('modify-certificates/', views.Delete_certificates.as_view(), name='modify_certificates')
+    path('modify-certificates/', views.Delete_certificates.as_view(), name='modify_certificates'),
+    path('search_blood/', views.Search_blood.as_view(), name='search_blood')
 ]
 

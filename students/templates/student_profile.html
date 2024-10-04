@@ -13,19 +13,43 @@
             </a>
             <h2 class="mt-4 text-3xl font-semibold text-gray-500">{{ profile.name }}</h2>
             <p class="text-gray-600">Batch: {{ profile.batch }} | ID: {{ profile.std_id }}</p>
-            {% if user.is_authenticated and user == profile.user %}<p class="text-gray-600">User login Id: {{ user.username }}</p> {% endif %}
+            <p class="text-gray-600">Phone: {{ profile.phone_number }}</p>
+            {% if user.is_authenticated and user == profile.user %}
+                <p class="text-gray-600">User login Id: {{ user.username }}</p> 
+            {% endif %}
         </div>
         {% if user == profile.user %}<a href="{% url 'studentsapp:update_profile' %}" class="btn btn-success mt-5">Edit Profile</a>{% endif %}
         {% if user == profile.user %}<a href="{% url 'studentsapp:change_password' %}" class="btn btn-outline-success mt-5">Change Password</a>{% endif %}
 
         <!-- Profile Information -->
         <div class="mt-8">
+
+            <!-- Blood Group and Last Donation -->
+            <div class="bg-gray-100 p-4 rounded-lg shadow-inner mb-6">
+                <h3 class="text-lg font-bold">Blood Group:</h3>
+                <p class="mt-2 text-lg">{{ profile.blood_group }}</p>
+
+                <h3 class="text-lg font-bold mt-4">Last Donated:</h3>
+                <p class="mt-2 text-lg">
+                    {% if profile.last_Blood_donated %}
+                        {{ profile.last_Blood_donated|date:"F j, Y" }} 
+                        <br>
+                        <span class="text-sm text-gray-600">
+                            ({{ profile.last_Blood_donated|timesince }} ago)
+                        </span>
+                    {% else %}
+                        No donation record
+                    {% endif %}
+                </p>
+            </div>
+
             <!-- Description -->
             <div class="bg-gray-100 p-4 rounded-lg shadow-inner mb-6">
                 <h3 class="text-lg font-semibold text-gray-700">About Me:</h3>
                 <p class="text-gray-600 mt-2">{% if profile.description %}{{ profile.description }}{% else %}No description available.{% endif %}</p>
             </div>
 
+            
             <!-- Skills -->
             <div class="bg-gray-100 p-4 rounded-lg shadow-inner mb-6">
                 <h3 class="text-lg font-semibold text-gray-700">Skills:</h3>
