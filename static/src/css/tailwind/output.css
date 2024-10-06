@@ -14150,10 +14150,6 @@ video {
   margin-inline-start:auto !important
 }
 
-.mt-0{
-  margin-top:0px !important
-}
-
 .mt-1{
   margin-top:0.25rem !important
 }
@@ -14278,6 +14274,10 @@ video {
   height:200px !important
 }
 
+.h-\[250px\]{
+  height:250px !important
+}
+
 .h-\[30px\]{
   height:30px !important
 }
@@ -14290,8 +14290,12 @@ video {
   height:100% !important
 }
 
-.max-h-80{
-  max-height:20rem !important
+.max-h-40{
+  max-height:10rem !important
+}
+
+.max-h-44{
+  max-height:11rem !important
 }
 
 .max-h-\[400px\]{
@@ -14488,6 +14492,12 @@ video {
   margin-bottom:calc(1rem * var(--tw-space-y-reverse)) !important
 }
 
+.space-y-\[100px\] > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse:0 !important;
+  margin-top:calc(100px * calc(1 - var(--tw-space-y-reverse))) !important;
+  margin-bottom:calc(100px * var(--tw-space-y-reverse)) !important
+}
+
 .divide-y > :not([hidden]) ~ :not([hidden]){
   --tw-divide-y-reverse:0 !important;
   border-top-width:calc(1px * calc(1 - var(--tw-divide-y-reverse))) !important;
@@ -14510,10 +14520,6 @@ video {
 
 .overflow-hidden{
   overflow:hidden !important
-}
-
-.overflow-y-auto{
-  overflow-y:auto !important
 }
 
 .overflow-y-scroll{
@@ -15325,6 +15331,14 @@ video {
 
   .md\:mt-\[100px\]{
     margin-top:100px !important
+  }
+
+  .md\:h-\[500px\]{
+    height:500px !important
+  }
+
+  .md\:max-h-80{
+    max-height:20rem !important
   }
 
   .md\:w-1\/2{
