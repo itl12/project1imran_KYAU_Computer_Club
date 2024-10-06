@@ -13,7 +13,13 @@ module.exports = {
 
   important : true, 
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'b-lg': '992px',
+        // => @media (min-width: 992px) { ... } match with bootstrap lg
+      }
+    },
+    
   },
   plugins: [],
 }
