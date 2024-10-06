@@ -1,5 +1,5 @@
 """
-WSGI config for Computer_Club project.
+WSGI config for CSE_Academia project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Computer_Club.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CSE_Academia.settings')
 
 application = get_wsgi_application()
