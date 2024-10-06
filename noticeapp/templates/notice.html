@@ -7,46 +7,43 @@
 {% block body %}
 
 
-<div class="md:p-16 bg-gray-900">
-    <div class=".container p-6 bg-gray-800 border-gray-700 rounded-lg shadow ">
-        <h5 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+<div class="md:p-16">
+    <!-- Notice Container -->
+    <div class="container p-6 bg-green-50 border border-green-500 rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300">
+        <!-- Heading -->
+        <h5 class="mb-1 text-2xl font-bold tracking-tight text-orange-600">
             {{ notice.heading }}
         </h5>
-        <span class="d-block mb-3 ms-auto w-fit font-normal text-gray-200">{{ notice.date }} ( {{ notice.days_left }} )</span>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-            {{ notice.body }}
+        <!-- Date and Days Left -->
+        <span class="d-block mb-3 w-fit font-normal text-green-700">{{ notice.date }} ( {{ notice.days_left }} )</span>
 
+        <!-- Notice Body -->
+        <p class="mb-3 font-normal text-gray-700">
+            {{ notice.body| linebreaksbr }}
+
+            <!-- PDF Section -->
             {% if notice.pdf %}
-                <div class="pdf mt-10 text-gray-300">
-                    <p class="font-normal mb-3 text-xl text-zinc-200">Download pdf</p>
-                    <a href="{{ notice.pdf.url }}" class="underline">{{ notice.pdf.name|slice:"12:" }}</a>
-                </div>
+            <div class="pdf mt-10 text-green-600">
+                <p class="font-normal mb-3 text-xl">Download PDF</p>
+                <a href="{{ notice.pdf.url }}" class="underline hover:text-orange-600 transition-colors duration-300">{{ notice.pdf.name|slice:"12:" }}</a>
+            </div>
             {% endif %}
 
-
+            <!-- Images Section -->
             {% if notice.images %}
-                {% for img in notice.images.all %}
-                    <div class="image md:mt-[100px] mt-10 w-fit md:max-w-[50%] mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+                    {% for img in notice.images.all %}
+                    <div class="image overflow-hidden rounded-lg shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                         <a href="{{ img.image.url }}">
-                            <img class="w-fit" src="{{ img.image.url }}" alt="{{ notice.heading }}">
+                            <img class="w-full h-auto" src="{{ img.image.url }}" alt="{{ notice.heading }}">
                         </a>
                     </div>
-                {% endfor %}
+                    {% endfor %}
+                </div>
             {% endif %}
-
-
-                
-            </div>
-
-
         </p>
     </div>
-
-        
-    </div>
 </div>
-
-
 
 
 

@@ -6,7 +6,12 @@
 
 <div class="container mx-auto p-6">
     <!-- Header Section -->
-    <header class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white p-4 rounded-lg shadow-lg">
+    <!-- <header class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white p-4 rounded-lg shadow-lg">
+      <h1 class="text-3xl font-bold text-center">{{ activity.title }}</h1>
+      <p class="text-sm text-center mt-2">{{ activity.date }}</p>
+    </header> -->
+
+    <header class="bg-gradient-to-r from-green-500 via-orange-500 to-yellow-500 text-white p-4 rounded-lg shadow-lg">
       <h1 class="text-3xl font-bold text-center">{{ activity.title }}</h1>
       <p class="text-sm text-center mt-2">{{ activity.date }}</p>
     </header>
@@ -14,7 +19,7 @@
     <!-- Body Section -->
     <div class="bg-white rounded-lg shadow-md mt-6 p-6">
       <p class="text-gray-800 text-lg font-medium leading-relaxed tracking-tight ">
-        {{ activity.body }}
+        {{ activity.body | linebreaksbr }}
       </p>
     </div>
   
@@ -40,10 +45,12 @@
     <!-- Load More Button -->
     <div id="load-more-container" class="text-center mt-6">
       {% if page_obj.has_next %}
-        <button id="load-more" class="bg-blue-500 text-white py-2 px-4 rounded">Load More</button>
+        <button id="load-more" class="bg-green-500 text-white py-2 px-4 rounded hover:bg-orange-500 transition-colors duration-300">Load More</button>
       {% endif %}
     </div>
 </div>
+
+
 
 
 {% endblock %}
