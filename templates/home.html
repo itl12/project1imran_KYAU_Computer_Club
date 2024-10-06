@@ -16,8 +16,8 @@
 <div class="relative w-full">
   <div id="home-carousel" class="owl-carousel owl-theme">
     {% for image in carousel %}
-      <div class="h-full w-full z-10">
-        <img src="{{ image.image.url }}" alt="">
+      <div class="h-[250px] md:h-[500px]  w-full z-10">
+        <img src="{{ image.image.url }}" class="h-full object-cover" alt="">
       </div>
     {% endfor %}
   </div>
@@ -86,17 +86,17 @@
 
 
 <div class="container mx-auto px-4 mb-24">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 space-y-[100px]">
     
     <!-- Notice Board -->
     <div>
-      <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+      <div class="max-w-md bg-white shadow-lg rounded-lg overflow-hidden">
         <a href="{% url 'noticeapp:all_notice' %}">
           <div class="bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white p-4 text-center font-bold text-2xl animate-gradient-bg">
             Notice Board
           </div>
         </a>
-        <div class="relative max-h-80 overflow-y-auto"> <!-- Set max height for scrolling -->
+        <div class="relative max-h-44 md:max-h-80 overflow-y-scroll"> <!-- Set max height for scrolling -->
           <ul class="divide-y divide-gray-200">
             {% for notice in notices %}
               <li>
@@ -132,7 +132,7 @@
             <h3 class="text-center text-white text-xl font-bold">Recent Activity</h3>
           </div>
         </a>
-        <div class="relative max-h-80 overflow-y-auto"> <!-- Set max height for scrolling -->
+        <div class="relative max-h-40 md:max-h-80 overflow-y-scroll"> <!-- Set max height for scrolling -->
           <ul class="divide-y divide-gray-300">
             {% for activity in activities %}
               <li>
