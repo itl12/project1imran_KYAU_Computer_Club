@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="{% static 'src/css/owl-carousel/owl.carousel.min.css' %}">
 <link rel="stylesheet" href="{% static 'src/css/owl-carousel/owl.theme.default.min.css' %}">
 {% endblock %}
-
+{% block script_head %} <script src="{% static 'src/js/typelt/source_typelt.js' %}"></script> {% endblock %}
 
 
 {% block body %}
@@ -48,10 +48,24 @@
   </h1>
   
   <!-- Subheading -->
-  <p class="relative z-10 mt-4 text-2xl font-light text-gray-200">
-    Explore. Innovate. Create.
+  <p class="relative z-10 mt-4 text-2xl font-light text-gray-200 font-medium" id="subheading_homepage_header">
+    <!-- Explore. Innovate. Create. -->
   </p>
 </div>
+
+<script>
+  new TypeIt("#subheading_homepage_header", { 
+    lifeLike: false, 
+    speed: 0,
+    cursorChar: "|",
+    waitUntilVisible: true,
+    loop: true
+  }).type("E").pause(112).type("x").pause(112).type("p").pause(112).type("l").pause(112).type("o").pause(112).type("r").pause(63).type("e").pause(112).type(".").pause(217).type(" ").pause(112).type("I").pause(112).type("n").pause(112).type("n").pause(114).type("o").pause(151).type("v").pause(144).type("a").pause(192).type("t").pause(64).type("e").pause(112).type(".").pause(112).type(" ").pause(112).type("C").pause(112).type("r").pause(88).type("e").pause(112).type("a").pause(112).type("t").pause(88).type("e").pause(112).type(".").pause(112).type(" ").pause(1521)
+  .delete(1).pause(508).delete(1).pause(30).delete(1).pause(34).delete(1).pause(26).delete(1).pause(33).delete(1).pause(47).delete(1).pause(21).delete(1).pause(44).delete(1).pause(34).delete(1).pause(32).delete(1).pause(31).delete(1).pause(24).delete(1).pause(32).delete(1).pause(45).delete(1).pause(27).delete(1).pause(30).delete(1).pause(41).delete(1).pause(22).delete(1).pause(43).delete(1).pause(29).delete(1).pause(29).delete(1).pause(34).delete(1).pause(42).delete(1).pause(30).delete(1).pause(29).delete(1).pause(33).delete(1).pause(254).type("E").pause(283).type("x").pause(252).type("p").pause(191).type("l").pause(184).type("o").pause(72).type("r").pause(74).type("e").pause(206).type(".").pause(153).type(" ").pause(1062)
+  .delete(1).pause(510).delete(1).pause(31).delete(1).pause(29).delete(1).pause(27).delete(1).pause(38).delete(1).pause(27).delete(1).pause(44).delete(1).pause(31).delete(1).pause(285).type("I").pause(232).type("n").pause(152).type("n").pause(113).type("o").pause(142).type("v").pause(123).type("a").pause(174).type("t").pause(81).type("e").pause(182).type(".").pause(144).type(" ").pause(1002)
+  .delete(1).pause(501).delete(1).pause(32).delete(1).pause(39).delete(1).pause(27).delete(1).pause(34).delete(1).pause(29).delete(1).pause(37).delete(1).pause(32).delete(1).pause(33).delete(1).pause(139).type("C").pause(464).type("r").pause(87).type("e").pause(168).type("a").pause(169).type("t").pause(96).type("e").pause(225).type(".").pause(191).type(" ").pause(1001)
+  .delete(1).pause(510).delete(1).pause(34).delete(1).pause(33).delete(1).pause(28).delete(1).pause(37).delete(1).pause(24).delete(1).pause(32).delete(1).go();
+</script>
 
 <!-- Tailwind Animations -->
 <style>
