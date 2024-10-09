@@ -1,0 +1,180 @@
+_______________________________________________________________________________________________________		
+		video link : https://www.youtube.com/watch?v=4KdGgGsIDeA&t=20s
+==================================================================================================
+&&&&& common problem &&&&&&&&&&
+	( prb. no.1 ) : "Please make sure you have the correct access rights and the repository exists "
+	( solution  ) : for https protocol : 	git remote set-url origin https://github.com/username/repository.git
+
+			for ssh protocol   : 	git remote set-url origin git@github.com:username/repository.git
+
+
+**** git reset + commit no. to unstage all files after that commit no.
+
+	Git all used commands
+
+	* git init
+		
+		# globaly setting email and name
+___________________________________________________________________________
+
+* git config --global user.name "Imran"
+* git config --global user.email "sycloneboyimran12@gmail.com"
+
+		# locally setting email and name
+___________________________________________________________________________
+
+* git config  user.name "Imran"
+* git config  user.email "sycloneboyimran12@gmail.com"
+
+
+		# Checking which email and name I used-------------------------------------
+* git config --list
+
+		# Checking stated and unstated files--------------------------------------
+* git status
+
+		# add for state-----------------------------------------------------------
+* git add something.txt			* git add --all / git add .
+
+		# do commit---------------------------------------------------------------
+
+* git commit	+ i  + write message +  :x  + press enter
+* git commit -m "your message"
+* git commit -a -m "your msg"	// commits without staging
+
+
+		# which file i committed -------------------------------------------------
+
+* git log		*  git log --oneline
+
+		# checkout command -------------------------------------------------------
+*git checkout + commit number		* git checkout master
+
+
+
+		# find the last change of file of master bracnh----------------------------
+* git diff	* git show + commit number	* git diff + commit numx + commit num2y
+* git diff --staged // to show changes even after staged
+
+
+
+		# Delete some file both master and commit----------------------------------
+* git rm + file name
+
+
+
+
+
+
+		# ssh key generate---------------------------------------------------------
+ssh-keygen -t rsa -b 4096 -C "example@example.com" // in linux, user key is saved in /root/.ssh/id_rsa
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/id_rsa
+clip < ~/.ssh/id_rsa.pub	// to copy to clipboard
+cat ~/.ssh/id_rsa 		// to open the ssh key and then manually copy them
+
+
+		# changing ssh passphase or remove it------------------------------------
+ssh-keygen -p -f ~/.ssh/id_rsa
+
+
+
+		# Push from local directory------------------------------------------------
+* git remote add origin git@github.com:itl12/coffee.git
+* git push -u origin master
+
+
+		# Clonning from github-----------------------------------------------------
+* git clone + cloning link		* git clone + cloning link + new name
+
+
+
+
+		# Fetch and Pull
+* git fetch	and then use git status to see changes 	* git pull
+
+
+
+
+		# Branching all about---------------------------------------------------------
+* git branch + branch name	* git branch // to see how many branches
+* git checkout -b branch name
+* git merge + branch name 	// fetch data from "branch name" to current branch directory
+*git branch -D + branch name // to delete branch
+
+
+
+
+		# Git Stash and Stash Pop----------------------------------------------------
+* git stash		* git stash pop/apply
+* git stash list	* git stash pop + stash id
+* git clean -f -n	* git clean -f
+
+
+
+
+		# Git ignore for ignorring files--------------------------------------------
+* touch .gitignore
+	more about git ignore https://www.atlassian.com/git/tutorials/saving-changes/gitignore
+
+
+
+
+
+
+…or create a new repository on the command line
+
+echo "# no-3" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:itl12/no-3.git
+git push -u origin main
+
+…or push an existing repository from the command line
+
+git remote add origin git@github.com:itl12/no-3.git
+git branch -M main
+git push -u origin main
+
+
+
+
+
+--------------------------------------- New info added in 2024 ------------------------
+
+about branches : 
+
+	list remote/all branches		: 	git branch -r/-a  
+
+	create lc branch      			:	git branch <branch-name>
+
+	create lc branch & switch to it		: 	git switch -c <branch-name>
+
+	* upload lc to remote (non-existing)	:	git push -u origin <remote branch creation name>
+	  next time just use git push and it will pushed to that remote branch
+
+	
+	* create lc branch from remote branch	: 	git switch -c <lc-branch-name>  origin/<remote-existing-branch-name>
+	  it will automatically set up to track origin/<branch-name>. next time just use git push
+
+	
+	delete local branch      		: 	git branch -d/-D <branch-name>  ( -D force delete unmerged branch )
+
+	delete remote branch     		:	git push origin --delete <branch-name>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
