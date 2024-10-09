@@ -1,6 +1,9 @@
 {% extends 'base.html' %} {% load static %}
 
 {% block title %}{{ profile.name }}'s Profile{% endblock %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'icons/bootstrap-icons-1.11.3/bootstrap-icons.min.css' %}">
+{% endblock %}
 
 {% block body %}
 <div class="container mx-auto my-10 md:p-8">
@@ -17,6 +20,11 @@
             {% if user.is_authenticated and user == profile.user %}
                 <p class="text-gray-600">User login Id: {{ user.username }}</p> 
             {% endif %}
+
+            <!-- Contact info/links -->
+            <div class="my-5 flex justify-center space-x-2">
+                <i class="bi bi-facebook text-2xl text-sky-600 hover:text-orange-500 duration-100 cursor-pointer"></i>                
+            </div>
         </div>
         {% if user == profile.user %}<a href="{% url 'studentsapp:update_profile' %}" class="btn btn-success mt-5">Edit Profile</a>{% endif %}
         {% if user == profile.user %}<a href="{% url 'studentsapp:change_password' %}" class="btn btn-outline-success mt-5">Change Password</a>{% endif %}

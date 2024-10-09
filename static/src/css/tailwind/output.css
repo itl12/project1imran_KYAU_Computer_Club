@@ -14089,6 +14089,11 @@ video {
   margin-bottom:1rem !important
 }
 
+.my-5{
+  margin-top:1.25rem !important;
+  margin-bottom:1.25rem !important
+}
+
 .my-7{
   margin-top:1.75rem !important;
   margin-bottom:1.75rem !important
@@ -14270,6 +14275,10 @@ video {
   height:16rem !important
 }
 
+.h-8{
+  height:2rem !important
+}
+
 .h-\[200px\]{
   height:200px !important
 }
@@ -14332,6 +14341,10 @@ video {
 
 .w-6{
   width:1.5rem !important
+}
+
+.w-8{
+  width:2rem !important
 }
 
 .w-\[15\%\]{
@@ -14676,6 +14689,11 @@ video {
 .bg-orange-200{
   --tw-bg-opacity:1 !important;
   background-color:rgb(254 215 170 / var(--tw-bg-opacity)) !important
+}
+
+.bg-orange-500{
+  --tw-bg-opacity:1 !important;
+  background-color:rgb(249 115 22 / var(--tw-bg-opacity)) !important
 }
 
 .bg-purple-100{
@@ -15113,11 +15131,6 @@ video {
   color:rgb(212 212 216 / var(--tw-text-opacity)) !important
 }
 
-.text-yellow-500{
-  --tw-text-opacity:1 !important;
-  color:rgb(234 179 8 / var(--tw-text-opacity)) !important
-}
-
 .underline{
   text-decoration-line:underline !important
 }
@@ -15224,8 +15237,16 @@ video {
   transition-duration:150ms !important
 }
 
+.duration-200{
+  transition-duration:200ms !important
+}
+
 .duration-300{
   transition-duration:300ms !important
+}
+
+.duration-100{
+  transition-duration:100ms !important
 }
 
 .ease-in-out{
@@ -15249,6 +15270,12 @@ video {
 }
 
 .hover\:scale-\[1\.5\]:hover{
+  --tw-scale-x:1.5 !important;
+  --tw-scale-y:1.5 !important;
+  transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important
+}
+
+.hover\:scale-150:hover{
   --tw-scale-x:1.5 !important;
   --tw-scale-y:1.5 !important;
   transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important
@@ -15317,6 +15344,11 @@ video {
 .hover\:text-white:hover{
   --tw-text-opacity:1 !important;
   color:rgb(255 255 255 / var(--tw-text-opacity)) !important
+}
+
+.hover\:text-orange-500:hover{
+  --tw-text-opacity:1 !important;
+  color:rgb(249 115 22 / var(--tw-text-opacity)) !important
 }
 
 .hover\:underline:hover{
