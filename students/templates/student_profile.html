@@ -3,7 +3,56 @@
 {% block title %}{{ profile.name }}'s Profile{% endblock %}
 {% block style %}
 <link rel="stylesheet" href="{% static 'icons/bootstrap-icons-1.11.3/bootstrap-icons.min.css' %}">
-{% endblock %}
+<link rel="stylesheet" href="{% static 'icons/fontawesome-free-6.6.0-web/css/all.min.css' %}">
+
+<style>
+    .icons .my_tooltip {
+        opacity: 0;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        padding : 10px 15px;
+        background: rgb(249 115 22);
+        pointer-events: none;
+        
+    }
+    .icons .my_tooltip::after {
+        content: '';
+        position: absolute;
+        top: 98%;
+        left: 50%;
+        transform: translateX(-50%);
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid rgb(249 115 22);
+    }
+    .icons:hover .my_tooltip{
+        animation: my_pop_up 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    }
+    .icons:not(:hover) .my_tooltip{
+        animation: my_pop_up_reverse 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    }
+    @keyframes my_pop_up {
+        from {
+            bottom : -50%;
+        }
+        to {
+            bottom : 160%;
+            opacity: 1;
+        }
+    }
+    @keyframes my_pop_up_reverse {
+        from {
+            bottom: 160%;
+            opacity: 1;
+        }
+        to {
+            bottom: 0%;
+            opacity: 0;
+        }
+        }
+</style>
+ {% endblock %}
 
 {% block body %}
 <div class="container mx-auto my-10 md:p-8">
@@ -16,15 +65,97 @@
             </a>
             <h2 class="mt-4 text-3xl font-semibold text-gray-500">{{ profile.name }}</h2>
             <p class="text-gray-600">Batch: {{ profile.batch }} | ID: {{ profile.std_id }}</p>
-            <p class="text-gray-600">Phone: {{ profile.phone_number }}</p>
+            <!-- <p class="text-gray-600">Phone: {{ profile.phone_number }}</p> -->
             {% if user.is_authenticated and user == profile.user %}
                 <p class="text-gray-600">User login Id: {{ user.username }}</p> 
             {% endif %}
 
             <!-- Contact info/links -->
-            <div class="my-5 flex justify-center space-x-2">
-                <i class="bi bi-facebook text-2xl text-sky-600 hover:text-orange-500 duration-100 cursor-pointer"></i>                
+            <div class="my-5 flex justify-center space-x-2 space-y-2 flex-wrap">
+
+                <div class="icons relative rounded-full mt-2">
+                    <a href="{% if profile.phone_number %}tel:{{ profile.phone_number }} {% else %} # {% endif %}" class="inline-block rounded-full" {% if profile.phone_number %}target="_blank"{% endif %}>
+                        <span class="my_tooltip rounded-pill text-lg text-white whitespace-nowrap">Call me</span>
+                        <span class="flex justify-center items-center h-8 w-8 rounded-full bg-sky-600 hover:bg-orange-500">
+                            <i class="fa-solid fa-phone text-xl text-white duration-100 cursor-pointer"></i>  
+                        </span>
+                    </a>
+                </div>  
+
+                <div class="icons relative rounded-full">
+                    <a href="{% if profile.phone_number %}sms:{{ profile.phone_number }} {% else %} # {% endif %}" class="inline-block rounded-full" {% if profile.phone_number %}target="_blank"{% endif %}>
+                        <span class="my_tooltip rounded-pill text-lg text-white whitespace-nowrap">Text me</span>
+                        <span class="flex justify-center items-center h-8 w-8 rounded-full bg-sky-600 hover:bg-orange-500">
+                            <i class="fa-solid fa-comment-sms text-xl text-white duration-100 cursor-pointer"></i>  
+                        </span>
+                    </a>
+                </div>  
+
+                <div class="icons relative rounded-full">
+                    <a href="{% if profile.whatsapp %}https://wa.me/88{{ profile.whatsapp }} {% else %} # {% endif %}" class="inline-block rounded-full" {% if profile.whatsapp %}target="_blank"{% endif %}>
+                        <span class="my_tooltip rounded-pill text-lg text-white whitespace-nowrap">Whatsapp</span>
+                        <span class="flex justify-center items-center h-8 w-8 rounded-full bg-green-600 hover:bg-orange-500">
+                            <i class="fa-brands fa-whatsapp text-xl text-white duration-100 cursor-pointer"></i>  
+                        </span>
+                    </a>
+                </div>  
+
+                <div class="icons relative rounded-full">
+                    <a href="{% if profile.gmail %}mailto:{{ profile.gmail }} {% else %} # {% endif %}" class="inline-block rounded-full" {% if profile.gmail %}target="_blank"{% endif %}>
+                        <span class="my_tooltip rounded-pill text-lg text-white whitespace-nowrap">Gmail</span>
+                        <span class="flex justify-center items-center h-8 w-8 rounded-full bg-amber-500 hover:bg-orange-500">
+                            <i class="fa-brands fa-google text-xl text-white  duration-100 cursor-pointer "></i>  
+                        </span>
+                    </a>
+                </div>  
+
+                <div class="icons relative rounded-full">
+                    <a href="{{ profile.facebook | default:'#'}}" class="inline-block rounded-full" {% if profile.facebook %}target="_blank"{% endif %}>
+                        <span class="my_tooltip rounded-pill text-lg text-white whitespace-nowrap">Facebook</span>
+                        <span class="flex justify-center items-center h-8 w-8 rounded-full bg-sky-600 hover:bg-orange-500">
+                            <i class="fa-brands fa-facebook-f text-xl text-white duration-100 cursor-pointer"></i>  
+                        </span>
+                    </a>
+                </div>  
+
+                <div class="icons relative rounded-full">
+                    <a href="{{ profile.linkedin | default:'#'}}" class="inline-block rounded-full" {% if profile.linkedin %}target="_blank"{% endif %}>
+                        <span class="my_tooltip rounded-pill text-lg text-white whitespace-nowrap">Linkedin</span>
+                        <span class="flex justify-center items-center h-8 w-8 rounded-full bg-sky-500 hover:bg-orange-500">
+                            <i class="fa-brands fa-linkedin-in text-xl text-white duration-100 cursor-pointer"></i>  
+                        </span>
+                    </a>
+                </div>        
+                
+                <div class="icons relative rounded-full">
+                    <a href="{{ profile.google_scholar | default:'#'}}" class="inline-block rounded-full" {% if profile.google_scholar %}target="_blank"{% endif %}>
+                        <span class="my_tooltip rounded-pill text-lg text-white whitespace-nowrap">Google scholar</span>
+                        <span class="flex justify-center items-center h-8 w-8 rounded-full bg-sky-500 hover:bg-orange-500">
+                            <i class="fa-brands fa-google-scholar text-xl text-white duration-100 cursor-pointer"></i>  
+                        </span>
+                    </a>
+                </div>        
+                
+                <div class="icons relative rounded-full">
+                    <a href="{{ profile.github | default:'#'}}" class="inline-block rounded-full" {% if profile.github %}target="_blank"{% endif %}>
+                        <span class="my_tooltip rounded-pill text-lg text-white ">Github</span>
+                        <span class="flex justify-center items-center h-8 w-8 rounded-full bg-sky-500 hover:bg-orange-500">
+                            <i class="fa-brands fa-square-github text-xl  duration-100 cursor-pointer"></i>  
+                        </span>
+                    </a>
+                </div>        
+                
+                
+   
             </div>
+            <script>
+                $('.my_tooltip').hide();
+                $('.icons').on('mouseenter', function(){
+                    $(this).find('.my_tooltip').show();
+                })
+            </script>
+            
+
         </div>
         {% if user == profile.user %}<a href="{% url 'studentsapp:update_profile' %}" class="btn btn-success mt-5">Edit Profile</a>{% endif %}
         {% if user == profile.user %}<a href="{% url 'studentsapp:change_password' %}" class="btn btn-outline-success mt-5">Change Password</a>{% endif %}
@@ -227,5 +358,8 @@ function openModal(imageSrc) {
 function closeModal() {
     $('#imageModal').addClass('hidden');
 }
+
+
 </script>
 {% endblock %}
+

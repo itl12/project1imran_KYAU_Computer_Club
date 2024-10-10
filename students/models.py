@@ -9,7 +9,7 @@ class Student_Model(models.Model):
     name = models.CharField(max_length=40)
     batch = models.IntegerField(blank=True, null=True)
     std_id = models.CharField(max_length=16)
-    phone_number = models.CharField(max_length=16, blank=True, null=True)
+    phone_number = models.CharField(max_length=11, blank=True, null=True)
     blood_group = models.CharField(max_length=3, blank=True, null=True)
     last_Blood_donated = models.DateField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
