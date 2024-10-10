@@ -9,13 +9,21 @@ class Student_Model(models.Model):
     name = models.CharField(max_length=40)
     batch = models.IntegerField(blank=True, null=True)
     std_id = models.CharField(max_length=16)
-    phone_number = models.CharField(max_length=16, blank=True, null=True)
+    phone_number = models.CharField(max_length=11, blank=True, null=True)
     blood_group = models.CharField(max_length=3, blank=True, null=True)
     last_Blood_donated = models.DateField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     cv = models.FileField(upload_to='students_cv/', blank=True, null=True)
     skills = models.CharField(max_length=1000, blank=True, null=True)
     passion = models.CharField(max_length=1000, blank=True, null=True)
+
+    whatsapp = models.CharField(max_length=11, blank=True, null=True)
+    linkedin = models.URLField(blank=True, null=True)
+    facebook = models.URLField(blank=True, null=True)
+    github = models.URLField(blank=True, null=True)
+    google_scholar = models.URLField(blank=True, null=True)
+    gmail = models.EmailField(blank=True, null=True)
+
     slug = models.SlugField(unique=True)
 
     class Meta():
