@@ -112,7 +112,7 @@
         </a>
         <div class="relative max-h-44 md:max-h-80 overflow-y-scroll"> <!-- Set max height for scrolling -->
           <ul class="divide-y divide-gray-200">
-            {% for notice in notices %}
+            {% for notice in notices|slice:"0:3" %}
               <li>
                 <a href="{% url 'noticeapp:notice' slug=notice.slug %}" class="flex flex-col hover:text-purple-600 p-4 bg-gray-100 hover:bg-purple-100 transition duration-300 ease-in-out">
                   <span class="text-center w-fit align-self-end badge fw-normal text-bg-secondary rounded-pill">
@@ -170,6 +170,80 @@
     
 
   </div>
+
+
+
+
+<!-- Hero Section -->
+<section id="hero"
+  class="my-20 py-14 px-2 md:px-0 md:p-0 relative flex items-center justify-center h-max-content md:h-screen bg-gradient-to-r from-green-400 to-blue-500 rounded-md">
+  <div class="text-center">
+    <h1 id="course_content_hero_heading" class="text-4xl md:text-6xl font-extrabold text-white mb-6">
+      <!-- Explore Your Future in CSE -->
+    </h1>
+    <p class="text-lg md:text-2xl text-white mb-10">
+      Dive into the world of Computer Science & Engineering
+    </p>
+
+    <!-- Icons representing course content -->
+    <div class="flex flex-wrap justify-center space-x-4 mb-6">
+      <!-- Programming Icon -->
+      <div class="group">
+        <i class="fa-solid fa-code text-4xl text-white group-hover:text-yellow-400 duration-200"></i>
+        <p class="text-sm text-white group-hover:text-yellow-400 duration-200">Programming</p>
+      </div>
+      <!-- Networking Icon -->
+      <div class="group">
+        <i class="fa-solid fa-network-wired text-4xl text-white group-hover:text-yellow-400 duration-200"></i>
+        <p class="text-sm text-white group-hover:text-yellow-400 duration-200">Networking</p>
+      </div>
+      <!-- AI Icon -->
+      <div class="group">
+        <i class="fa-solid fa-brain text-4xl text-white group-hover:text-yellow-400 duration-200"></i>
+        <p class="text-sm text-white group-hover:text-yellow-400 duration-200">AI</p>
+      </div>
+      <!-- Databases Icon -->
+      <div class="group">
+        <i class="fa-solid fa-database text-4xl text-white group-hover:text-yellow-400 duration-200"></i>
+        <p class="text-sm text-white group-hover:text-yellow-400 duration-200">Databases</p>
+      </div>
+      <!-- Cybersecurity Icon -->
+      <div class="group">
+        <i class="fa-solid fa-shield-virus text-4xl text-white group-hover:text-yellow-400 duration-200"></i>
+        <p class="text-sm text-white group-hover:text-yellow-400 duration-200">Cybersecurity</p>
+      </div>
+    </div>
+
+    <!-- Button to scroll to course content -->
+    <a href="{% url 'noticeapp:course_content' %}"
+      class="inline-block px-8 py-4 text-lg font-semibold bg-yellow-400 text-gray-900 rounded-lg shadow-md hover:bg-yellow-500 transition duration-200">
+      View Course Offerings
+    </a>
+  </div>
+<script>
+  new TypeIt("#course_content_hero_heading", { 
+    speed: 50,
+    deleteSpeed : 20,
+    loopDelay : 300,
+    waitUntilVisible: true,
+    loop: true
+  }).type('Explore Your <span style="color: rgb(234 179 8);">Future</span> in CSE')
+    .pause(3000)
+    .delete()
+    .go();
+</script>
+
+
+</section>
+
+
+
+
+
+
+
+
+
 </div>
 
 

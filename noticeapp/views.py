@@ -27,6 +27,9 @@ class RoutineView(TemplateView):
         context['routine'] =  RoutineModel.objects.all().first()
         return context 
         
+
+class Course_content(TemplateView):
+    template_name = 'course_content.html'
     
 
 

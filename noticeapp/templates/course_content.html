@@ -1,0 +1,610 @@
+{% extends 'base.html' %} {% load static %}
+
+{% block title %} Course Content {% endblock %}
+
+{% block script_head %}
+<script src="{% static 'src/js/typelt/source_typelt.js' %}"></script> {% endblock %}
+
+{% block body %}
+
+<h2 id="course_content_header" class="h2 container my-10 p-5 text-center text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-orange-500 rounded-pill border-2 border-orange-500 shadow-xl"></h2>
+<style>
+    #course_content_header{
+        background-size: 200% 100%;
+        animation: move_left_right 2s infinite alternate;
+    }
+    @keyframes move_left_right {
+        0% {background-position-x: 100%;}
+        100% {background-position-x: 0%;}
+    }
+</style>
+
+<script>
+    new TypeIt("#course_content_header", {
+            loop : true,
+            speed: 50,
+            deleteSpeed: 10,
+            loopDelay : 10
+        })
+        .type("Bachelor of Science in Computer Science & Engineering")
+        .pause(4000)
+        .delete()
+        .go();
+</script>
+
+
+<div class="my-10 container flex md: space-x-4 flex-col md:flex-row">
+ 
+    <div class="w-full md:w-1/2">
+        <h class="h3 mb-2 text-gray-700 text-center border-b-2 border-b-orange-600 pb-3">Course Information<=b mb=========================================
+               <div class="accordion" id="accordionPanelsStayOpenExample">
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseOne">
+                    1ˢᵗ Year - 1ˢᵗ Semester
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full border-collapse border border-gray-300">
+                            <thead class="bg-gray-200">
+                    <tr class="text-gray-700">
+                                    <th class="border border-gray-300 px-4 py-2 font-bold text-left">Course Code</th>
+                                    <th class="border border-gray-300 px-4 py-2 font-bold text-left">Course Name</th>
+                                    <th class="border border-gray-300 px-4 py-2 font-bold text-left">Credit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white">
+                                    <td class="border border-gray-300 px-4 py-2">CSE 1101</td>
+                                    <td class="border border-gray-300 px-4 py-2">Computer Fundamentals</td>
+                                    <td class="border border-gray-300 px-4 py-2">3</td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <td class="border border-gray-300 px-4 py-2">CSE 1103</td>
+                                    <td class="border border-gray-300 px-4 py-2">Electrical Circuit</td>
+                                    <td class="border border-gray-300 px-4 py-2">3</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="border border-gray-300 px-4 py-2">CSE 1104</td>
+                                    <td class="border border-gray-300 px-4 py-2">Electrical Circuit Lab.</td>
+                                    <td class="border border-gray-300 px-4 py-2">1</td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <td class="border border-gray-300 px-4 py-2">PHY 1102</td>
+                                    <td class="border border-gray-300 px-4 py-2">Physics-I Lab.</td>
+                                    <td class="border border-gray-300 px-4 py-2">2</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="border border-gray-300 px-4 py-2">MATH 1101</td>
+                                    <td class="border border-gray-300 px-4 py-2">Differential and Integral Calculus</td>
+                                    <td class="border border-gray-300 px-4 py-2">3</td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <td class="border border-gray-300 px-4 py-2">ENG 1101</td>
+                                    <td class="border border-gray-300 px-4 py-2">English-I</td>
+                                    <td class="border border-gray-300 px-4 py-2">3</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="border border-gray-300 px-4 py-2">HUM 1101</td>
+                                    <td class="border border-gray-300 px-4 py-2">Emergence of Bangladesh</td>
+                                    <td class="border border-gray-300 px-4 py-2">3</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseTwo">
+                    1ˢᵗ Year - 2ⁿᵈ Semester
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full border-collapse border border-gray-300">
+                            <thead class="bg-gray-200">
+                    <tr class="text-gray-700">
+                                    <th class="border border-gray-300 px-4 py-2 font-bold text-left">Course Code</th>
+                                    <th class="border border-gray-300 px-4 py-2 font-bold text-left">Course Name</th>
+                                    <th class="border border-gray-300 px-4 py-2 font-bold text-left">Credit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white">
+                                    <td class="border border-gray-300 px-4 py-2">CSE 1201</td>
+                                    <td class="border border-gray-300 px-4 py-2">Structure Programming Language</td>
+                                    <td class="border border-gray-300 px-4 py-2">3</td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <td class="border border-gray-300 px-4 py-2">CSE 1202</td>
+                                    <td class="border border-gray-300 px-4 py-2">Structure Programming Language Lab</td>
+                                    <td class="border border-gray-300 px-4 py-2">2</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="border border-gray-300 px-4 py-2">CSE 1203</td>
+                                    <td class="border border-gray-300 px-4 py-2">Discrete Mathematics</td>
+                                    <td class="border border-gray-300 px-4 py-2">3</td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <td class="border border-gray-300 px-4 py-2">CSE 1205</td>
+                                    <td class="border border-gray-300 px-4 py-2">Electronics</td>
+                                    <td class="border border-gray-300 px-4 py-2">3</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="border border-gray-300 px-4 py-2">CSE 1206</td>
+                                    <td class="border border-gray-300 px-4 py-2">Electronics Lab</td>
+                                    <td class="border border-gray-300 px-4 py-2">1</td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <td class="border border-gray-300 px-4 py-2">CSE 1208</td>
+                                    <td class="border border-gray-300 px-4 py-2">Engineering Drawing and Auto CAD Lab
+                                    </td>
+                                    <td class="border border-gray-300 px-4 py-2">2</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="border border-gray-300 px-4 py-2">PHY 1201</td>
+                                    <td class="border border-gray-300 px-4 py-2">Physics-II</td>
+                                    <td class="border border-gray-300 px-4 py-2">3</td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <td class="border border-gray-300 px-4 py-2">ENG 1201</td>
+                                    <td class="border border-gray-300 px-4 py-2"> English-II</td>
+                                    <td class="border border-gray-300 px-4 py-2">3</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="border border-gray-300 px-4 py-2">MATH 1201</td>
+                                    <td class="border border-gray-300 px-4 py-2">Co-ordinate Geometry and Vector
+                                        Analysis</td>
+                                    <td class="border border-gray-300 px-4 py-2">3</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseThree">
+                    2ⁿᵈ Year - 1ˢᵗ Semester
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full border-collapse border border-gray-300">
+                            <thead class="bg-gray-200">
+                                <tr class="text-gray-700">
+                                    <th class="border border-gray-300 px-4 py-2 font-bold text-left">Course Code</th>
+                                    <th class="border border-gray-300 px-4 py-2 font-bold text-left">Course Name</th>
+                                    <th class="border border-gray-300 px-4 py-2 font-bold text-left">Credit</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-white">
+                                    <td class="border border-gray-300 px-4 py-2">CSE 2101</td>
+                                    <td class="border border-gray-300 px-4 py-2">Object Oriented Programming-I</td>
+                                    <td class="border border-gray-300 px-4 py-2">3</td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <td class="border border-gray-300 px-4 py-2">CSE 2102</td>
+                                    <td class="border border-gray-300 px-4 py-2">Object Oriented Programming-I Lab</td>
+                                    <td class="border border-gray-300 px-4 py-2">2</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="border border-gray-300 px-4 py-2">CSE 2103</td>
+                                    <td class="border border-gray-300 px-4 py-2">Data Structure</td>
+                                    <td class="border border-gray-300 px-4 py-2">3</td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <td class="border border-gray-300 px-4 py-2">CSE 2104</td>
+                                    <td class="border border-gray-300 px-4 py-2">Data Structure Lab</td>
+                                    <td class="border border-gray-300 px-4 py-2">2</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="border border-gray-300 px-4 py-2">CSE 2105</td>
+                                    <td class="border border-gray-300 px-4 py-2">Computer Architecture and Organization
+                                    </td>
+                                    <td class="border border-gray-300 px-4 py-2">3</td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <td class="border border-gray-300 px-4 py-2">CSE 2107</td>
+                                    <td class="border border-gray-300 px-4 py-2">Digital Logic Design</td>
+                                    <td class="border border-gray-300 px-4 py-2">3</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="border border-gray-300 px-4 py-2">CSE 2108</td>
+                                    <td class="border border-gray-300 px-4 py-2">Digital Logic Design Lab</td>
+                                    <td class="border border-gray-300 px-4 py-2"> 1</td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <td class="border border-gray-300 px-4 py-2">MATH 2101</td>
+                                    <td class="border border-gray-300 px-4 py-2"> Linear Algebra and Matrix Analysis
+                                    </td>
+                                    <td class="border border-gray-300 px-4 py-2">3</td>
+                                </tr>
+                                <tr class="bg-gray-100">
+                                    <td class="border border-gray-300 px-4 py-2">ECO 2101</td>
+                                    <td class="border border-gray-300 px-4 py-2">Economics</td>
+                                    <td class="border border-gray-300 px-4 py-2">2</td>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="border border-gray-300 px-4 py-2">ACC 2101</td>
+                                    <td class="border border-gray-300 px-4 py-2">Financial, Cost and Managerial
+                                        Accounting</td>
+                                    <td class="border border-gray-300 px-4 py-2">2</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseFour">
+                    2ⁿᵈ Year - 2ⁿᵈ Semester
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <table class="min-w-full border-collapse border border-gray-300">
+                        <thead class="bg-gray-200">
+                            <tr class="text-gray-700">
+                                <th class="px-4 py-2">Course Code</th>
+                                <th class="px-4 py-2">Course Name</th>
+                                <th class="px-4 py-2">Credit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-gray-100">
+                                <td class="border px-4 py-2">CSE 2201</td>
+                                <td class="border px-4 py-2">Object Oriented Programming-Il</td>
+                                <td class="border px-4 py-2">3</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">CSE 2202</td>
+                                <td class="border px-4 py-2">Object Oriented Programming-II Lab</td>
+                                <td class="border px-4 py-2">2</td>
+                            </tr>
+                            <tr class="bg-gray-100">
+                                <td class="border px-4 py-2">CSE 2203</td>
+                                <td class="border px-4 py-2">Design and Analysis of Algorithm</td>
+                                <td class="border px-4 py-2">3</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">CSE 2204</td>
+                                <td class="border px-4 py-2">Design and Analysis of Algorithm Lab</td>
+                                <td class="border px-4 py-2">2</td>
+                            </tr>
+                            <tr class="bg-gray-100">
+                                <td class="border px-4 py-2">CSE 2205</td>
+                                <td class="border px-4 py-2">Numerical Methods</td>
+                                <td class="border px-4 py-2">3</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">CSE 2207</td>
+                                <td class="border px-4 py-2">Digital System Design</td>
+                                <td class="border px-4 py-2">3</td>
+                            </tr>
+                            <tr class="bg-gray-100">
+                                <td class="border px-4 py-2">CSE 2208</td>
+                                <td class="border px-4 py-2">Digital System Design Lab.</td>
+                                <td class="border px-4 py-2"> 1</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">MATH 2201</td>
+                                <td class="border px-4 py-2">Complex Variable, Laplace, Fourier and Z-Transformation
+                                </td>
+                                <td class="border px-4 py-2"> 3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseFive">
+                    3ʳᵈ Year - 1ˢᵗ Semester
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <table class="min-w-full border-collapse border border-gray-300">
+                        <thead class="bg-gray-200">
+                    <tr class="text-gray-700">
+                                <th class="px-4 py-2">Course Code</th>
+                                <th class="px-4 py-2">Course Name</th>
+                                <th class="px-4 py-2">Credit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">CSE 3101</td>
+                                <td class="border px-4 py-2">Database Management System</td>
+                                <td class="border px-4 py-2">3</td>
+                            </tr>
+                            <tr class="bg-gray-100">
+                                <td class="border px-4 py-2">CSE 3102</td>
+                                <td class="border px-4 py-2">Database Management System Lab.</td>
+                                <td class="border px-4 py-2">2</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">CSE 3103</td>
+                                <td class="border px-4 py-2">Operating System</td>
+                                <td class="border px-4 py-2">3</td>
+                            </tr>
+                            <tr class="bg-gray-100">
+                                <td class="border px-4 py-2">CSE 3104</td>
+                                <td class="border px-4 py-2">Operating System Lab.</td>
+                                <td class="border px-4 py-2">2</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">CSE 3105</td>
+                                <td class="border px-4 py-2">Theory of Computation</td>
+                                <td class="border px-4 py-2">3</td>
+                            </tr>
+                            <tr class="bg-gray-100">
+                                <td class="border px-4 py-2">CSE 3107</td>
+                                <td class="border px-4 py-2">Microprocessor, Micro Controller and Embedded Systems</td>
+                                <td class="border px-4 py-2">3</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">CSE 3108</td>
+                                <td class="border px-4 py-2">Microprocessor, Micro Controller and Embedded Systems Lab.
+                                </td>
+                                <td class="border px-4 py-2"> 1</td>
+                            </tr>
+                            <tr class="bg-gray-100">
+                                <td class="border px-4 py-2">CSE 3109</td>
+                                <td class="border px-4 py-2">System Analysis and Design</td>
+                                <td class="border px-4 py-2"> 3</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">CSE 3111</td>
+                                <td class="border px-4 py-2">Data Communication</td>
+                                <td class="border px-4 py-2"> 3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseSix" aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseSix">
+                    3ʳᵈ Year - 2ⁿᵈ Semester
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <table class="min-w-full border-collapse border border-gray-300">
+                        <thead class="bg-gray-200">
+                            <tr class="text-gray-700">
+                                <th class="px-4 py-2">Course Code</th>
+                                <th class="px-4 py-2">Course Name</th>
+                                <th class="px-4 py-2">Credit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">CSE 3201</td>
+                                <td class="border px-4 py-2">Compiler Design</td>
+                                <td class="border px-4 py-2">3</td>
+                            </tr>
+                            <tr class="bg-gray-100">
+                                <td class="border px-4 py-2">CSE 3202</td>
+                                <td class="border px-4 py-2">Compiler Design Lab.</td>
+                                <td class="border px-4 py-2">1</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">CSE 3203</td>
+                                <td class="border px-4 py-2">Software Engineering</td>
+                                <td class="border px-4 py-2">3</td>
+                            </tr>
+                            <tr class="bg-gray-100">
+                                <td class="border px-4 py-2">CSE 3204</td>
+                                <td class="border px-4 py-2">Software Engineering Lab.</td>
+                                <td class="border px-4 py-2">1</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">CSE 3205</td>
+                                <td class="border px-4 py-2">Computer Peripheral and Interfacing</td>
+                                <td class="border px-4 py-2">3</td>
+                            </tr>
+                            <tr class="bg-gray-100">
+                                <td class="border px-4 py-2">CSE 3206</td>
+                                <td class="border px-4 py-2">Computer Peripheral and Interfacing Lab.</td>
+                                <td class="border px-4 py-2">1</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">CSE 3207</td>
+                                <td class="border px-4 py-2">Web Engineering</td>
+                                <td class="border px-4 py-2"> 3</td>
+                            </tr>
+                            <tr class="bg-gray-100">
+                                <td class="border px-4 py-2">CSE 3208</td>
+                                <td class="border px-4 py-2">Web Engineering Lab.</td>
+                                <td class="border px-4 py-2"> 2</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">CSE 3209</td>
+                                <td class="border px-4 py-2">Computer Networks</td>
+                                <td class="border px-4 py-2"> 3</td>
+                            </tr>
+                            <tr class="bg-gray-100">
+                                <td class="border px-4 py-2">CSE 3210</td>
+                                <td class="border px-4 py-2">Computer Networks Lab.</td>
+                                <td class="border px-4 py-2"> 1</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">CSE 3299</td>
+                                <td class="border px-4 py-2">Project Development</td>
+                                <td class="border px-4 py-2"> 2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseSeven" aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseSeven">
+                    4ᵗʰ Year - 1ˢᵗ Semester
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseSeven" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <table class="min-w-full border-collapse border border-gray-300">
+                        <thead class="bg-gray-200">
+                            <tr class="text-gray-700">
+                                <th class="px-4 py-2">Course Code</th>
+                                <th class="px-4 py-2">Course Name</th>
+                                <th class="px-4 py-2">Credit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">CSE 4101</td>
+                                <td class="border px-4 py-2">Artificial Intelligence</td>
+                                <td class="border px-4 py-2">3</td>
+                            </tr>
+                            <tr class="bg-gray-100">
+                                <td class="border px-4 py-2">CSE 4102</td>
+                                <td class="border px-4 py-2">Artificial Intelligence Lab.</td>
+                                <td class="border px-4 py-2">1</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">CSE 4103</td>
+                                <td class="border px-4 py-2">Computer Graphics and Animation</td>
+                                <td class="border px-4 py-2">3</td>
+                            </tr>
+                            <tr class="bg-gray-100">
+                                <td class="border px-4 py-2">CSE 4104</td>
+                                <td class="border px-4 py-2">Computer Graphics and Animation Lab.</td>
+                                <td class="border px-4 py-2">1</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">CSE 4105</td>
+                                <td class="border px-4 py-2">Digital Signal Processing</td>
+                                <td class="border px-4 py-2">3</td>
+                            </tr>
+                            <tr class="bg-gray-100">
+                                <td class="border px-4 py-2">CSE 4106</td>
+                                <td class="border px-4 py-2">Digital Signal Processing Lab.</td>
+                                <td class="border px-4 py-2">1</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">CSE 4107</td>
+                                <td class="border px-4 py-2">Data Mining</td>
+                                <td class="border px-4 py-2"> 3</td>
+                            </tr>
+                            <tr class="bg-gray-100">
+                                <td class="border px-4 py-2">CSE 41**</td>
+                                <td class="border px-4 py-2">Option-I</td>
+                                <td class="border px-4 py-2"> 3</td>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">CSE 41**</td>
+                                <td class="border px-4 py-2">Option-I Lab.</td>
+                                <td class="border px-4 py-2"> 1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#panelsStayOpen-collapseEight" aria-expanded="false"
+                    aria-controls="panelsStayOpen-collapseEight">
+                    4ᵗʰ Year - 2ⁿᵈ Semester
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseEight" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <table class="min-w-full bg-white border border-gray-200">
+                        <thead class="bg-gray-200">
+                            <tr class="text-gray-700">
+                                <th class="px-4 py-2">Course Code</th>
+                                <th class="px-4 py-2">Course Name</th>
+                                <th class="px-4 py-2">Credit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-white">
+                                <td class="border px-4 py-2">CSE 4201</td>
+                                <td class="border px-4 py-2">Neural Network and Fuzzy Systems</td>
+                                <td class="border px-4 py-2">3</td>
+                            </tr>
+                            <tr class="bg-gray-100">
+                                <td class="border px-4 py-2">CSE 4202</td>
+                                <td class="border px-4 py-2">Neural Network and Fuzzy Systems Lab.</td>
+                                <td class="border px-4 py-2">1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+    <div class="w-full md:w-1/2 mt-5 md:mt-0">
+        <h3 class="h3 mb-2 text-gray-700 text-center border-b-2 border-b-orange-600 pb-3">Tution Fee</h3>
+        <div class="overflow-x-auto">
+            <table class="min-w-full bg-white border border-gray-200">
+                <thead class="bg-gray-200">
+                    <tr class="text-gray-700">
+                        <th class="py-2 px-4 border-b">Total Credits</th>
+                        <th class="py-2 px-4 border-b">Program Duration</th>
+                        <th class="py-2 px-4 border-b">Total Semesters</th>
+                        <th class="py-2 px-4 border-b">Admission Fee</th>
+                        <th class="py-2 px-4 border-b">Total Fees</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="bg-gray-100">
+                        <td class="py-2 px-4 border-b">167</td>
+                        <td class="py-2 px-4 border-b">4 Years</td>
+                        <td class="py-2 px-4 border-b">8</td>
+                        <td class="py-2 px-4 border-b">2,000.00</td>
+                        <td class="py-2 px-4 border-b">402,700.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+    
+{% endblock %}
