@@ -17,10 +17,18 @@ module.exports = {
       screens: {
         'b-lg': '992px',
         // => @media (min-width: 992px) { ... } match with bootstrap lg
-      }
+      },
     },
     
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        '.collapse': {
+          visibility: 'visible',   // Overriden by me to avoid conflick with bootstrap
+        },
+      });
+    },
+  ],
 }
 

@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {% load static %}
-    <title>{% block title %}{{ title }}CSE Academia {% endblock %}</title>
+    <title>{% block title %}{{ title }} {% endblock %} | CSE Academia</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{% static 'src/aos/aos.css' %}">
     <link rel="stylesheet" href="{% static 'src/css/tailwind/output.css' %}">
 
 
@@ -161,6 +162,7 @@
               <ul class="dropdown-menu my_slideUp">
                 <li><a href="{% url 'noticeapp:all_notice' %}" class="dropdown-item hover:bg-orange-500 hover:text-white">All Notices</a></li>
                 <li><a href="{% url 'noticeapp:class-routine' %}" class="dropdown-item hover:bg-orange-500 hover:text-white">Routine</a></li>
+                <li><a href="{% url 'noticeapp:course_content' %}" class="dropdown-item hover:bg-orange-500 hover:text-white">Course-content</a></li>
               </ul>
             </div>
           </span>
@@ -355,6 +357,7 @@
             <!--   ---------   All Script tags ----------    -->
 
     <script src="{% static 'src/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'src/aos/aos.js' %}"></script>
     <script src="{% static 'src/js/custom.js' %}"></script>
 
     {% block script %} {% endblock %}
@@ -363,7 +366,10 @@
       $('.main-navbar').on('click', '.menu-item', function(e) {
         $('.main-navbar .submenu').not($(this).next()).addClass('hidden');
         $($(this)).next().toggleClass('hidden');
-      })
+      });
+
+      // Initialize animate on scroll js library
+        AOS.init();
     </script>
 
 </body>
