@@ -110,10 +110,10 @@
             Notice Board
           </div>
         </a>
-        <div class="relative max-h-44 md:max-h-80 overflow-y-scroll"> <!-- Set max height for scrolling -->
-          <ul class="divide-y divide-gray-200">
-            {% for notice in notices|slice:"0:3" %}
-              <li>
+        <div class="relative max-h-80 md:overflow-y-scroll"> <!-- Set max height for scrolling -->
+          <ul id="notice-list" class="divide-y divide-gray-200">
+            {% for notice in notices %}
+              <li class="notice-item">
                 <a href="{% url 'noticeapp:notice' slug=notice.slug %}" class="flex flex-col hover:text-purple-600 p-4 bg-gray-100 hover:bg-purple-100 transition duration-300 ease-in-out">
                   <span class="text-center w-fit align-self-end badge fw-normal text-bg-secondary rounded-pill">
                     {{ notice.days_left }}
@@ -131,7 +131,7 @@
                 </div>
               </a>
             </li>
-          </ul>
+        </ul>
         </div>
       </div>
     </div>
@@ -146,10 +146,10 @@
             <h3 class="text-center text-white text-xl font-bold">Recent Activity</h3>
           </div>
         </a>
-        <div class="relative max-h-40 md:max-h-80 overflow-y-scroll"> <!-- Set max height for scrolling -->
+        <div class="relative max-h-80 md:overflow-y-scroll"> <!-- Set max height for scrolling -->
           <ul class="divide-y divide-gray-300">
             {% for activity in activities %}
-              <li>
+              <li class="activity-item">
                 <a href="{% url 'galleryapp:activity-gallery' slug=activity.slug %}" class="block group p-4 transition-all duration-300 ease-in-out bg-gray-100 hover:bg-purple-100 cursor-pointer">
                   <span class="text-gray-800 group-hover:text-purple-600 font-medium">{{ activity.title|truncatechars:50 }}</span>
                   <p class="text-gray-600 text-sm mt-1 group-hover:text-purple-400">{{ activity.date }}</p>
@@ -168,7 +168,34 @@
       </div>
     </div>
     
+    <script>
+      $(document).ready(function () {
 
+        function updateNoticeList(notices) {
+            var screenWidth = $(window).width();
+
+            if (screenWidth < 768) { // Small screen (adjust breakpoint if necessary)
+                notices.each(function (index) {
+                    if (index >= 2) {
+                        $(this).hide();
+                    }
+                });
+            } else {
+                notices.show();
+            }
+        }
+
+        // Run on page load
+        updateNoticeList($('.notice-item'));
+        updateNoticeList($('.activity-item'));
+
+        // Run when window is resized
+        $(window).resize(function () {
+            updateNoticeList($('.notice-item'));
+            updateNoticeList($('.activity-item'));
+        });
+      });
+    </script>
   </div>
 
 

@@ -14315,6 +14315,18 @@ video {
   max-height:100% !important
 }
 
+.max-h-5{
+  max-height:1.25rem !important
+}
+
+.max-h-56{
+  max-height:14rem !important
+}
+
+.max-h-80{
+  max-height:20rem !important
+}
+
 .w-1\/2{
   width:50% !important
 }
@@ -15576,6 +15588,20 @@ video {
 
   .md\:flex-row{
     flex-direction:row !important
+  }
+
+  .md\:space-x-4 > :not([hidden]) ~ :not([hidden]){
+    --tw-space-x-reverse:0 !important;
+    margin-right:calc(1rem * var(--tw-space-x-reverse)) !important;
+    margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse))) !important
+  }
+
+  .md\:overflow-hidden{
+    overflow:hidden !important
+  }
+
+  .md\:overflow-y-scroll{
+    overflow-y:scroll !important
   }
 
   .md\:p-0{
