@@ -7,6 +7,7 @@ module.exports = {
             '../galleryapp/**/*.html',
             '../students/**/*.html',
             '../Faculty_app/**/*.html',
+            '../Alumni_app/**/*.html',
             'src/js/**/*.js',
           
           ],

@@ -19,6 +19,7 @@ urlpatterns = [
     path('gallery/', include('galleryapp.urls')),
     path('students/', include('students.urls')),
     path('faculty/', include('Faculty_app.urls')),
+    path('alumni/', include('Alumni_app.urls')),
 
 
 
