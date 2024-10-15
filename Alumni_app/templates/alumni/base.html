@@ -151,72 +151,8 @@
       <div class="collapse navbar-collapse max-h-[400px] overflow-y-scroll  b-lg:overflow-y-visible" style="visibility: visible !important;" id="navbarNavDropdown">
         <div class="navbar-nav mx-auto">
           <span class="underline-width-animate">
-            <a class="nav-link text-lg  font-normal" aria-current="page" href="/">Home</a>
+            <a class="nav-link text-lg  font-normal" aria-current="page" href="{% url 'Alumni_app:home' %}">Home</a>
           </span>
-
-          <span class="underline-width-animate">
-            <div class="nav-item dropdown">
-              <a class="nav-link text-lg dropdown_arrow font-normal" href="#" role="button" aria-expanded="false">
-                Notices
-              </a>
-              <ul class="dropdown-menu my_slideUp">
-                <li><a href="{% url 'noticeapp:all_notice' %}" class="dropdown-item hover:bg-orange-500 hover:text-white">All Notices</a></li>
-                <li><a href="{% url 'noticeapp:class-routine' %}" class="dropdown-item hover:bg-orange-500 hover:text-white">Routine</a></li>
-                <li><a href="{% url 'noticeapp:course_content' %}" class="dropdown-item hover:bg-orange-500 hover:text-white">Course-content</a></li>
-              </ul>
-            </div>
-          </span>
-
-          <span class="underline-width-animate">
-            <a class="nav-link text-lg  font-normal" aria-current="page" href="{% url 'galleryapp:list_activity' %}">Activities</a>
-          </span>
-
-          <span class="underline-width-animate">
-            <div class="nav-item dropdown">
-              <a class="nav-link text-lg dropdown_arrow font-normal" href="#" role="button" aria-expanded="false">
-                Students
-              </a>
-              <ul class="dropdown-menu my_slideUp">
-                <li><a href="{% url 'studentsapp:all_students' %}" class="dropdown-item hover:bg-orange-500 hover:text-white">All Students</a></li>
-                <li><a href="{% url 'studentsapp:search_skills' %}" class="dropdown-item hover:bg-orange-500 hover:text-white">Search Skills</a></li>
-                <li><a href="{% url 'studentsapp:search_blood' %}" class="dropdown-item hover:bg-orange-500 hover:text-white">Search blood-group</a></li>
-                {% if user.is_authenticated and user.profile %}
-                <li><a href="{% url 'studentsapp:student-profile' slug=user.profile.slug %}" class="dropdown-item hover:bg-orange-500 hover:text-white">My Profile</a></li>
-                {% endif %} {% if not user.is_authenticated %}
-                <li><a href="{% url 'login' %}" class="dropdown-item  hover:bg-orange-500 hover:text-white">My Profile</a></li>{% endif %}
-
-              </ul>
-            </div>
-          </span>
-          
-          <span class="underline-width-animate">
-            <div class="nav-item dropdown">
-              <a class="nav-link dropdown_arrow text-lg  font-normal" href="#" role="button" aria-expanded="false">
-                About-us  
-              </a>
-              <ul class="dropdown-menu my_slideUp">
-                <li><a href="{% url 'Faculty_app:faculty_members' %}" class="dropdown-item hover:bg-orange-500 hover:text-white">Faculty members</a></li>
-                <li><a href="{% url 'Faculty_app:faculty_staffs' %}" class="dropdown-item hover:bg-orange-500 hover:text-white">Faculty staff</a></li>
-                <li><a href="{% url 'Faculty_app:moderators' %}" class="dropdown-item hover:bg-orange-500 hover:text-white">Admin & Moderators</a></li>
-                <li><a href="{% url 'Faculty_app:developers' %}" class="dropdown-item hover:bg-orange-500 hover:text-white">About Developer</a></li>
-              </ul>
-            </div>
-          </span>
-
-          <span class="underline-width-animate">
-            <a class="nav-link text-lg  font-normal" aria-current="page" href="{% url 'Alumni_app:home' %}">Alumni</a>
-          </span>
-
-          {% if user.is_authenticated %}
-          <form action="{% url 'logout' %}" method="POST">{% csrf_token %}
-            <span class="underline-width-animate">
-              <button type="submit" class="nav-link text-lg  font-normal">Logout</button>
-            </span>
-          </form>{% else %}
-          <span class="underline-width-animate">
-            <a href="{% url 'login' %}" class="nav-link text-lg  font-normal">Login</a>
-          </span>
-          {% endif %}
         </div>
       </div>
     </div>

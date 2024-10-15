@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-jrh%yksos6q^exdqcxyw@30dd-1*_9s+mb9fozi8b%at55&^$3
 # DEBUG = False
 # DEBUG = True 
 
-ALLOWED_HOSTS = ["project1imran.pythonanywhere.com", "*"]
+ALLOWED_HOSTS = ["project1imran.pythonanywhere.com", "*", ".localhost"]
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'galleryapp',
     'students',
     'Faculty_app',
+    'Alumni_app',
     "crispy_forms",
     "crispy_tailwind",
 
@@ -65,6 +66,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    
 ]
 
 ROOT_URLCONF = 'CSE_Academia.urls'
@@ -155,3 +158,5 @@ LOGOUT_REDIRECT_URL = '/'
 
 # DATA_UPLOAD_MAX_MEMORY_SIZE = 20428800  # 20 MB
 DATA_UPLOAD_MAX_MEMORY_SIZE = 20428800  # 20 MB
+
+
