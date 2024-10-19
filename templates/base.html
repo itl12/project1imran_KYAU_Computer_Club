@@ -7,7 +7,8 @@
     {% load static %}
     <title>{% block title %}{{ title }} {% endblock %} | CSE Academia</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{% static 'icons/bootstrap-icons-1.11.3/bootstrap-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'icons/fontawesome-free-6.6.0-web/css/all.min.css' %}">
     <link rel="stylesheet" href="{% static 'src/aos/aos.css' %}">
     <link rel="stylesheet" href="{% static 'src/css/tailwind/output.css' %}">
 
@@ -44,32 +45,6 @@
   }
 }
 
-.animate-navbar-bg {
-  background-image: linear-gradient(to right, #3b82f6, #6366f1, #8b5cf6);
-  background-size: 200% 200%;
-  animation: move-bg 3s ease-in-out infinite;
-}
-
-/* Keyframes for background movement */
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Applying animation to the text gradient */
-.animate-gradient-header-brand {
-  background-size: 200% 200%;
-  animation: gradient 7s ease-in-out infinite;
-}
-
-
-/* Style for the nav-link */
-.underline-width-animate {
-  position: relative;
-  padding-bottom: 0px; /* Add some spacing for the underline */
-}
-
 
 /* After pseudo-element for the underline effect */
 .underline-width-animate::after {
@@ -82,16 +57,6 @@
   height: 2px; /* Thickness of the underline */
   background: rgb(249, 115, 22) !important; /* Color of the underline */
   transition: width 0.3s ease; /* Animation for expanding width */
-}
-
-/* Hover state - expand the underline */
-.underline-width-animate:hover::after {
-  width: 100%; /* Expand the underline to full width */
-}
-
-/* Reset on mouse-out */
-.underline-width-animate:not(:hover)::after {
-  width: 0; /* Collapse the underline when not hovered */
 }
 
 /*   my custom animations  */
@@ -123,6 +88,23 @@
   border-left: .3em solid transparent;
 }
 
+/* new inset */
+.navbar .nav-link {
+    margin-right: 10px;
+    background: none;
+    /* box-shadow: inset 0 0 5px rgba(249, 115, 22, 0.4), rgba(255, 255, 255, 0.1) 0 1px 0; */
+    border-radius: 4px;
+    border: 1px solid transparent;
+    padding: 8px;
+    /* color: #fff !important; */
+    color : rgb(249 115 22) !important;
+    /* text-shadow: rgba(0, 0, 0, 0.796875) 0 -1px 0, rgba(255, 255, 255, 0.296875) 0 0 10px; */
+}
+
+.navbar .nav-link:hover{
+  background-color: rgb(249 115 22);
+  color: #fff !important;
+}
 
 
 </style>
@@ -131,10 +113,10 @@
 <body id="body">
 
 
-  <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top  shadow-lg">
+  <nav class="navbar p-0 navbar-expand-lg bg-body-tertiary fixed-top shadow-lg">
     <div class="container-fluid">
       <!-- logo -->
-      <a class="navbar-brand" href="/">
+      <a class="navbar-brand p-0" href="/">
         <img src="{% static 'icons/kyau-logo.jpg' %}" class="w-12 h-12 inline-block me-3 rounded-full" alt="CSE Academia">
         <!-- <h1 class="relative text-2xl font-medium z-10 inline-block text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-white animate-gradient-header-brand"> -->
         <h1 class="nav-logo relative text-2xl font-medium z-10 inline-block text-green-700">
@@ -263,7 +245,7 @@
 
 
 
-      <main class="mt-[74px] {% block main_tag_style %}{%endblock%}">
+      <main class="mt-[48px] {% block main_tag_style %}{%endblock%}">
 
         {% if messages %}
           <div class="messages">

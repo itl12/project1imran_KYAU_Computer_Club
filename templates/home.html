@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{% static 'src/css/animate.css' %}">
 <link rel="stylesheet" href="{% static 'src/css/owl-carousel/owl.carousel.min.css' %}">
 <link rel="stylesheet" href="{% static 'src/css/owl-carousel/owl.theme.default.min.css' %}">
+
 {% endblock %}
 {% block script_head %} <script src="{% static 'src/js/typelt/source_typelt.js' %}"></script> {% endblock %}
 
@@ -13,20 +14,20 @@
 {% block body %}
 
 <!-- Main carousel  -->
-<div class="relative w-full">
+<div class="relative w-full sm:w-2/3 mx-auto">
   <div id="home-carousel" class="owl-carousel owl-theme">
     {% for image in carousel %}
-      <div class="h-[250px] md:h-[500px]  w-full z-10">
+      <div class="h-[250px] md:h-[500px]  w-full z-10 rounded-xl overflow-hidden">
         <img src="{{ image.image.url }}" class="h-full object-cover" alt="">
       </div>
     {% endfor %}
   </div>
 
   <div class="absolute top-0 start-0 w-[15%] h-full flex justify-center align-center">
-    <button id="prev" class="cursor-pointer w-full z-20 text-3xl text-zinc-300">></button>
+    <button id="prev" class="cursor-pointer w-full z-20 text-3xl sm:text-5xl hover:text-orange-500 duration-100 text-zinc-300"><i class="fa-solid fa-chevron-left"></i></button>
   </div>
   <div class="absolute top-0 end-0 w-[15%] h-full flex justify-center align-center">
-    <button id="next" class="cursor-pointer w-full z-20 text-3xl text-zinc-300">></button>
+    <button id="next" class="cursor-pointer w-full z-20 text-3xl sm:text-5xl hover:text-orange-500 duration-100 text-zinc-300"><i class="fa-solid fa-chevron-right"></i></button>
   </div>
 </div>
 
@@ -39,81 +40,45 @@
 <!-- Redesigned Headline Section -->
 
 
-
+<!-- Unlock Your Potential with Our Cutting-Edge Learning Environment -->
 <!-- New header -->
-<div class="relative bg-gradient-to-r from-blue-700 to-teal-400 p-8 mb-12 text-center text-4xl font-extrabold text-white shadow-xl overflow-hidden animate-gradient-bg">
 
-  <!-- Background Animation -->
-  <div class="absolute inset-0 bg-gradient-to-r from-purple-700 to-pink-500 opacity-40 blur-lg animate-pulse"></div>
+<section class="md:mx-[5%] rounded-md relative bg-gradient-to-r from-[#070c09] to-[#285dcd] py-8 text-center text-white overflow-hidden">
 
-  <!-- Animated Text -->
-  <h1 class="relative z-10 inline-block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-white animate-gradient">
-    Welcome to the Future of Learning
+  <!-- Main Heading -->
+  <h1 id="welcome_header" class="relative z-10 text-5xl md:text-7xl font-extrabold tracking-tight text-white ">
+    <!-- Welcome to CSE AcademiaWelcome to <span style="color: rgb(234 179 8);">CSE Academia</span> -->
   </h1>
 
   <!-- Subheading -->
-  <p class="relative z-10 mt-4 text-2xl font-light text-gray-100 font-medium" id="subheading_homepage_header">
-    Discover. Learn. Excel.
-  </p>
-</div>
+  <!-- <p class="relative z-10 mt-6 text-xl md:text-3xl font-light text-gray-200">
+    Unlock Your Potential with Our Cutting-Edge Learning Environment
+  </p> -->
+
+  <!-- Call to Action Button -->
+  <!-- <div class="relative z-10 mt-10">
+    <a href="#"
+      class="inline-block px-8 py-4 bg-yellow-500 text-gray-900 font-semibold text-lg rounded-full shadow-md hover:bg-yellow-600 transition-all duration-200">
+      Get Started
+    </a>
+  </div> -->
+
+  <script>
+    new TypeIt("#welcome_header", { 
+      speed: 50,
+      deleteSpeed : 20,
+      loopDelay : 300,
+      waitUntilVisible: true,
+      loop: true
+    }).type('Welcome to <span style="color: rgb(234 179 8);">CSE Academia</span>')
+      .pause(3000)
+      .delete()
+      .go();
+  </script>
+</section>
 
 
-
-
-
-
-
-
-
-
-
-<script>
-  new TypeIt("#subheading_homepage_header", { 
-    lifeLike: false, 
-    speed: 0,
-    cursorChar: "|",
-    waitUntilVisible: true,
-    loop: true
-  }).type("E").pause(112).type("x").pause(112).type("p").pause(112).type("l").pause(112).type("o").pause(112).type("r").pause(63).type("e").pause(112).type(".").pause(217).type(" ").pause(112).type("I").pause(112).type("n").pause(112).type("n").pause(114).type("o").pause(151).type("v").pause(144).type("a").pause(192).type("t").pause(64).type("e").pause(112).type(".").pause(112).type(" ").pause(112).type("C").pause(112).type("r").pause(88).type("e").pause(112).type("a").pause(112).type("t").pause(88).type("e").pause(112).type(".").pause(112).type(" ").pause(1521)
-  .delete(1).pause(508).delete(1).pause(30).delete(1).pause(34).delete(1).pause(26).delete(1).pause(33).delete(1).pause(47).delete(1).pause(21).delete(1).pause(44).delete(1).pause(34).delete(1).pause(32).delete(1).pause(31).delete(1).pause(24).delete(1).pause(32).delete(1).pause(45).delete(1).pause(27).delete(1).pause(30).delete(1).pause(41).delete(1).pause(22).delete(1).pause(43).delete(1).pause(29).delete(1).pause(29).delete(1).pause(34).delete(1).pause(42).delete(1).pause(30).delete(1).pause(29).delete(1).pause(33).delete(1).pause(254).type("E").pause(283).type("x").pause(252).type("p").pause(191).type("l").pause(184).type("o").pause(72).type("r").pause(74).type("e").pause(206).type(".").pause(153).type(" ").pause(1062)
-  .delete(1).pause(510).delete(1).pause(31).delete(1).pause(29).delete(1).pause(27).delete(1).pause(38).delete(1).pause(27).delete(1).pause(44).delete(1).pause(31).delete(1).pause(285).type("I").pause(232).type("n").pause(152).type("n").pause(113).type("o").pause(142).type("v").pause(123).type("a").pause(174).type("t").pause(81).type("e").pause(182).type(".").pause(144).type(" ").pause(1002)
-  .delete(1).pause(501).delete(1).pause(32).delete(1).pause(39).delete(1).pause(27).delete(1).pause(34).delete(1).pause(29).delete(1).pause(37).delete(1).pause(32).delete(1).pause(33).delete(1).pause(139).type("C").pause(464).type("r").pause(87).type("e").pause(168).type("a").pause(169).type("t").pause(96).type("e").pause(225).type(".").pause(191).type(" ").pause(1001)
-  .delete(1).pause(510).delete(1).pause(34).delete(1).pause(33).delete(1).pause(28).delete(1).pause(37).delete(1).pause(24).delete(1).pause(32).delete(1).go();
-</script>
-
-<!-- Tailwind Animations -->
-<style>
-/* Keyframes for background movement */
-@keyframes gradient {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Applying animation to the text gradient */
-.animate-gradient {
-  background-size: 200% 200%;
-  animation: gradient 2s ease-in-out infinite;
-}
-
-/* Applying animation to the main background */
-.animate-gradient-bg {
-  background-size: 200% 200%;
-  animation: gradient 3s ease-in-out infinite;
-}
-</style>
-
-
-
-
-
-
-
-
-
-
-
-<div class="container mx-auto px-4 mb-24">
+<div class="container mt-20 mx-auto px-4 mb-24">
   <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-8 space-y-[100px]"> -->
   <div class="flex flex-col flex-wrap md:flex-row justify-between space-y-10 lg:space-y-0">
     
@@ -242,13 +207,13 @@
       });
     </script>
   </div>
-
+</div>
 
 
 
 <!-- Hero Section -->
 <section id="hero"
-  class="my-20 py-14 px-2  relative flex items-center justify-center h-max-content  bg-gradient-to-r from-green-400 to-blue-500 rounded-md">
+  class="md:mx-[5%] my-20 py-14 px-2  relative flex items-center justify-center h-max-content  bg-gradient-to-r from-[#000000] to-blue-500 rounded-md">
   <div class="text-center">
     <h1 id="course_content_hero_heading" class="text-4xl md:text-6xl font-extrabold text-white mb-6">
       <!-- Explore Your Future in CSE -->
@@ -307,7 +272,6 @@
 
 
 </section>
-
 
 
 
