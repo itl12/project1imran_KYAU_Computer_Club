@@ -7,75 +7,83 @@
 <link rel="stylesheet" href="{% static 'src/css/owl-carousel/owl.carousel.min.css' %}">
 <link rel="stylesheet" href="{% static 'src/css/owl-carousel/owl.theme.default.min.css' %}">
 
+<style>
+
+</style>
+
 {% endblock %}
 {% block script_head %} <script src="{% static 'src/js/typelt/source_typelt.js' %}"></script> {% endblock %}
 
 
 {% block body %}
 
-<!-- Main carousel  -->
-<div class="relative w-full sm:w-2/3 mx-auto">
-  <div id="home-carousel" class="owl-carousel owl-theme">
-    {% for image in carousel %}
-      <div class="h-[250px] md:h-[500px]  w-full z-10 rounded-xl overflow-hidden">
-        <img src="{{ image.image.url }}" class="h-full object-cover" alt="">
-      </div>
-    {% endfor %}
-  </div>
 
-  <div class="absolute top-0 start-0 w-[15%] h-full flex justify-center align-center">
-    <button id="prev" class="cursor-pointer w-full z-20 text-3xl sm:text-5xl hover:text-orange-500 duration-100 text-zinc-300"><i class="fa-solid fa-chevron-left"></i></button>
-  </div>
-  <div class="absolute top-0 end-0 w-[15%] h-full flex justify-center align-center">
-    <button id="next" class="cursor-pointer w-full z-20 text-3xl sm:text-5xl hover:text-orange-500 duration-100 text-zinc-300"><i class="fa-solid fa-chevron-right"></i></button>
-  </div>
+  <!-- Main content container -->
+
+<div id="particles-js" class="bg-[#061c35] relative">
+
+
+    <div id="home-carousel-wrapper" class=" w-full sm:w-2/3  overflow-hidden absolute left-[50%]  translate-x-[-50%]">
+      <div id="home-carousel" class="owl-carousel owl-theme">
+        {% for image in carousel %}
+          <div class="h-[250px] md:h-[500px] w-full z-10 rounded-xls overflow-hidden">
+            <img src="{{ image.image.url }}" class="h-full object-cover" alt="">
+            <!-- Gradient Overlay for Edge Blending -->
+            <!-- <div class="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-transparent via-[#061c35]/30 to-[#061c35]"></div> -->
+            <div class="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b 
+              from-transparent 
+              via-[#061c35]/5  
+              to-[#061c35]/100"> 
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    
+      <div class="absolute top-0 start-0 w-[15%] h-full flex justify-center align-center">
+        <button id="prev" class="cursor-pointer w-full z-20 text-3xl sm:text-5xl hover:text-orange-500 duration-100 text-zinc-300">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+      </div>
+      <div class="absolute top-0 end-0 w-[15%] h-full flex justify-center align-center">
+        <button id="next" class="cursor-pointer w-full z-20 text-3xl sm:text-5xl hover:text-orange-500 duration-100 text-zinc-300">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <section id="home-header" class="absolute w-full bottom-0 bg-transparent sbg-gradient-to-r sfrom-[#070c09] sto-[#285dcd] py-8 text-center text-white overflow-hidden">
+      
+      <h1 id="welcome_header" class="relative h-24 sm:h-auto z-10 text-5xl lg:text-7xl font-extrabold tracking-tight text-white ">
+      </h1>
+    
+      <script>
+        new TypeIt("#welcome_header", { 
+          speed: 50,
+          deleteSpeed: 20,
+          loopDelay: 300,
+          waitUntilVisible: true,
+          loop: true
+        })
+        .type('Welcome to <span style="color: rgb(234 179 8);">CSE Academia</span>')
+        .pause(3000)
+        .delete()
+        .go();
+      </script>
+    </section>
+
+
+
 </div>
 
-<!-- ----------------------------------------------------------------------------------- -->
 
 
 
 
 
-<!-- Redesigned Headline Section -->
 
 
-<!-- Unlock Your Potential with Our Cutting-Edge Learning Environment -->
-<!-- New header -->
 
-<section class="md:mx-[5%] rounded-md relative bg-gradient-to-r from-[#070c09] to-[#285dcd] py-8 text-center text-white overflow-hidden">
-
-  <!-- Main Heading -->
-  <h1 id="welcome_header" class="relative z-10 text-5xl md:text-7xl font-extrabold tracking-tight text-white ">
-    <!-- Welcome to CSE AcademiaWelcome to <span style="color: rgb(234 179 8);">CSE Academia</span> -->
-  </h1>
-
-  <!-- Subheading -->
-  <!-- <p class="relative z-10 mt-6 text-xl md:text-3xl font-light text-gray-200">
-    Unlock Your Potential with Our Cutting-Edge Learning Environment
-  </p> -->
-
-  <!-- Call to Action Button -->
-  <!-- <div class="relative z-10 mt-10">
-    <a href="#"
-      class="inline-block px-8 py-4 bg-yellow-500 text-gray-900 font-semibold text-lg rounded-full shadow-md hover:bg-yellow-600 transition-all duration-200">
-      Get Started
-    </a>
-  </div> -->
-
-  <script>
-    new TypeIt("#welcome_header", { 
-      speed: 50,
-      deleteSpeed : 20,
-      loopDelay : 300,
-      waitUntilVisible: true,
-      loop: true
-    }).type('Welcome to <span style="color: rgb(234 179 8);">CSE Academia</span>')
-      .pause(3000)
-      .delete()
-      .go();
-  </script>
-</section>
+<!-- ---------------- -->
 
 
 <div class="container mt-20 mx-auto px-4 mb-24">
@@ -213,7 +221,7 @@
 
 <!-- Hero Section -->
 <section id="hero"
-  class="md:mx-[5%] my-20 py-14 px-2  relative flex items-center justify-center h-max-content  bg-gradient-to-r from-[#000000] to-blue-500 rounded-md">
+  class="mt-20 py-14 px-2  relative flex items-center justify-center h-max-content  bg-gradient-to-r from-[#000000] to-blue-500">
   <div class="text-center">
     <h1 id="course_content_hero_heading" class="text-4xl md:text-6xl font-extrabold text-white mb-6">
       <!-- Explore Your Future in CSE -->
@@ -223,31 +231,31 @@
     </p>
 
     <!-- Icons representing course content -->
-    <div class="flex flex-wrap justify-center space-x-4 mb-6">
+    <div class="flex flex-wrap justify-center space-x-4 space-y-4 mb-6">
       <!-- Programming Icon -->
-      <div class="group">
-        <i class="fa-solid fa-code text-4xl text-white group-hover:text-yellow-400 duration-200"></i>
-        <p class="text-sm text-white group-hover:text-yellow-400 duration-200">Programming</p>
+      <div class="group mt-4">
+        <i class="fa-solid fa-code text-4xl text-white sm:text-yellow-400 group-hover:text-yellow-400 duration-200"></i>
+        <p class="text-sm text-white sm:text-yellow-400 group-hover:text-yellow-400 duration-200">Programming</p>
       </div>
       <!-- Networking Icon -->
       <div class="group">
-        <i class="fa-solid fa-network-wired text-4xl text-white group-hover:text-yellow-400 duration-200"></i>
-        <p class="text-sm text-white group-hover:text-yellow-400 duration-200">Networking</p>
+        <i class="fa-solid fa-network-wired text-4xl text-white sm:text-yellow-400 group-hover:text-yellow-400 duration-200"></i>
+        <p class="text-sm text-white sm:text-yellow-400 group-hover:text-yellow-400 duration-200">Networking</p>
       </div>
       <!-- AI Icon -->
       <div class="group">
-        <i class="fa-solid fa-brain text-4xl text-white group-hover:text-yellow-400 duration-200"></i>
-        <p class="text-sm text-white group-hover:text-yellow-400 duration-200">AI</p>
+        <i class="fa-solid fa-brain text-4xl text-white sm:text-yellow-400 group-hover:text-yellow-400 duration-200"></i>
+        <p class="text-sm text-white sm:text-yellow-400 group-hover:text-yellow-400 duration-200">AI</p>
       </div>
       <!-- Databases Icon -->
       <div class="group">
-        <i class="fa-solid fa-database text-4xl text-white group-hover:text-yellow-400 duration-200"></i>
-        <p class="text-sm text-white group-hover:text-yellow-400 duration-200">Databases</p>
+        <i class="fa-solid fa-database text-4xl text-white sm:text-yellow-400 group-hover:text-yellow-400 duration-200"></i>
+        <p class="text-sm text-white sm:text-yellow-400 group-hover:text-yellow-400 duration-200">Databases</p>
       </div>
       <!-- Cybersecurity Icon -->
-      <div class="group">
-        <i class="fa-solid fa-shield-virus text-4xl text-white group-hover:text-yellow-400 duration-200"></i>
-        <p class="text-sm text-white group-hover:text-yellow-400 duration-200">Cybersecurity</p>
+      <div class="group mt-2">
+        <i class="fa-solid fa-shield-virus text-4xl text-white sm:text-yellow-400 group-hover:text-yellow-400 duration-200"></i>
+        <p class="text-sm text-white sm:text-yellow-400 group-hover:text-yellow-400 duration-200">Cybersecurity</p>
       </div>
     </div>
 
@@ -286,13 +294,31 @@
 
 
 
-
-
-
 {% endblock %}
 
 
 {% block script %}
+<script src="{% static 'src/js/particles.js-master/particles.min.js' %}"></script>
 <script src="{% static 'src/js/owl-carousel/owl.carousel.min.js' %}"></script>
 <script src="{% static 'src/js/owl-carousel/owl-carousel-customize.js' %}"></script>
+
+
+
+
+<script>
+  /* particlesJS.load(@dom-id, @path-json, @callback (optional)); particles-js */
+  particlesJS.load('particles-js', '{% static "src/js/particles.js-master/particlesjs-config.json" %}');
+
+  $(document).ready(function(){
+    let a = $('#home-header').outerHeight() + $('#home-carousel-wrapper').outerHeight();
+
+    $('#particles-js').css({'height' : a });
+
+    $(window).on('resize', function(){
+      let a = $('#home-header').outerHeight() + $('#home-carousel-wrapper').outerHeight();
+      $('#particles-js').css({'height' : a });
+    })
+  })
+</script>
+
 {% endblock %}
