@@ -7,7 +7,7 @@
 
 <div class="text-bg-success py-4 fw-semibold fs-3 text-center antialiased">Recent Acitvity Gallery</div>
 
-<div class="container mt-4">
+<!-- <div class="container mt-4">
     <ul class="list-groups list-group-flush md:w-6/12 mx-auto">
 
         {% for activity in activities %}
@@ -22,8 +22,36 @@
         {% endfor %}
     
     </ul>
-</div>
+</div> -->
 
+<div class="container mt-8">
+    <ul class="list-groups list-group-flush md:w-6/12 mx-auto">
+
+        {% for activity in activities %}
+        <a href="{% url 'galleryapp:activity-gallery' slug=activity.slug %}" class="block mb-6" data-aos="fade-up" data-aos-duration="1000">
+            <li
+                class="list-group-item flex flex-col sm:flex-row sm:items-center justify-between bg-green-100 text-[#5f9e6e] shadow-lg rounded-lg p-4 hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                
+                <!-- Activity Icon -->
+                <div class="flex items-center space-x-4">
+                    <i class="fa-solid fa-calendar-alt text-3xl text-green-600"></i>
+
+                    <!-- Activity Title -->
+                    <div class="text-left">
+                        <div class="fw-semibold fs-3 text-[#5f9e6e]">{{ activity.title|truncatechars:50 }}</div>
+                    </div>
+                </div>
+
+                <!-- Activity Date -->
+                <span class="bg-green-600 text-white py-1 px-4 rounded-full text-nowrap mt-2 sm:mt-0 w-max self-end text-xs sm:text-sm">
+                    {{ activity.date }}
+                </span>
+            </li>
+        </a>
+        {% endfor %}
+
+    </ul>
+</div>
 
 
 
