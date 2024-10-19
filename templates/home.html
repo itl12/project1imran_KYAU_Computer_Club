@@ -40,12 +40,12 @@
       </div>
     
       <div class="absolute top-0 start-0 w-[15%] h-full flex justify-center align-center">
-        <button id="prev" class="cursor-pointer w-full z-20 text-3xl sm:text-5xl hover:text-orange-500 duration-100 text-zinc-300">
+        <button id="prev" class="cursor-pointer w-full z-20 text-3xl sm:text-5xl hover:text-orange-500s duration-100 text-zinc-300">
           <i class="fa-solid fa-chevron-left"></i>
         </button>
       </div>
       <div class="absolute top-0 end-0 w-[15%] h-full flex justify-center align-center">
-        <button id="next" class="cursor-pointer w-full z-20 text-3xl sm:text-5xl hover:text-orange-500 duration-100 text-zinc-300">
+        <button id="next" class="cursor-pointer w-full z-20 text-3xl sm:text-5xl hover:text-orange-500s duration-100 text-zinc-300">
           <i class="fa-solid fa-chevron-right"></i>
         </button>
       </div>
@@ -54,7 +54,7 @@
     <section id="home-header" class="absolute w-full bottom-0 bg-transparent sbg-gradient-to-r sfrom-[#070c09] sto-[#285dcd] py-8 text-center text-white overflow-hidden">
       
       <h1 id="welcome_header" class="relative h-24 sm:h-auto z-10 text-5xl lg:text-7xl font-extrabold tracking-tight text-white ">
-      </h1>
+      </h1>   <!--  Unlock Your Potential with Our Cutting-Edge Learning Environment -->
     
       <script>
         new TypeIt("#welcome_header", { 
@@ -65,6 +65,7 @@
           loop: true
         })
         .type('Welcome to <span style="color: rgb(234 179 8);">CSE Academia</span>')
+        // .type('Unlock Your Potential with Our Cutting-Edge Learning Environment')
         .pause(3000)
         .delete()
         .go();
@@ -106,7 +107,7 @@
                   <span class="text-center w-fit align-self-end badge fw-normal text-bg-secondary rounded-pill">
                     {{ notice.days_left }}
                   </span>
-                  <div class="font-semibold">
+                  <div class="font-semibold"><i class="fa-solid fa-bell text-xl me-2 text-green-600"></i>
                     {{ notice.heading|truncatechars:50 }}
                   </div>
                 </a>
@@ -139,7 +140,9 @@
             {% for activity in activities %}
               <li class="activity-item">
                 <a href="{% url 'galleryapp:activity-gallery' slug=activity.slug %}" class="block group p-4 transition-all duration-300 ease-in-out bg-gray-100 hover:bg-purple-100 cursor-pointer">
-                  <span class="text-gray-800 group-hover:text-purple-600 font-medium">{{ activity.title|truncatechars:50 }}</span>
+                  <span class="text-gray-800 group-hover:text-purple-600 font-medium">
+                    <i class="fa-solid fa-calendar-alt text-lg me-2 text-green-600"></i>
+                    {{ activity.title|truncatechars:50 }}</span>
                   <p class="text-gray-600 text-sm mt-1 group-hover:text-purple-400">{{ activity.date }}</p>
                 </a>
               </li>
@@ -288,7 +291,7 @@
 
 
 
-</div>
+
 
 
 
