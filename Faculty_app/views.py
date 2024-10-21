@@ -2,9 +2,20 @@ from django.shortcuts import render
 from django.views.generic import DetailView, ListView, TemplateView
 
 
-from .models import Faculty_profile, Faculty_staff, Instructor_developer_moderator
+from .models import Faculty_profile, Faculty_staff, Instructor_developer_moderator, About_CSE
 
 # Create your views here.
+
+
+class About_CSE_View(TemplateView):
+    template_name = 'about_cse.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['obj'] = About_CSE.objects.first()
+        context['head_sir'] = Faculty_profile.objects.first()
+        return context
+
 
 
 class Faculty_profileView(DetailView):
