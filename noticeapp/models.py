@@ -58,12 +58,12 @@ class Notice_images(models.Model):
 
 class RoutineModel(models.Model):
     routine_pdf = models.FileField(upload_to='notice_file', verbose_name='Routine pdf')
+    routine_photo = models.ImageField(upload_to='routine_photo', verbose_name='Routine photo',  help_text="To convert the pdf into jpg visit https://smallpdf.com/pdf-converter or <a href='https://smallpdf.com/pdf-converter' target='_blank'><span style='color:green;font-size:20px;'>click here</span></a>")
     date = models.DateField(auto_now_add=True)
     update_date = models.DateField(auto_now=True)
 
     class Meta():
-        ordering = ['update_date']
         verbose_name = 'Update previous routine'
 
     def __str__(self):
-        return f'{self.routine_pdf}'
+        return f'last updated {self.update_date} {self.routine_pdf}'

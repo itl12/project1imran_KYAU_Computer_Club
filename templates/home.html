@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% load static %}
-
+{% block title %} Home {% endblock %}
 
 
 {% block style %}
@@ -12,14 +12,17 @@
 </style>
 
 {% endblock %}
-{% block script_head %} <script src="{% static 'src/js/typelt/source_typelt.js' %}"></script> {% endblock %}
+{% block script_head %}
+ <script src="{% static 'src/js/typelt/source_typelt.js' %}"></script>
+ <script src="{% static 'src/js/countUP_js/countUp.js' %}"></script>
+
+{% endblock %}
 
 
 {% block body %}
 
 
-  <!-- Main content container -->
-
+  <!-- Carousel section -->
 <div id="particles-js" class="bg-[#061c35] relative">
 
 
@@ -27,7 +30,7 @@
       <div id="home-carousel" class="owl-carousel owl-theme">
         {% for image in carousel %}
           <div class="h-[250px] md:h-[500px] w-full z-10 rounded-xls overflow-hidden">
-            <img src="{{ image.image.url }}" class="h-full object-cover" alt="">
+            <img src="{{ image.image.url }}" class="h-full object-cover sm:rounded-[127px] border-x-8 border-x-green-800s" alt="">
             <!-- Gradient Overlay for Edge Blending -->
             <!-- <div class="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-transparent via-[#061c35]/30 to-[#061c35]"></div> -->
             <div class="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b 
@@ -77,16 +80,7 @@
 </div>
 
 
-
-
-
-
-
-
-
-<!-- ---------------- -->
-
-
+<!-- Notice, Activity Galley And Post Section-->
 <div class="container mt-20 mx-auto px-4 mb-24">
   <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-8 space-y-[100px]"> -->
   <div class="flex flex-col flex-wrap md:flex-row justify-between space-y-10 lg:space-y-0">
@@ -222,9 +216,9 @@
 
 
 
-<!-- Hero Section -->
+<!-- Course Contents Section -->
 <section id="hero"
-  class="mt-20 py-14 px-2  relative flex items-center justify-center h-max-content  bg-gradient-to-r from-[#000000] to-blue-500">
+  class="mt-20 py-14 px-2  relative flex items-center justify-center h-max-content  bg-gradient-to-r from-[#000000] to-blue-500 overflow-hidden">
   <div class="text-center">
     <h1 id="course_content_hero_heading" class="text-4xl md:text-6xl font-extrabold text-white mb-6">
       <!-- Explore Your Future in CSE -->
@@ -264,7 +258,7 @@
 
     <!-- Button to scroll to course content -->
     <a href="{% url 'noticeapp:course_content' %}"
-      class="inline-block px-8 py-4 text-lg font-semibold bg-yellow-400 text-gray-900 rounded-lg shadow-md hover:bg-yellow-500 transition duration-200">
+      class="inline-block px-8 py-4 text-lg font-semibold bg-yellow-400 text-gray-900 rounded-lg shadow-md hover:bg-sky-600 hover:text-white transition duration-200">
       View Course Offerings
     </a>
   </div>
@@ -286,7 +280,68 @@
 
 
 
+<!-- Students/Faculty counts section -->
+<section class="overflow-hidden">
+  <div class="bg-gray-100 py-16">
+    <div class="container mx-auto flex flex-col lg:flex-row justify-between items-center px-6">
+      <!-- Left Section -->
+      <div class="lg:w-1/2">
+        <h3 class="text-teal-500 font-semibold mb-2" data-aos="fade-left" data-aos-duration="1500" data-aos-mirror="true" data-aos-once="false" >Empowering the Future of Technology</h3>
+        <h2 class="text-3xl font-bold text-gray-800 mb-4" data-aos="fade-left" data-aos-duration="1500" data-aos-mirror="true" data-aos-once="false" >Join Our Leading CSE Department</h2>
+        <p class="text-gray-600 mb-6" data-aos="fade-up" data-aos-duration="1500" data-aos-mirror="true" data-aos-once="false" >Our department is committed to providing a solid foundation in computer science and engineering. Students gain access to top-quality education, preparing them for the challenges of a dynamic tech industry.</p>
+        <!-- <a href="#get-started" class="inline-block bg-teal-500 text-white px-6 py-2 rounded-lg hover:bg-teal-600 transition">Get Started Now</a> -->
+      </div>
+  
+      <!-- Right Section (Statistics) -->
+      <div class="counts_wrapper lg:w-1/2 flex flex-wrap justify-around lg:justify-start mt-10 lg:mt-0">
+        <div class="text-center p-6">
+          <h3 id="faculty_count" class="text-4xl font-bold text-gray-800"></h3>
+          <p class="text-gray-600">Faculty Members</p>
+        </div>
+        <div class="text-center p-6">
+          <h3 id="students_count" class="text-4xl font-bold text-gray-800"></h3>
+          <p class="text-gray-600">Active Students</p>
+        </div>
+        <div class="text-center p-6">
+          <h3 id="research_project_count" class="text-4xl font-bold text-gray-800">20+</h3>
+          <p class="text-gray-600">Research Projects</p>
+        </div>
+        <div class="text-center p-6">
+          <h3 id="alumni_count" class="text-4xl font-bold text-gray-800"></h3>
+          <p class="text-gray-600">Successful Alumni</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const options = {
+              duration: 3,  
+              suffix: '+',
+            };
+            let faculty = new CountUp('faculty_count', 9, { duration: 3 });
+            let students = new CountUp('students_count', 120, options);
+            let project = new CountUp('research_project_count', 20, options);
+            let alumni = new CountUp('alumni_count', 80, options);
 
+            faculty.start();
+            students.start();
+            project.start();
+            alumni.start();
+          
+          }
+        });
+      });
+
+      const statsSection = document.querySelector('.counts_wrapper');
+      observer.observe(statsSection);
+    });
+  
+  </script>
+</section>
 
 
 

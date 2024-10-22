@@ -4,11 +4,24 @@
 
 {% block body %}
 
-<h2 class="container my-10 py-4 rounded-lg bg-gray-500 text-gray-200 text-center text-2xl fw-bold antialiased font-mono shadow-2xl">Updated : {{ routine.update_date }}</h2>
-
-<div class="container my-10 h-[200px]">
-    <a href="{{ routine.routine_pdf.url }}" target="_blank" class="block py-4 rounded-lg bg-sky-700 hover:bg-sky-600 text-cyan-300 hover:text-cyan-300 font-bold text-center text-2xl font-mono antialiased ">{% if routine is None %}No routine uploaded yet.{% else %}Download routine {% endif %}</a>
-</div>
-
-    
+<div class="container mx-auto my-12 px-6">
+    <!-- Routine Update Info -->
+    <h2 class="my-10 py-4 bg-gray-700 text-gray-100 text-center text-3xl font-bold font-mono rounded-lg shadow-lg">
+      Updated : {{ routine.update_date }}
+    </h2>
+  
+    <!-- Routine Download Section -->
+    <div class="bg-sky-800 text-white text-center py-10 rounded-lg shadow-lg transition-all">
+      <a href="{{ routine.routine_pdf.url }}" 
+         class="inline-block bg-sky-600 hover:bg-sky-500 text-cyan-100 hover:text-cyan-200 px-10 py-3 rounded-lg font-semibold text-2xl transition-all">
+        {% if routine is None %}No routine uploaded yet.{% else %}Download Routine {% endif %}
+      </a>
+    </div>
+  
+    <!-- Routine Image -->
+    <div class="mt-10 flex justify-center">
+      <img src="{{ routine.routine_photo.url }}" alt="Routine Image" class="max-w-full h-auto rounded-lg shadow-md hover:shadow-xl transition-shadow">
+    </div>
+  </div>
+  
 {% endblock %}

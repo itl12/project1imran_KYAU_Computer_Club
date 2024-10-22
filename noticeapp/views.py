@@ -24,7 +24,7 @@ class RoutineView(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(*args, **kwargs)
-        context['routine'] =  RoutineModel.objects.all().first()
+        context['routine'] =  RoutineModel.objects.last()
         return context 
         
 

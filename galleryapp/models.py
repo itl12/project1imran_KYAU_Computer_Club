@@ -8,8 +8,18 @@ class Carousel(models.Model):
     class Meta():
         ordering = ['image']
 
+
+class Category_Activity_Gallery(models.Model):
+    title = models.CharField(max_length=200)
+
+    class Meta():
+        verbose_name_plural = 'Categories of activity gallery'
+        
+    def __str__(self):
+        return f'{self.title}'
     
 class Activity_Gallery(models.Model):
+    category = models.ForeignKey(Category_Activity_Gallery, related_name='items', on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=300)
     body = models.TextField(blank=True, null=True)
     date = models.DateField()
