@@ -22,8 +22,7 @@
 {% block body %}
 
 
-  <!-- Main content container -->
-
+  <!-- Carousel section -->
 <div id="particles-js" class="bg-[#061c35] relative">
 
 
@@ -31,7 +30,7 @@
       <div id="home-carousel" class="owl-carousel owl-theme">
         {% for image in carousel %}
           <div class="h-[250px] md:h-[500px] w-full z-10 rounded-xls overflow-hidden">
-            <img src="{{ image.image.url }}" class="h-full object-cover" alt="">
+            <img src="{{ image.image.url }}" class="h-full object-cover sm:rounded-[127px] border-x-8 border-x-green-800s" alt="">
             <!-- Gradient Overlay for Edge Blending -->
             <!-- <div class="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-transparent via-[#061c35]/30 to-[#061c35]"></div> -->
             <div class="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b 
@@ -81,16 +80,7 @@
 </div>
 
 
-
-
-
-
-
-
-
-<!-- ---------------- -->
-
-
+<!-- Notice, Activity Galley And Post Section-->
 <div class="container mt-20 mx-auto px-4 mb-24">
   <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-8 space-y-[100px]"> -->
   <div class="flex flex-col flex-wrap md:flex-row justify-between space-y-10 lg:space-y-0">
@@ -226,7 +216,7 @@
 
 
 
-<!-- Hero Section -->
+<!-- Course Contents Section -->
 <section id="hero"
   class="mt-20 py-14 px-2  relative flex items-center justify-center h-max-content  bg-gradient-to-r from-[#000000] to-blue-500 overflow-hidden">
   <div class="text-center">
@@ -268,7 +258,7 @@
 
     <!-- Button to scroll to course content -->
     <a href="{% url 'noticeapp:course_content' %}"
-      class="inline-block px-8 py-4 text-lg font-semibold bg-yellow-400 text-gray-900 rounded-lg shadow-md hover:bg-yellow-500 transition duration-200">
+      class="inline-block px-8 py-4 text-lg font-semibold bg-yellow-400 text-gray-900 rounded-lg shadow-md hover:bg-sky-600 hover:text-white transition duration-200">
       View Course Offerings
     </a>
   </div>

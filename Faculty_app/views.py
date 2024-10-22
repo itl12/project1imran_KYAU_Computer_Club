@@ -12,8 +12,8 @@ class About_CSE_View(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['obj'] = About_CSE.objects.first()
-        context['head_sir'] = Faculty_profile.objects.first()
+        context['obj'] = About_CSE.objects.last()
+        context['head_sir'] = Faculty_profile.objects.filter(department_head=True).first()
         return context
 
 

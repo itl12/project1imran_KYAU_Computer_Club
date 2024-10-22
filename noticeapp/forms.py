@@ -64,7 +64,7 @@ class NoticeForm(forms.ModelForm):
 class RoutineForm(forms.ModelForm):
     class Meta:
         model = RoutineModel 
-        fields = ['routine_pdf']
+        fields = ['routine_pdf', 'routine_photo']
         
     routine_pdf = forms.FileField(validators=[FileExtensionValidator(allowed_extensions=['pdf'])],
                           widget=forms.FileInput(attrs={'accept': 'application/pdf'}))

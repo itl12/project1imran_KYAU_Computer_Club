@@ -20,6 +20,7 @@ class Faculty_profile(models.Model):
     photo = models.ImageField(upload_to='faculty_members', blank=True, null=True)
     name = models.CharField(max_length=255)
     designation = models.CharField(max_length=255)
+    department_head = models.BooleanField(default=False)
     short_biography = models.CharField(max_length=1500, blank=True, null=True)
     research_interest = models.CharField(max_length=1500, blank=True, null=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)

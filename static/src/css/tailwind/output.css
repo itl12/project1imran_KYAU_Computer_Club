@@ -14078,6 +14078,11 @@ video {
   margin-bottom:2.5rem !important
 }
 
+.my-12{
+  margin-top:3rem !important;
+  margin-bottom:3rem !important
+}
+
 .my-20{
   margin-top:5rem !important;
   margin-bottom:5rem !important
@@ -14219,22 +14224,6 @@ video {
   margin-top:48px !important
 }
 
-.mb-0{
-  margin-bottom:0px !important
-}
-
-.mt-0{
-  margin-top:0px !important
-}
-
-.-mt-0{
-  margin-top:-0px !important
-}
-
-.-mt-2{
-  margin-top:-0.5rem !important
-}
-
 .block{
   display:block !important
 }
@@ -14317,10 +14306,6 @@ video {
 
 .h-8{
   height:2rem !important
-}
-
-.h-\[200px\]{
-  height:200px !important
 }
 
 .h-\[250px\]{
@@ -14705,6 +14690,11 @@ video {
   border-width:4px !important
 }
 
+.border-x-8{
+  border-left-width:8px !important;
+  border-right-width:8px !important
+}
+
 .border-b{
   border-bottom-width:1px !important
 }
@@ -14713,16 +14703,8 @@ video {
   border-bottom-width:2px !important
 }
 
-.border-b-\[3px\]{
-  border-bottom-width:3px !important
-}
-
 .border-t{
   border-top-width:1px !important
-}
-
-.border-b-4{
-  border-bottom-width:4px !important
 }
 
 .border-gray-200{
@@ -14825,14 +14807,14 @@ video {
   background-color:rgb(156 163 175 / var(--tw-bg-opacity)) !important
 }
 
-.bg-gray-500{
-  --tw-bg-opacity:1 !important;
-  background-color:rgb(107 114 128 / var(--tw-bg-opacity)) !important
-}
-
 .bg-gray-600{
   --tw-bg-opacity:1 !important;
   background-color:rgb(75 85 99 / var(--tw-bg-opacity)) !important
+}
+
+.bg-gray-700{
+  --tw-bg-opacity:1 !important;
+  background-color:rgb(55 65 81 / var(--tw-bg-opacity)) !important
 }
 
 .bg-green-100{
@@ -14895,9 +14877,14 @@ video {
   background-color:rgb(2 132 199 / var(--tw-bg-opacity)) !important
 }
 
-.bg-sky-700{
+.bg-sky-800{
   --tw-bg-opacity:1 !important;
-  background-color:rgb(3 105 161 / var(--tw-bg-opacity)) !important
+  background-color:rgb(7 89 133 / var(--tw-bg-opacity)) !important
+}
+
+.bg-teal-500{
+  --tw-bg-opacity:1 !important;
+  background-color:rgb(20 184 166 / var(--tw-bg-opacity)) !important
 }
 
 .bg-teal-600{
@@ -14932,11 +14919,6 @@ video {
 .bg-zinc-800{
   --tw-bg-opacity:1 !important;
   background-color:rgb(39 39 42 / var(--tw-bg-opacity)) !important
-}
-
-.bg-teal-500{
-  --tw-bg-opacity:1 !important;
-  background-color:rgb(20 184 166 / var(--tw-bg-opacity)) !important
 }
 
 .bg-opacity-75{
@@ -15185,6 +15167,11 @@ video {
   padding-bottom:0.25rem !important
 }
 
+.py-10{
+  padding-top:2.5rem !important;
+  padding-bottom:2.5rem !important
+}
+
 .py-12{
   padding-top:3rem !important;
   padding-bottom:3rem !important
@@ -15193,6 +15180,11 @@ video {
 .py-14{
   padding-top:3.5rem !important;
   padding-bottom:3.5rem !important
+}
+
+.py-16{
+  padding-top:4rem !important;
+  padding-bottom:4rem !important
 }
 
 .py-2{
@@ -15223,11 +15215,6 @@ video {
 .py-8{
   padding-top:2rem !important;
   padding-bottom:2rem !important
-}
-
-.py-16{
-  padding-top:4rem !important;
-  padding-bottom:4rem !important
 }
 
 .pb-3{
@@ -15361,9 +15348,9 @@ video {
   color:#9e5f5fde !important
 }
 
-.text-cyan-300{
+.text-cyan-100{
   --tw-text-opacity:1 !important;
-  color:rgb(103 232 249 / var(--tw-text-opacity)) !important
+  color:rgb(207 250 254 / var(--tw-text-opacity)) !important
 }
 
 .text-cyan-700{
@@ -15371,9 +15358,9 @@ video {
   color:rgb(14 116 144 / var(--tw-text-opacity)) !important
 }
 
-.text-gray-200{
+.text-gray-100{
   --tw-text-opacity:1 !important;
-  color:rgb(229 231 235 / var(--tw-text-opacity)) !important
+  color:rgb(243 244 246 / var(--tw-text-opacity)) !important
 }
 
 .text-gray-300{
@@ -15476,6 +15463,11 @@ video {
   color:rgb(2 132 199 / var(--tw-text-opacity)) !important
 }
 
+.text-teal-500{
+  --tw-text-opacity:1 !important;
+  color:rgb(20 184 166 / var(--tw-text-opacity)) !important
+}
+
 .text-teal-600{
   --tw-text-opacity:1 !important;
   color:rgb(13 148 136 / var(--tw-text-opacity)) !important
@@ -15510,11 +15502,6 @@ video {
   color:rgb(212 212 216 / var(--tw-text-opacity)) !important
 }
 
-.text-teal-500{
-  --tw-text-opacity:1 !important;
-  color:rgb(20 184 166 / var(--tw-text-opacity)) !important
-}
-
 .underline{
   text-decoration-line:underline !important
 }
@@ -15526,12 +15513,6 @@ video {
 
 .opacity-40{
   opacity:0.4 !important
-}
-
-.shadow-2xl{
-  --tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25) !important;
-  --tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color) !important;
-  box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important
 }
 
 .shadow-inner{
@@ -15703,9 +15684,19 @@ video {
   background-color:rgb(243 232 255 / var(--tw-bg-opacity)) !important
 }
 
+.hover\:bg-sky-500:hover{
+  --tw-bg-opacity:1 !important;
+  background-color:rgb(14 165 233 / var(--tw-bg-opacity)) !important
+}
+
 .hover\:bg-sky-600:hover{
   --tw-bg-opacity:1 !important;
   background-color:rgb(2 132 199 / var(--tw-bg-opacity)) !important
+}
+
+.hover\:bg-teal-600:hover{
+  --tw-bg-opacity:1 !important;
+  background-color:rgb(13 148 136 / var(--tw-bg-opacity)) !important
 }
 
 .hover\:bg-white:hover{
@@ -15713,19 +15704,9 @@ video {
   background-color:rgb(255 255 255 / var(--tw-bg-opacity)) !important
 }
 
-.hover\:bg-yellow-500:hover{
-  --tw-bg-opacity:1 !important;
-  background-color:rgb(234 179 8 / var(--tw-bg-opacity)) !important
-}
-
 .hover\:bg-yellow-600:hover{
   --tw-bg-opacity:1 !important;
   background-color:rgb(202 138 4 / var(--tw-bg-opacity)) !important
-}
-
-.hover\:bg-teal-600:hover{
-  --tw-bg-opacity:1 !important;
-  background-color:rgb(13 148 136 / var(--tw-bg-opacity)) !important
 }
 
 .hover\:text-black:hover{
@@ -15738,9 +15719,9 @@ video {
   color:rgb(59 130 246 / var(--tw-text-opacity)) !important
 }
 
-.hover\:text-cyan-300:hover{
+.hover\:text-cyan-200:hover{
   --tw-text-opacity:1 !important;
-  color:rgb(103 232 249 / var(--tw-text-opacity)) !important
+  color:rgb(165 243 252 / var(--tw-text-opacity)) !important
 }
 
 .hover\:text-gray-100:hover{
@@ -15854,6 +15835,10 @@ video {
 
   .sm\:items-center{
     align-items:center !important
+  }
+
+  .sm\:rounded-\[127px\]{
+    border-radius:127px !important
   }
 
   .sm\:text-3xl{
