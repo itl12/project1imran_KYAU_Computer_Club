@@ -1,7 +1,7 @@
 from django.contrib import admin 
 from django.utils.html import format_html
 
-from .models import Carousel, Activity_Gallery, GalleryImage
+from .models import Carousel,Category_Activity_Gallery, Activity_Gallery, GalleryImage
 from .forms import MyCustomForm
 
 
@@ -20,7 +20,7 @@ class CarouselAdmin(admin.ModelAdmin):
         js = ['src/js/jquery.js', 'src/js/image-compression/image_compress.js', 'src/js/image-compression/carousel.js']
 
 
-
+admin.site.register(Category_Activity_Gallery)
 
 class GalleryImageInline(admin.TabularInline):
     model = GalleryImage
