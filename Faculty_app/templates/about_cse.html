@@ -3,13 +3,13 @@
 {% block body %}
 
 <div class="container my-10">
-    <h4 class="h4 text-center text-gray-600 pb-4 border-b-[3px] border-orange-500">{{ obj.title1 }}</h4>
+    <h4 class="h4 text-center text-gray-600 pb-4 border-b-2 border-orange-500">{{ obj.title1 }}</h4>
     <div class="text-lg" data-aos="fade-up" data-aos-duration="1000" data-aos-mirror="true" data-aos-once="false">{{ obj.body1 | linebreaksbr }}</div>
 
     
     <div class="mt-8 flex flex-col lg:flex-row bg-white shadow-lg overflow-hidden">
         <!-- Left Section: Profile -->
-        <div class="max-h-fit flex-shrink-0 lg:w-1/3 p-6 flex flex-col items-center border-1 border-sky-500">
+        <div class="max-h-fit flex-shrink-0 lg:w-1/3 p-6 flex flex-col items-center border-1 border-sky-500"  data-aos="zoom-in" data-aos-duration="1000" data-aos-mirror="true" data-aos-once="false" data-aos-delay="200">
           <div class="w-40 h-40 rounded-full overflow-hidden border-4 border-gray-300 border-teal-500 mb-4 hover:scale-[1.3] duration-300">
             <img src="{{ head_sir.photo.url }}" alt="Md. Tarequl Islam" class="w-full h-full object-cover">
           </div>
