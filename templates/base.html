@@ -133,12 +133,12 @@
       <div class="collapse navbar-collapse max-h-[400px] overflow-y-scroll  b-lg:overflow-y-visible" style="visibility: visible !important;" id="navbarNavDropdown">
         <div class="navbar-nav mx-auto">
           <span class="underline-width-animate">
-            <a class="nav-link text-lg  font-normal" aria-current="page" href="/">Home</a>
+            <a class="nav-link text-lg  font-normal" aria-current="page" href="/" {% if request.path == '/' %}style="background: rgb(249 115 22); color: white !important;"{% endif %}>Home</a>
           </span>
 
           <span class="underline-width-animate">
             <div class="nav-item dropdown">
-              <a class="nav-link text-lg dropdown_arrow font-normal" href="#" role="button" aria-expanded="false">
+              <a class="nav-link text-lg dropdown_arrow font-normal" href="#" role="button" aria-expanded="false" {% if '/_notices/' in request.path %} style="background: rgb(249 115 22); color: white !important;" {% endif %}>
                 Notices
               </a>
               <ul class="dropdown-menu my_slideUp">
@@ -150,12 +150,12 @@
           </span>
 
           <span class="underline-width-animate">
-            <a class="nav-link text-lg  font-normal" aria-current="page" href="{% url 'galleryapp:list_activity' %}">Activities</a>
+            <a class="nav-link text-lg  font-normal" aria-current="page" href="{% url 'galleryapp:list_activity' %}" {% if '/_gallery/' in request.path %} style="background: rgb(249 115 22); color: white !important;" {% endif %}>Activities</a>
           </span>
 
           <span class="underline-width-animate">
             <div class="nav-item dropdown">
-              <a class="nav-link text-lg dropdown_arrow font-normal" href="#" role="button" aria-expanded="false">
+              <a class="nav-link text-lg dropdown_arrow font-normal" href="#" role="button" aria-expanded="false"  {% if '/_students/' in request.path %} style="background: rgb(249 115 22); color: white !important;" {% endif %}>
                 Students
               </a>
               <ul class="dropdown-menu my_slideUp">
@@ -173,7 +173,7 @@
           
           <span class="underline-width-animate">
             <div class="nav-item dropdown">
-              <a class="nav-link dropdown_arrow text-lg  font-normal" href="#" role="button" aria-expanded="false">
+              <a class="nav-link dropdown_arrow text-lg  font-normal" href="#" role="button" aria-expanded="false" {% if '/_faculty/' in request.path %} style="background: rgb(249 115 22); color: white !important;" {% endif %}>
                 About-us  
               </a>
               <ul class="dropdown-menu my_slideUp">
@@ -197,17 +197,13 @@
             </span>
           </form>{% else %}
           <span class="underline-width-animate">
-            <a href="{% url 'login' %}" class="nav-link text-lg  font-normal">Login</a>
+            <a href="{% url 'login' %}" class="nav-link text-lg  font-normal" {% if '/_login/' in request.path %} style="background: rgb(249 115 22); color: white !important;" {% endif %}>Login</a>
           </span>
           {% endif %}
         </div>
       </div>
     </div>
   </nav>
-
-
-
-
 
 <script>
    $('.navbar-nav .nav-link').addClass('active text-green-700');
