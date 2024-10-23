@@ -15,17 +15,17 @@ urlpatterns = [
     re_path(r'^static/(?P<path>.*)$', serve, {'document_root' : settings.STATIC_ROOT }),
     re_path(r'^media/(?P<path>.*)$', serve, {'document_root' : settings.MEDIA_ROOT }),
     path('', views.Home.as_view(), name='home'),
-    path('notices/', include('noticeapp.urls')),
-    path('gallery/', include('galleryapp.urls')),
-    path('students/', include('students.urls')),
-    path('faculty/', include('Faculty_app.urls')),
-    path('alumni/', include('Alumni_app.urls')),
+    path('_notices/', include('noticeapp.urls')),
+    path('_gallery/', include('galleryapp.urls')),
+    path('_students/', include('students.urls')),
+    path('_faculty/', include('Faculty_app.urls')),
+    path('_alumni/', include('Alumni_app.urls')),
 
 
 
-    path('login/', views.Custom_loginview.as_view(), name='login'),
-    path('signup/', views.SignUpView.as_view(), name='signup'),
-    path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('_login/', views.Custom_loginview.as_view(), name='login'),
+    path('_signup/', views.SignUpView.as_view(), name='signup'),
+    path('_logout/', auth_views.LogoutView.as_view(), name='logout'),
 
 ] 
 

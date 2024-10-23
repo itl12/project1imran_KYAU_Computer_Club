@@ -4,7 +4,7 @@ from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.template.loader import render_to_string
 
-from .models import Activity_Gallery
+from .models import Activity_Gallery, Category_Activity_Gallery
 
 # Create your views here.
 class RoutineView(TemplateView):
@@ -13,9 +13,25 @@ class RoutineView(TemplateView):
 
 class List_activity(ListView):
     model = Activity_Gallery
-    template_name = 'activity_list.html'
+    template_name = 'activity_list.html'  # Replace with your actual template
     context_object_name = 'activities'
-    paginate_by = 6
+    paginate_by = 8  # Optional: Adds pagination
+
+    def get_queryset(self):
+        queryset = Activity_Gallery.objects.all()
+        category_id = self.request.GET.get('category')
+        
+        if category_id:
+            queryset = queryset.filter(category__id=category_id)
+        
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categories'] = Category_Activity_Gallery.objects.all()
+        context['selected_category'] = self.request.GET.get('category', None)
+        return context
+
 
 
 class ActivityGallary(DetailView):
