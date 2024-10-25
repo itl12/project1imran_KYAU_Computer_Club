@@ -30,7 +30,7 @@
       <div id="home-carousel" class="owl-carousel owl-theme">
         {% for image in carousel %}
           <div class="h-[250px] md:h-[500px] w-full z-10 rounded-xls overflow-hidden">
-            <img src="{{ image.image.url }}" class="h-full object-cover sm:rounded-[127px] border-x-8 border-x-green-800s" alt="">
+            <img src="{{ image.image.url }}" class="h-full object-cover sm:rounded-[127px]s border-x-8s border-x-green-800s" alt="">
             <!-- Gradient Overlay for Edge Blending -->
             <!-- <div class="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-transparent via-[#061c35]/30 to-[#061c35]"></div> -->
             <div class="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b 
@@ -323,9 +323,9 @@
               suffix: '+',
             };
             let faculty = new CountUp('faculty_count', 9, { duration: 3 });
-            let students = new CountUp('students_count', 120, options);
-            let project = new CountUp('research_project_count', 20, options);
-            let alumni = new CountUp('alumni_count', 80, options);
+            let students = new CountUp('students_count', 220, options);
+            let project = new CountUp('research_project_count', 60, options);
+            let alumni = new CountUp('alumni_count', 150, options);
 
             faculty.start();
             students.start();

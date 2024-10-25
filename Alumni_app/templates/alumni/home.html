@@ -1,37 +1,123 @@
 {% extends 'alumni/base.html' %} {% load static %}
 
-<title>{% block title %} Alumni {{ title }} {% endblock %} | CSE Academia</title>
+<title>{% block title %} Alumni {{ title }} {% endblock %}</title>
 
 {% block style %}
-<style>
-.header-image img {
-
-}
-
-
-</style>
 {% endblock %}
 {% block script_head %} {% endblock %}
-
 {% block body %}
 
-<div class="header-image relative w-full  max-h-[300px] md:max-h-[600px] overflow-hidden">
-  <img src='{% static "images/Slider-1-1.jpg" %}' class="w-full object-cover object-center max-h-[300px] md:max-h-[600px]" alt="" data-aos="zoom-out" data-aos-duration="1700" data-aos-easing="ease-in-out" >
-  <!-- Light black overlay -->
-  <div class="absolute inset-0 bg-black opacity-40"></div>
+<div class="bg-gray-300 py-5 text-xl sm:text-3xl font-semibold text-center text-sky-600">Meet the Alumni</div>
+
+<section class="alumni-section my-10">
+
+  <form action="" class="w-full md:w-1/2 mx-auto flex space-x-2 p-2">
+    <input type="text" class="form-control border-1 border-sky-600" name="" id="" placeholder="Search Name">
+    <input type="submit" value="Search Alumni" class="btn btn-outline-success">
+  </form>
 
 
-  <div class="absolute inset-0 w-full h-full flex flex-col ">
-    <div class="one h-1/2 w-full flex flex-col justify-content-center">
-      <h2 class="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-medium md:font-bold text-white text-center" data-aos="zoom-out" data-aos-duration="1000" data-aos-delay="700">KYAU Alumni Association</h2>
-      <h4 class="text-lg sm:xl md:text-2xl lg:text-4xl tracking-[0.25em] text-white text-center pt-3" data-aos="flip-up" data-aos-duration="1500" data-aos-delay="200">A Family of 16,000+ Alumni!</h4>
+  <div class="w-full md:w-2/3 alumni-list mt-10 flex flex-wrap justify-center space-x-8 space-y-14 mx-auto">
+
+    <div class="alumni w-1/5 ml-8 mt-14 rounded-lg border-1 border-gray-300 cursor-pointer">
+      <div class="wrapper overflow-hidden">
+        <img src="{% static 'images/alumni_default.png' %}" alt="" class="duration-300">
+      </div>
+      <div class="alumni_name pl-2 pt-1 text-center text-lg text-sky-600 font-medium">Md. Abu Saleh</div>
+      <div class="alumni_status pl-2 text-center text-green-700">Assistant Professor</div>
     </div>
-
-    <div class="two h-1/2 w-full flex justify-content-center"  data-aos="zoom-in-up" data-aos-duration="1000" data-aos-delay="700">
-      <a href="" class="text-base lg:text-xl uppercase tracking-wide md:tracking-[0.25em] font-normal text-white text-center self-end mb-2 sm:mb-14 border-1 border-white py-2 px-10 hover:bg-white hover:text-black inline-block duration-300" >complete reunion registration</a>
+    
+    <div class="alumni w-1/5 rounded-lg border-1 border-gray-300 cursor-pointer">
+      <div class="wrapper overflow-hidden">
+        <img src="{% static 'images/alumni_default.png' %}" alt="" class="duration-300">
+      </div>
+      <div class="alumni_name pl-2 pt-1 text-center text-lg text-sky-600 font-medium">Md. Abu Saleh</div>
+      <div class="alumni_status pl-2 text-center text-green-700">Assistant Professor</div>
     </div>
+    
+    <div class="alumni w-1/5 rounded-lg border-1 border-gray-300 cursor-pointer">
+      <div class="wrapper overflow-hidden">
+        <img src="{% static 'images/alumni_default.png' %}" alt="" class="duration-300">
+      </div>
+      <div class="alumni_name pl-2 pt-1 text-center text-lg text-sky-600 font-medium">Md. Abu Saleh</div>
+      <div class="alumni_status pl-2 text-center text-green-700">Assistant Professor</div>
+    </div>
+    
+    <div class="alumni w-1/5 rounded-lg border-1 border-gray-300 cursor-pointer">
+      <div class="wrapper overflow-hidden">
+        <img src="{% static 'images/alumni_default.png' %}" alt="" class="duration-300">
+      </div>
+      <div class="alumni_name pl-2 pt-1 text-center text-lg text-sky-600 font-medium">Md. Abu Saleh</div>
+      <div class="alumni_status pl-2 text-center text-green-700">Assistant Professor</div>
+    </div>
+    
+    <div class="alumni w-1/5 rounded-lg border-1 border-gray-300 cursor-pointer">
+      <div class="wrapper overflow-hidden">
+        <img src="{% static 'images/alumni_default.png' %}" alt="" class="duration-300">
+      </div>
+      <div class="alumni_name pl-2 pt-1 text-center text-lg text-sky-600 font-medium">Md. Abu Saleh</div>
+      <div class="alumni_status pl-2 text-center text-green-700">Assistant Professor</div>
+    </div>
+    
+    <div class="alumni w-1/5 rounded-lg border-1 border-gray-300 cursor-pointer">
+      <div class="wrapper overflow-hidden">
+        <img src="{% static 'images/alumni_default.png' %}" alt="" class="duration-300">
+      </div>
+      <div class="alumni_name pl-2 pt-1 text-center text-lg text-sky-600 font-medium">Md. Abu Saleh</div>
+      <div class="alumni_status pl-2 text-center text-green-700">Assistant Professor</div>
+    </div>
+    
+    <div class="alumni w-1/5 rounded-lg border-1 border-gray-300 cursor-pointer">
+      <div class="wrapper overflow-hidden">
+        <img src="{% static 'images/alumni_default.png' %}" alt="" class="duration-300">
+      </div>
+      <div class="alumni_name pl-2 pt-1 text-center text-lg text-sky-600 font-medium">Md. Abu Saleh</div>
+      <div class="alumni_status pl-2 text-center text-green-700">Assistant Professor</div>
+    </div>
+    
+    <div class="alumni w-1/5 rounded-lg border-1 border-gray-300 cursor-pointer">
+      <div class="wrapper overflow-hidden">
+        <img src="{% static 'images/alumni_default.png' %}" alt="" class="duration-300">
+      </div>
+      <div class="alumni_name pl-2 pt-1 text-center text-lg text-sky-600 font-medium">Md. Abu Saleh</div>
+      <div class="alumni_status pl-2 text-center text-green-700">Assistant Professor</div>
+    </div>
+    
+    <div class="alumni w-1/5 rounded-lg border-1 border-gray-300 cursor-pointer">
+      <div class="wrapper overflow-hidden">
+        <img src="{% static 'images/alumni_default.png' %}" alt="" class="duration-300">
+      </div>
+      <div class="alumni_name pl-2 pt-1 text-center text-lg text-sky-600 font-medium">Md. Abu Saleh</div>
+      <div class="alumni_status pl-2 text-center text-green-700">Assistant Professor</div>
+    </div>
+    
+    <div class="alumni w-1/5 rounded-lg border-1 border-gray-300 cursor-pointer">
+      <div class="wrapper overflow-hidden">
+        <img src="{% static 'images/alumni_default.png' %}" alt="" class="duration-300">
+      </div>
+      <div class="alumni_name pl-2 pt-1 text-center text-lg text-sky-600 font-medium">Md. Abu Saleh</div>
+      <div class="alumni_status pl-2 text-center text-green-700">Assistant Professor</div>
+    </div>
+    
+    <div class="alumni w-1/5 rounded-lg border-1 border-gray-300 cursor-pointer">
+      <div class="wrapper overflow-hidden">
+        <img src="{% static 'images/alumni_default.png' %}" alt="" class="duration-300">
+      </div>
+      <div class="alumni_name pl-2 pt-1 text-center text-lg text-sky-600 font-medium">Md. Abu Saleh</div>
+      <div class="alumni_status pl-2 text-center text-green-700">Assistant Professor</div>
+    </div>
+    
+    <div class="alumni w-1/5 rounded-lg border-1 border-gray-300 cursor-pointer">
+      <div class="wrapper overflow-hidden">
+        <img src="{% static 'images/alumni_default.png' %}" alt="" class="duration-300">
+      </div>
+      <div class="alumni_name pl-2 pt-1 text-center text-lg text-sky-600 font-medium">Md. Abu Saleh</div>
+      <div class="alumni_status pl-2 text-center text-green-700">Assistant Professor</div>
+    </div>
+    
+    <style>.alumni:hover img{scale: 1.1;}</style>
   </div>
-</div>
 
+</section>
 
 {% endblock %}
